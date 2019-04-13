@@ -9,7 +9,7 @@ const BackgroundTextureDesktop = styled.img`
   right: 5px;
   z-index: -1;
   @media only screen 
-  and (min-device-width: 768px) {
+  and (min-width: 768px) {
     top: 36px;
     right: 69px;
   }
