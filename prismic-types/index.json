@@ -1,0 +1,47 @@
+{
+  "Main": {},
+  "SEO": {
+    "meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Title",
+        "placeholder": "Title as it appears in link sharing snippets and Google search results"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Description",
+        "placeholder": "Description as it appears in SoMe sharing and Google (short and sweet, no longer than twice a tweet)"
+      }
+    },
+    "meta_images": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 1200,
+                "height": 630
+              },
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Meta Images"
+      }
+    },
+    "show_in_sitemap": {
+      "type": "Select",
+      "config": {
+        "options": ["true", "false"],
+        "default_value": "true",
+        "label": "Show in sitemap",
+        "placeholder": "Choose one"
+      }
+    }
+  }
+}

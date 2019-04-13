@@ -1,0 +1,129 @@
+{
+  "Main": {
+    "primary_location": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["location"],
+        "label": "Primary Location",
+        "placeholder": "Select HQ or main office"
+      }
+    },
+    "copyright_information": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Copyright Information",
+        "placeholder": "Enter copyright information (appended to '© current year')"
+      }
+    },
+    "cookie_information": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Cookie Information",
+        "placeholder": "Enter text about cookies. You can link to a detail page here as well."
+      }
+    },
+    "cookie_consent_button_text": {
+      "type": "Text",
+      "config": {
+        "label": "Cookie Consent Button Text",
+        "placeholder": "If the user consents, they should click this button."
+      }
+    }
+  },
+  "Navigation": {
+    "main_navigation": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["navigation"],
+        "label": "Main Navigation",
+        "placeholder": "Select a navigation document"
+      }
+    },
+    "menu_toggle_variation": {
+      "type": "Select",
+      "config": {
+        "options": ["Use Icons", "Use Text"],
+        "default_value": "Use Icons",
+        "label": "Menu Toggle Variation"
+      }
+    },
+    "menu_toggle_open_text": {
+      "type": "Text",
+      "config": {
+        "label": "Menu Toggle Open Text",
+        "placeholder": "E.g. 'Menu'"
+      }
+    },
+    "menu_toggle_close_text": {
+      "type": "Text",
+      "config": {
+        "label": "Menu Toggle Close Text",
+        "placeholder": "E.g. 'Close'"
+      }
+    }
+  },
+  "SEO": {
+    "default_meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "Default Meta Title",
+        "placeholder": "Meta Title falls back to this title, if no title is set on a page.",
+        "useAsTitle": true
+      }
+    },
+    "default_meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Default Meta Description",
+        "placeholder": "Meta Description falls back to this description, if no custom description is set on a page."
+      }
+    },
+    "meta_title_prefix": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Title Prefix",
+        "placeholder": "Preprended to every custom meta title. Leave blank if you want nothing prepended."
+      }
+    },
+    "meta_title_appendix": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Title Appendix",
+        "placeholder": "Appended to every custom meta title. Leave blank if you want nothing appended."
+      }
+    },
+    "default_meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 1200,
+          "height": 630
+        },
+        "thumbnails": [],
+        "label": "Default Meta Image"
+      }
+    }
+  },
+  "Google": {
+    "google_analytics_id": {
+      "type": "Text",
+      "config": {
+        "label": "Google Analytics ID",
+        "placeholder": "Usually starts with 'UA-'"
+      }
+    },
+    "google_tag_manager_id": {
+      "type": "Text",
+      "config": {
+        "label": "Google Tag Manager ID",
+        "placeholder": "Usually starts with 'GTM-'"
+      }
+    }
+  }
+}

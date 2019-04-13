@@ -1,0 +1,20 @@
+{
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "Title",
+        "placeholder": "Text added before the content part. It could be 'Contact Us' or 'Email Us'. Leave blank if you want no title."
+      }
+    },
+    "content": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Content",
+        "placeholder": "Write some content, or insert a link. It could be a phone number, or maybe an email."
+      }
+    }
+  }
+}

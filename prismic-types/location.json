@@ -1,0 +1,29 @@
+{
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title",
+        "placeholder": "Location name (not displayed)"
+      }
+    },
+    "content": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Content",
+        "placeholder": "Enter information about this location"
+      }
+    },
+    "google_maps_link": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Google Maps Link",
+        "placeholder": "Enter link to Google Maps"
+      }
+    }
+  }
+}

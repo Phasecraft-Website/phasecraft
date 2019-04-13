@@ -1,0 +1,27 @@
+{
+  "Main": {
+    "links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "site": {
+            "type": "Text",
+            "config": {
+              "label": "Site",
+              "placeholder": "Social Media Site Title (e.g. Facebook)"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link",
+              "placeholder": "Insert Social Media Site Link"
+            }
+          }
+        },
+        "label": "Links"
+      }
+    }
+  }
+}

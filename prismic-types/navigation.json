@@ -1,0 +1,27 @@
+{
+  "Main": {
+    "navigation_items": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "navigation_link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Navigation Link Text",
+              "placeholder": "The link text as it should appear in navigation"
+            }
+          },
+          "navigation_link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Navigation Link",
+              "placeholder": "The page or URL this link points to"
+            }
+          }
+        },
+        "label": "Navigation items"
+      }
+    }
+  }
+}
