@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import backgroundTexture from '../../../../assetts/images/background-texture.png';
-import backgroundTextureMobile from '../../../../assetts/images/background-texture-mobile.png';
+import backgroundTexture from '../../../../assetts/images/background-texture.svg';
+import backgroundTextureMobile from '../../../../assetts/images/background-texture-mobile.svg';
 
 const BackgroundTextureDesktop = styled.img`
   position: absolute;
