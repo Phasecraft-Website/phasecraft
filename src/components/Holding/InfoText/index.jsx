@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const InfoTextBox = styled.div`
   margin-bottom: 35px;
-  margin-top: 34vh;
+  margin-top: 243px;
   @media only screen and (min-width: 768px) {
     width: 414px;
     margin-top: 0;
