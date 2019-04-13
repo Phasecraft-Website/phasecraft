@@ -64,7 +64,6 @@ export function renderFontStyles(typography, key) {
  */
 
 export function renderFontFamily(fontFamilies, typography, key) {
-  console.log({key});
   return fontFamilies.find(font => font.key === typography[key].font).value;
 }
 

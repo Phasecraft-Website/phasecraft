@@ -10,7 +10,6 @@ function renderGoogleFont(googleFont) {
 }
 
 function renderFontFace(fontFace) {
-  console.log({ fontFace });
   return fontFace.map(
     font => `
       @font-face {
