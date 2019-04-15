@@ -31,8 +31,8 @@ const InfoTextMed = styled.h3`
 function InfoText() {
   return (
     <InfoTextBox>
-      <InfoTextMed>USING DISRUPTIVE THEORY TO UN—LOCK THE POWER OF QUANTUM COMPUTING</InfoTextMed>
-      <InfoTextReg>NEW WEBSITE COMING SOON…</InfoTextReg>
+      <InfoTextMed>USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF</InfoTextMed>
+      <InfoTextReg>QUANTUM COMPUTING</InfoTextReg>
     </InfoTextBox>
   );
 }
