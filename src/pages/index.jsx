@@ -38,7 +38,7 @@ const Logo = styled.img`
 `;
 
 const Copyright = styled.p`
-  font-family: 'GT Pressura Mono Regular';
+  font-family: 'GT Pressura Mono Light';
   font-size: 15px;
   color: #051736;
   letter-spacing: 2px;

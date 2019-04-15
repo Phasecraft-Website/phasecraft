@@ -9,16 +9,6 @@ const fontFamilies = [
     title: 'Arial',
     value: 'Arial, sans-serif',
   },
-  {
-    key: 'sulsansmed',
-    title: 'Sul Sans, Medium',
-    value: 'Sul-Sans-Medium',
-  },
-  {
-    key: 'sulsansreg',
-    title: 'Sul Sans, Regular',
-    value: 'Sul-Sans-Regular',
-  },
 ];
 
 const typography = {
