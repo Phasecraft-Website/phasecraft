@@ -41,8 +41,8 @@ class BackgroundTexture extends React.Component {
 
   render() {
     const { windowWidth } = this.state;
-    let image;
-    let srcSet;
+    let image = backgroundTextureM;
+    let srcSet = `${backgroundTextureM} 1x, ${backgroundTextureM2} 2x`;
     let height = '87%';
     if (windowWidth < 786) {
       image = backgroundTextureS;
