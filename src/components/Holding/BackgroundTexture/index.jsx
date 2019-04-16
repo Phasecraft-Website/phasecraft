@@ -7,9 +7,9 @@ import backgroundTextureS from '../../../../assetts/images/Background-texture-v3
 import backgroundTextureM from '../../../../assetts/images/Background-texture-v3.0-1366.png';
 import backgroundTextureL from '../../../../assetts/images/Background-texture-v3.0-1920.png';
 
-// import backgroundTextureS2 from '../../../../assetts/images/Background-texture-v3.0-mobile@2x.png';
-// import backgroundTextureM2 from '../../../../assetts/images/Background-texture-v3.0-1366@2x.png';
-// import backgroundTextureL2 from '../../../../assetts/images/Background-texture-v3.0-1920@2x.png';
+import backgroundTextureS2 from '../../../../assetts/images/Background-texture-v3.0-mobile@2x.png';
+import backgroundTextureM2 from '../../../../assetts/images/Background-texture-v3.0-1366@2x.png';
+import backgroundTextureL2 from '../../../../assetts/images/Background-texture-v3.0-1920@2x.png';
 
 const BackgroundTextureDesktop = styled.img`
   position: absolute;
@@ -42,19 +42,24 @@ class BackgroundTexture extends React.Component {
   render() {
     const { windowWidth } = this.state;
     let image;
+    let srcSet;
     let height = '87%';
     if (windowWidth < 786) {
       image = backgroundTextureS;
+      srcSet=`${backgroundTextureS} 1x, ${backgroundTextureS2} 2x`;
       height = '614px';
     } else if (windowWidth < 1920) {
       image = backgroundTextureM;
+      srcSet=`${backgroundTextureM} 1x, ${backgroundTextureM2} 2x`;
     } else {
       image = backgroundTextureL;
+      srcSet=`${backgroundTextureL} 1x, ${backgroundTextureL2} 2x`;
     }
     return (
       <BackgroundTextureDesktop
         height={height}
         src={image}
+        srcset={srcSet}
         alt="PhaseCraft"
       />
     );
