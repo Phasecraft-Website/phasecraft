@@ -24,7 +24,7 @@ const BackgroundTextureDesktop = styled.img`
 `;
 
 class BackgroundTexture extends React.Component {
-  state = { windowWidth: 0 };
+  state = { windowWidth: window.innerWidth };
   
   componentDidMount() {
     this.updateWindowDimensions();
