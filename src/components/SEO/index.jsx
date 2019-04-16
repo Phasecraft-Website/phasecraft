@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import Facebook from './Facebook';
 import Twitter from './Twitter';
+import texture from '../../../assetts/images/Background-texture-v3.0-1366.png'
 
 // Complete tutorial: https://www.gatsbyjs.org/docs/add-seo-component/
 
@@ -30,10 +31,18 @@ const SEO = ({ title, desc, pathname, author, images }) => {
 
   if (images !== null) metaImages.push(...images);
 
+  // const seo = {
+  //   title: `${meta_title_prefix} ${title || default_meta_title}`,
+  //   description: desc || default_meta_description,
+  //   image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
+  //   url: `${url}${pathname || ''}`,
+  //   author: author || default_author,
+  // };
+
   const seo = {
-    title: `${meta_title_prefix} ${title || default_meta_title}`,
-    description: desc || default_meta_description,
-    image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
+    title: 'PhaseCraft',
+    description: 'USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF QUANTUM COMPUTING',
+    image: texture,
     url: `${url}${pathname || ''}`,
     author: author || default_author,
   };
