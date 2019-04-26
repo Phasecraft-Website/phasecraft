@@ -39,7 +39,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: #E5E6E4;
+    background: #E7E7E7;
     color: ${props => props.theme.global.body.color};
     font-family: ${props =>
       renderFontFamily(
