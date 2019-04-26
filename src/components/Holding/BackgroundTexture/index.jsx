@@ -1,15 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-// import backgroundTexture from '../../../../assetts/images/background-texture.svg';
-// import backgroundTextureMobile from '../../../../assetts/images/background-texture-mobile.svg';
 
-import backgroundTextureS from '../../../../assetts/images/Background-texture-v3.0-mobile.png';
-import backgroundTextureM from '../../../../assetts/images/Background-texture-v3.0-1366.png';
-import backgroundTextureL from '../../../../assetts/images/Background-texture-v3.0-1920.png';
-
-import backgroundTextureS2 from '../../../../assetts/images/Background-texture-v3.0-mobile@2x.png';
-import backgroundTextureM2 from '../../../../assetts/images/Background-texture-v3.0-1366@2x.png';
-import backgroundTextureL2 from '../../../../assetts/images/Background-texture-v3.0-1920@2x.png';
+import textureS from '../../../../assetts/images/texture-mobile@2x.png';
+import textureM from '../../../../assetts/images/texture-1366@2x.png';
+import textureL from '../../../../assetts/images/texture-1920@2x.png';
 
 const BackgroundTextureDesktop = styled.img`
   position: absolute;
@@ -24,7 +18,7 @@ const BackgroundTextureDesktop = styled.img`
 `;
 
 class BackgroundTexture extends React.Component {
-  state = { windowWidth: 1000 };
+  state = { windowWidth: null };
   
   componentDidMount() {
     this.updateWindowDimensions();
@@ -40,26 +34,21 @@ class BackgroundTexture extends React.Component {
   }
 
   render() {
-    const { windowWidth } = this.state;
-    let image = backgroundTextureM;
-    let srcSet = `${backgroundTextureM} 1x, ${backgroundTextureM2} 2x`;
-    let height = '87%';
+    const { windowWidth = window.innerWidth } = this.state;
+    let image = textureM;
+    let height = '89%';
     if (windowWidth < 786) {
-      image = backgroundTextureS;
-      srcSet=`${backgroundTextureS} 1x, ${backgroundTextureS2} 2x`;
+      image = textureS;
       height = '614px';
     } else if (windowWidth < 1920) {
-      image = backgroundTextureM;
-      srcSet=`${backgroundTextureM} 1x, ${backgroundTextureM2} 2x`;
+      image = textureM;
     } else {
-      image = backgroundTextureL;
-      srcSet=`${backgroundTextureL} 1x, ${backgroundTextureL2} 2x`;
+      image = textureL;
     }
     return (
       <BackgroundTextureDesktop
         height={height}
         src={image}
-        srcset={srcSet}
         alt="PhaseCraft"
       />
     );
