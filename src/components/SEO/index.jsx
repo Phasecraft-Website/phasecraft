@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import Facebook from './Facebook';
 import Twitter from './Twitter';
-import texture from '../../../assetts/images/Background-texture-v3.0-1366.png'
+import texture from '../../../assetts/images/texture-1366@2x.png'
 
 // Complete tutorial: https://www.gatsbyjs.org/docs/add-seo-component/
 
