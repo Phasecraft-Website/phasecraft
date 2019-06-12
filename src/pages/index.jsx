@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'components';
-import BackgroundTexture from 'components/Holding/BackgroundTexture';
+import BackgroundTexture from 'components/Holding/BackgroundTexture/BackgroundExp';
 import InfoText from 'components/Holding/InfoText';
 import Contact from 'components/Holding/Contact';
 import styled from 'styled-components';
