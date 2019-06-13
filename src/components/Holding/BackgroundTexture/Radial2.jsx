@@ -3,7 +3,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const radialSize = '55vw';
-const speed = 3;
+const speed = 4;
 
 const GradientAnimation = keyframes`
   // 0% {
