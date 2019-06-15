@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Radial from './Radial2';
+import Radial from './Radial3';
 
 const GradientAnimation = keyframes`
   0% {
