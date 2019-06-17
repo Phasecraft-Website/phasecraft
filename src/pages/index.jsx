@@ -1,70 +1,38 @@
 import React from 'react';
 import { Layout } from 'components';
-import BackgroundTexture from 'components/Holding/BackgroundTexture/BackgroundExp';
-import InfoText from 'components/Holding/InfoText';
-import Contact from 'components/Holding/Contact';
-import styled from 'styled-components';
-import logo from '../../assetts/images/logo.svg';
-
-const FlexColumn = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  @media only screen and (min-width: 768px) {
-    flex-direction: column;
-    align-items: ${props => props.right ? 'flex-end' : 'flex-start'};
-  };
-`;
-
-const FlexRow = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 20px;
-  @media only screen and (min-width: 768px) {
-    padding: 0 36px;
-    flex-direction: row;
-  };
-`;
-
-const Logo = styled.img`
-  margin-top: 45px;
-  @media only screen and (min-width: 768px) {
-    margin-top: 36px;
-  };
-`;
-
-const Copyright = styled.p`
-  font-family: 'GT Pressura Mono Light';
-  font-size: 15px;
-  color: #051736;
-  letter-spacing: 2px;
-  margin-top: 50px;
-  margin-bottom: 18px;
-  @media only screen and (min-width: 768px) {
-    margin-bottom: 35px;
-  };
-`;
+import Home from '../components/Home';
 
 function Index() {
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  const handleScroll = () => {
+    const { body, documentElement: html } = document;
+    const windowHeight = document.documentElement.offsetHeight;
+    const windowBottom = windowHeight + window.pageYOffset;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    // const svg = document.getElementById('svg-pattern');
+    if(windowBottom >= docHeight) {
+      body.classList.add('invert');
+    } else {
+      body.classList.remove('invert');
+    }
+  }
+
+  function throttle(fn, wait) {
+    let time = Date.now();
+    return function() {
+      if ((time + wait - Date.now()) < 0) {
+        fn();
+        time = Date.now();
+      }
+    }
+  }
+
   return (
     <Layout>
-      <BackgroundTexture />
-      <FlexRow>
-        <FlexColumn>
-          <div>
-            <Logo src={logo} alt="PhaseCraft" />
-          </div>
-          <InfoText />
-        </FlexColumn>
-        <FlexColumn right>
-          <Contact />
-          <Copyright>© PHASECRAFT 2019</Copyright>
-        </FlexColumn>
-      </FlexRow>
+      <Home />
     </Layout>
   );
 }

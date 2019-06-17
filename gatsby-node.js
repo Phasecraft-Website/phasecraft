@@ -1,4 +1,6 @@
-const path = require("path");
+const path = require('path');
+
+const linkResolver = require(`./src/helpers/linkResolver`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -9,6 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             uid
+            type
           }
         }
       }
@@ -16,14 +19,14 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   // Templates
-  const pageTemplate = path.resolve("src/templates/page.jsx");
+  const pageTemplate = path.resolve('src/templates/page.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
 
   pagesList.forEach(edge => {
     createPage({
-      path: `/${edge.node.uid}`,
+      path: linkResolver()(edge.node),
       component: pageTemplate,
       context: {
         uid: edge.node.uid,
@@ -36,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
   });
 };

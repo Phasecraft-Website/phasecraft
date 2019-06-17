@@ -1,0 +1,13 @@
+@keyframes animate-x {
+  from { transform: translateX(0); } to { transform: translateX(1440px); }
+}
+
+@keyframes animate-y {
+  from { transform: translateY(0); } to { transform: translateY(900px); }
+}
+
+.element {
+  animation:
+    animate-x 20s linear infinite alternate,
+    animate-y 15s linear infinite alternate;
+}

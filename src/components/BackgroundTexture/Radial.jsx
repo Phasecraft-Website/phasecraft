@@ -71,19 +71,17 @@ class Radial extends React.Component {
   }
 
   componentDidMount() {
-    const size = document.documentElement.clientWidth * 0.15;
+    const size = document.documentElement.clientWidth * 0.3;
     setInterval(() => {
       const r1 = this.getPositions(this.radial1.current, size);
       const r2 = this.getPositions(this.radial2.current, size);
       const d = Math.hypot(r2.left-r1.left, r2.top-r1.top);
-      if (d < 250) {
-        this.phaser1.current.style.opacity = 1 - (d / 250);
-        this.phaser2.current.style.opacity = 1 - (d / 250);
-        // this.setState({ orange: 1 * (d / 250) });
+      if (d < size / 2) {
+        this.phaser1.current.style.opacity = 1 - (d / (size / 2));
+        this.phaser2.current.style.opacity = 1 - (d / (size / 2));
       } else if (d > 250) {
         this.phaser1.current.style.opacity = 0;
         this.phaser2.current.style.opacity = 0;
-        // this.setState({ orange: 0 });
       }
     }, 1000)
   }

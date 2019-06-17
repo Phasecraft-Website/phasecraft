@@ -4,9 +4,52 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Normalize, GlobalStyles } from 'lib';
 import theme from 'theme';
 
+import Global from 'components/Global';
+import BackgroundTexture from 'components/BackgroundTexture/BackgroundExp';
 import SEO from '../SEO';
 
-const StyledLayout = styled.main``;
+const StyledLayout = styled.main`
+  display: grid;
+  position: relative;
+  grid-template-areas:
+  "main main main menu"
+  "main main main menu";
+  grid-column-gap: 0;
+  min-height: 100vh;
+  &:before { 
+    content:"";
+    position:fixed;
+    top:50%;
+    left: 50%;
+    z-index: 9999;
+    width: 1px; height: 1px;
+    outline: 2999px solid invert;
+  }
+`;
+
+const StyledMain = styled.div`
+  grid-area: main;
+`;
+
+const StyledNav = styled.div`
+  grid-area: menu;
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 25vw;
+`;
+
+// const StickyNav = styled.div`
+//   position: absolute;
+//   right: 0;
+//   left: 0;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// `;
 
 function Layout({ children, ...props }) {
   return (
@@ -15,7 +58,18 @@ function Layout({ children, ...props }) {
         <SEO />
         <Normalize />
         <GlobalStyles />
-        <StyledLayout {...props}>{children}</StyledLayout>
+        <StyledLayout {...props}>
+          <BackgroundTexture />
+          <StyledMain>
+            {children}
+          </StyledMain>
+          <StyledNav>
+            {/* <StickyNav> */}
+            <Global.Navigation />
+            <Global.Copyright />
+            {/* </StickyNav> */}
+          </StyledNav>
+        </StyledLayout>
       </>
     </ThemeProvider>
   );
