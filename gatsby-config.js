@@ -44,7 +44,7 @@ module.exports = {
     {
       resolve: `gatsby-source-prismic`,
       options: {
-        repositoryName: `Startabrand`,
+        repositoryName: `phascraft`,
         accessToken: `${process.env.API_KEY}`,
         linkResolver,
       },

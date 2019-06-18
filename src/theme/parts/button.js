@@ -3,7 +3,7 @@ const button = {
     background: `rgba(255, 255, 255, 1)`,
     borderRadius: "4px",
     border: `none`,
-    color: `rgba(38, 153, 251, 1)`,
+    color: `#051736`,
     minWidth: "148px",
     maxWidth: "none",
     minHeight: "48px",

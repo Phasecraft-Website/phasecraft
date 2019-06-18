@@ -6,6 +6,7 @@ import Contact from 'components/Home/Contact';
 import Results from 'components/Home/Results';
 import styled from 'styled-components';
 import logo from '../../../assetts/images/logo.svg';
+import whiteLogo from '../../../assetts/images/logo-white.svg';
 import Introduction from './Introduction';
 
 const FlexColumn = styled.div`
@@ -41,6 +42,17 @@ const Logo = styled.img`
   };
 `;
 
+const WhiteLogo = styled.img`
+  position: fixed;
+  opacity: 0;
+  // transition: 1s;
+  top: 45px;
+  @media only screen and (min-width: 768px) {
+    top: 36px;
+    left: 36px;
+  };
+`;
+
 const CopyrightContainer = styled.div`
   width: 156px;
   @media only screen and (min-width: 768px) {
@@ -70,6 +82,7 @@ function Home() {
         <FlexColumn>
           <div>
             <Logo src={logo} alt="PhaseCraft" />
+            <WhiteLogo src={whiteLogo} alt="PhaseCraft" className="invert-opacity" />
           </div>
           <InfoText />
         </FlexColumn>

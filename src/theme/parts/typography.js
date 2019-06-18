@@ -145,11 +145,11 @@ const link = {
     textDecoration: 'none',
   }),
   hover: {
-    color: 'rgba(38, 153, 251, 1)',
+    color: '#051736',
     borderBottom: 'none',
   },
   visited: {
-    color: 'rgba(38, 153, 251, 1)',
+    color: '#051736',
   },
 };
 

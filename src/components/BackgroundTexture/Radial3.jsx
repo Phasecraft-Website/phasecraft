@@ -113,35 +113,35 @@ class Radial extends React.Component {
   }
 
   componentDidMount() {
-    const size = document.documentElement.clientWidth * 0.8;
+    // const size = document.documentElement.clientWidth * 0.8;
     this.setState({
       width: document.documentElement.clientWidth,
       height: document.documentElement.clientHeight,
     });
-    setInterval(() => {
-      const r1 = this.getPositions(this.radial1.current, size);
-      const r2 = this.getPositions(this.radial2.current, size);
+    // setInterval(() => {
+    //   if (this.radial1.current && this.radial2.current)
+    //   const r1 = this.getPositions(this.radial1.current, size);
+    //   const r2 = this.getPositions(this.radial2.current, size);
 
-      console.log(r1, r2);
-      // const d = Math.hypot(r2.left-r1.left, r2.top-r1.top);
-      // if (d < size / 2) {
-      //   this.phaser1.current.style.opacity = 1 - (d / (size / 2));
-      //   this.phaser2.current.style.opacity = 1 - (d / (size / 2));
-      // } else if (d > 250) {
-      //   this.phaser1.current.style.opacity = 0;
-      //   this.phaser2.current.style.opacity = 0;
-      // }
-    }, 1000)
+    //   console.log(r1, r2);
+    //   // const d = Math.hypot(r2.left-r1.left, r2.top-r1.top);
+    //   // if (d < size / 2) {
+    //   //   this.phaser1.current.style.opacity = 1 - (d / (size / 2));
+    //   //   this.phaser2.current.style.opacity = 1 - (d / (size / 2));
+    //   // } else if (d > 250) {
+    //   //   this.phaser1.current.style.opacity = 0;
+    //   //   this.phaser2.current.style.opacity = 0;
+    //   // }
+    // }, 1000)
   }
 
-  getPositions = (el, size) => ({
-    top: parseInt(el.getBoundingClientRect().top, 10) + size / 2,
-    left: parseInt(el.getBoundingClientRect().left, 10) + size / 2,
-  })
+  // getPositions = (el, size) => ({
+  //   top: parseInt(el.getBoundingClientRect().top, 10) + size / 2,
+  //   left: parseInt(el.getBoundingClientRect().left, 10) + size / 2,
+  // })
 
   render() {
     const { width, height } = this.state;
-    console.log({ width, height });
     return (
       <>
         <RadialContainer

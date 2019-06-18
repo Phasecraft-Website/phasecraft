@@ -57,10 +57,6 @@ const GlobalStyles = createGlobalStyle`
     transition: 1s ease;
   }
 
-  // .invert-background {
-  //   background-color: #061637;
-  // }
-
   .invert {
     background-color: #061637;
     .invert-color {
@@ -69,6 +65,10 @@ const GlobalStyles = createGlobalStyle`
 
     .invert-fill {
       fill: #061637!important;
+    }
+
+    .invert-opacity {
+      opacity: 1!important;
     }
   }
 
