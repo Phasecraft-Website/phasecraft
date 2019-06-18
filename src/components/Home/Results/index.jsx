@@ -28,7 +28,7 @@ const ResultsText = styled.p`
   font-size: 26px;
   line-height: 32px;
   color: #051736;
-  transition: 0.5s;
+  transition: 1s;
 `;
 
 const resultsText = 'Phasecraft are pioneering a new quantum computing frontier. Get in touch, and be part of this seismic moment in science.';

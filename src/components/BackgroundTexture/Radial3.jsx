@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const radialSize = '80vw';
+const radialSize = '120vw';
 const speed = 18;
 const startPointX = `calc(0px - (${radialSize} / 2))`;
 const endPointX = (width) => `calc(${width}px - (${radialSize} / 2))`;
@@ -13,27 +13,27 @@ const GradientAnimation = keyframes`
   from { transform: scale(0); } to { transform: scale(1); opacity: 0; }
 `;
 
-const HorizontalAnimation = ({ width, height }) => keyframes`
-  // from { left: 0; } to { left: calc(100% - ${radialSize}); }
+const HorizontalAnimation = (width) => keyframes`
+  from { left: ${startPointX}; } to { left: ${endPointX(width)}; }
   // from { transform: translateX(${startPointX}); } to { transform: translateX(${endPointX(width)}); }
-  from { transform: translate(${startPointX}, ${startPointY}); } to { transform: translate(${endPointX(width)}, ${endPointY(height)}); }
+  // from { transform: translate(${startPointX}, ${startPointY}); } to { transform: translate(${endPointX(width)}, ${endPointY()}); }
 `;
 
 // from { transform: translate(${endPointX(width)}, ${endPointY(height)}); } to { transform: translate(${startPointX}, ${startPointY}); }
-const HorizontalAnimation2 = ({ width, height }) => keyframes`
-  // from { left: calc(100% - ${radialSize}); } to { left: 0; }
+const HorizontalAnimation2 = (width) => keyframes`
+  from { left: ${endPointX(width)}; } to { left: ${startPointX}; }
   // from { transform: translateX(${endPointX(width)}); } to { transform: translateX(${startPointX}); }
-  from { transform: translate(${endPointX(width)}, ${endPointY(height)}); } to { transform: translate(${startPointX}, ${startPointY}); }
+  // from { transform: translate(${endPointX(width)}, ${endPointY()}); } to { transform: translate(${startPointX}, ${startPointY}); }
 `;
 
 const VerticalAnimation = (height) => keyframes`
-  // from { top: 0; } to { top: calc(100% - ${radialSize}); }
-  from { transform: translateY(${startPointY}); } to { transform: translateY(${endPointY(height)}); }
+  from { top: ${startPointY}; } to { top: ${endPointY(height)}; }
+  // from { transform: translateY(${startPointY}); } to { transform: translateY(${endPointY(height)}); }
 `;
 
 const VerticalAnimation2 = (height) => keyframes`
-  // from { top: calc(100% - ${radialSize}); } to { top: 0; }
-  from { transform: translateY(${endPointY(height)}); } to { transform: translateY(${startPointY}); }
+  from { top: ${endPointY(height)}; } to { top: ${startPointY}; }
+  // from { transform: translateY(${endPointY(height)}); } to { transform: translateY(${startPointY}); }
 `;
 
 const PhaserAnimation = keyframes`
@@ -62,8 +62,8 @@ const RadialContainer = styled.div`
   // right: 0;
   // bottom: 0;
   // left: ${props => props.right};
-  animation: ${({ top, width, height }) => top ? HorizontalAnimation({ width, height }) : HorizontalAnimation2({ width, height })} ${({ time }) => time.h} linear 0s infinite alternate;
-  // ${props => props.top ? VerticalAnimation(props.height) : VerticalAnimation2(props.height)} ${props => props.vTime} linear 0s infinite alternate;
+  animation: ${({ top, width }) => top ? HorizontalAnimation(width) : HorizontalAnimation2(width)} ${({ time }) => time.h} -30s linear infinite alternate,
+  ${({ top, height }) => top ? VerticalAnimation(height) : VerticalAnimation2(height)} ${({ time }) => time.v} -30s linear infinite alternate;
 `;
 
 const RadialGradient = styled.div`
@@ -73,13 +73,14 @@ const RadialGradient = styled.div`
   // right: 0;
   // top: 0;
   // left: 0
-  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .28), rgba(43, 194, 210, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
+  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .38), rgba(${({ rgb }) => rgb}, .8), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: 50% 50%;
+  background-blend-mode: luminosity;
   width: ${radialSize};
   height: ${radialSize};
-  animation: ${GradientAnimation} ${speed}s ease-in-out ${props => props.delay}s infinite;
+  animation: ${GradientAnimation} ${speed}s ease-in ${props => props.delay}s infinite;
 `;
 
 const Phaser = styled.div`
@@ -147,32 +148,32 @@ class Radial extends React.Component {
           ref={this.radial1}
           top
           right="10%"
-          time={{ h: '42s', v: '74s'}}
+          time={{ h: '62s', v: '84s'}}
           // vTime="74s"
           bottom={`calc(20% - (${radialSize} / 2))`}
           height={height}
           width={width}
         >
-          <RadialGradient delay={0} />
+          <RadialGradient delay={0} rgb="43, 194, 210" />
           <Phaser delay={0} ref={this.phaser1} />
 
-          <RadialGradient delay={speed / 2} />
+          <RadialGradient delay={speed / 2} rgb="43, 194, 210" />
           <Phaser delay={speed / 2} />
         </RadialContainer>
         <RadialContainer
           ref={this.radial2}
           right="25%"
-          time={{ h: '58s', v: '54s'}}
+          time={{ h: '68s', v: '94s'}}
           // vTime="54s"
           bottom={`calc(60% - (${radialSize} / 2))`}
           height={height}
           width={width}
         >
-          <RadialGradient delay={0} />
-          <Phaser delay={0} />
+          <RadialGradient delay={speed * 0.25} rgb="227, 100, 0" />
+          <Phaser delay={speed * 0.25} />
 
-          <RadialGradient delay={speed / 2} />
-          <Phaser delay={speed / 2} ref={this.phaser2} />
+          <RadialGradient delay={speed * 0.75} rgb="227, 100, 0" />
+          <Phaser delay={speed * 0.75} ref={this.phaser2} />
         </RadialContainer>
       </>
     );

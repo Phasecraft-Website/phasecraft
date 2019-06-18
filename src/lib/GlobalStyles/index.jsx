@@ -40,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: #E7E7E7;
-    transition: background-color 0.5s ease;
+    transition: background-color 1s ease;
     color: ${props => props.theme.global.body.color};
     font-family: ${props =>
     renderFontFamily(
@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   #svg-pattern {
-    transition: 0.5s ease;
+    transition: 1s ease;
   }
 
   // .invert-background {

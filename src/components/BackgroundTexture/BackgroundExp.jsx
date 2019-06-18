@@ -96,7 +96,7 @@ const RadialWrapper = styled.div`
 `;
 
 const Svg = styled.svg`
-  transition: 0.5s;
+  transition: 1s;
 `;
 
 const BackgroundTexture = () => (
