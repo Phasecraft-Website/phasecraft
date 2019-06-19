@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const radialSize = '120vw';
+const radialSize = '150vw';
 const speed = 18;
 const startPointX = `calc(0px - (${radialSize} / 2))`;
 const endPointX = (width) => `calc(${width}px - (${radialSize} / 2))`;
@@ -10,7 +10,19 @@ const endPointY = (height) => `calc(${height}px - (${radialSize} / 2))`;
 
 const GradientAnimation = keyframes`
   // from { background-size: 0% 0%; } to { background-size: 100% 100%; opacity: 0; }
-  from { transform: scale(0); } to { transform: scale(1); opacity: 0; }
+  // from { transform: scale(0); } to { transform: scale(1); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 `;
 
 const HorizontalAnimation = (width) => keyframes`
