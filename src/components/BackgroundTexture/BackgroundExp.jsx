@@ -89,13 +89,15 @@ const PatternOverlay = styled.div`
 `;
 
 const RadialWrapper = styled.div`
-  // position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 `;
 
 const Svg = styled.svg`
+  border: 15px solid #e7e7e7;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
   transition: 3s ease;
 `;
 
@@ -105,7 +107,7 @@ const BackgroundTexture = () => (
       <Radial />
     </RadialWrapper>
     <PatternOverlay>
-      <Svg width="100%" height="100%" fill="#e7e7e7" className="invert-fill">
+      <Svg fill="#e7e7e7" className="invert-fill">
         <pattern id="pattern-plus" 
                 x="0" 
                 y="0" 

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 const radialSize = '150vw';
 const speed = 18;
-const startPointX = `calc(0px - (${radialSize} / 2))`;
+const startPointX = `calc(25% - (${radialSize} / 2))`;
 const endPointX = (width) => `calc(${width}px - (${radialSize} / 2))`;
 const startPointY = `calc(0px - (${radialSize} / 2))`;
 const endPointY = (height) => `calc(${height}px - (${radialSize} / 2))`;
@@ -12,12 +12,14 @@ const GradientAnimation = keyframes`
   // from { background-size: 0% 0%; } to { background-size: 100% 100%; opacity: 0; }
   // from { transform: scale(0); } to { transform: scale(1); opacity: 0; }
   0% {
-    transform: scale(0);
+    background-size: 95% 105%;
+    transform: scale(0) rotate(${Math.floor(Math.random() * 360) + 1}deg);
     opacity: 1;
   }
   70% {
     opacity: 1;
     transform: scale(0.7);
+    background-size: 105% 95%;
   }
   100% {
     transform: scale(1);
@@ -74,8 +76,8 @@ const RadialContainer = styled.div`
   // right: 0;
   // bottom: 0;
   // left: ${props => props.right};
-  animation: ${({ width }) => HorizontalAnimation(width)} ${({ time }) => time.h} ${({ startAt }) => startAt} linear infinite alternate,
-  ${({ height }) => VerticalAnimation(height)} ${({ time }) => time.v} ${({ startAt }) => startAt} linear infinite alternate;
+  animation: ${({ width }) => HorizontalAnimation(width)} ${({ time }) => time.h} -${({ startAt }) => startAt}s linear infinite alternate,
+  ${({ height }) => VerticalAnimation(height)} ${({ time }) => time.v} -${({ startAt }) => startAt}s linear infinite alternate;
 `;
 
 const RadialGradient = styled.div`
@@ -85,9 +87,9 @@ const RadialGradient = styled.div`
   // right: 0;
   // top: 0;
   // left: 0
-  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .38), rgba(${({ rgb }) => rgb}, .8), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
+  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .38), rgba(${({ rgb }) => rgb}, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  // background-size: 100% 100%;
   background-position: 50% 50%;
   background-blend-mode: luminosity;
   width: ${radialSize};
@@ -160,7 +162,7 @@ class Radial extends React.Component {
           time={{ h: '62s', v: '84s'}}
           height={height}
           width={width}
-          startAt="-30s"
+          startAt={Math.floor(Math.random() * 60) + 20}
         >
           <RadialGradient delay={0} rgb="43, 194, 210" />
           {/* <Phaser delay={0} /> */}
@@ -172,12 +174,12 @@ class Radial extends React.Component {
           time={{ h: '68s', v: '94s'}}
           height={height}
           width={width}
-          startAt="-60s"
+          startAt={Math.floor(Math.random() * 20) + 1}
         >
-          <RadialGradient delay={speed * 0.25} rgb="43, 123, 209" />
+          <RadialGradient delay={speed * 0.25} rgb="0, 140, 200" />
           {/* <Phaser delay={speed * 0.25} /> */}
 
-          <RadialGradient delay={speed * 0.75} rgb="43, 123, 209" />
+          <RadialGradient delay={speed * 0.75} rgb="0, 140, 200" />
           {/* <Phaser delay={speed * 0.75} /> */}
         </RadialContainer>
         {/* <RadialContainer
