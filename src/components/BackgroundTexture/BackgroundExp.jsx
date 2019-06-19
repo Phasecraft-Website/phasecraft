@@ -109,8 +109,8 @@ const BackgroundTexture = () => (
         <pattern id="pattern-plus" 
                 x="0" 
                 y="0" 
-                width="7" 
-                height="7" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
+                width="6" 
+                height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
           <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
         </pattern>
         <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
