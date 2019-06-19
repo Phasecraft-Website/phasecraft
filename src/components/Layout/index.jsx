@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Normalize, GlobalStyles } from 'lib';
 import theme from 'theme';
+import { isViewport } from 'helpers';
 
+import useViewport from 'hooks/useViewport';
 import Global from 'components/Global';
 import BackgroundTexture from 'components/BackgroundTexture/BackgroundExp';
 import SEO from '../SEO';
@@ -52,6 +54,7 @@ const StyledNav = styled.div`
 // `;
 
 function Layout({ children, ...props }) {
+  const viewport = useViewport();
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -65,8 +68,12 @@ function Layout({ children, ...props }) {
           </StyledMain>
           <StyledNav>
             {/* <StickyNav> */}
-            <Global.Navigation />
-            <Global.Copyright />
+            {!isViewport(viewport, ['DEFAULT', 'MEDIUM']) && (
+              <>
+                <Global.Navigation />
+                <Global.Copyright />
+              </>
+            )}
             {/* </StickyNav> */}
           </StyledNav>
         </StyledLayout>

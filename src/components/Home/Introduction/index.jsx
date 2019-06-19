@@ -16,6 +16,7 @@ const AbstractText = styled.h2`
   margin-left: 3px;
   color: #051736;
   text-transform: uppercase;
+  transition: 3s ease;
   @media only screen and (min-width: 768px) {
     margin-bottom: 3.6rem;
   };
@@ -26,6 +27,7 @@ const IntroText = styled.p`
   font-size: 35px;
   line-height: 43px;
   color: #051736;
+  transition: 3s ease;
 `;
 
 const introText1 = 'Quantum computers are on the cusp of becoming a practical reality, and could ultimately solve currently intractable computational problems, with vital applications.';
@@ -34,11 +36,11 @@ const introText2 = 'Phasecraft can help investigate novel quantum materials, hel
 function Introduction() {
   return (
     <IntroContainer>
-      <AbstractText>Introduction</AbstractText>
-      <IntroText>
+      <AbstractText className="invert-color">Introduction</AbstractText>
+      <IntroText className="invert-color">
         {introText1}
       </IntroText>
-      <IntroText>
+      <IntroText className="invert-color">
         {introText2}
       </IntroText>
     </IntroContainer>

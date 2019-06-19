@@ -39,7 +39,7 @@ const InfoTextMed = styled.h3`
 function InfoText() {
   return (
     <InfoTextBox>
-      <AbstractText>H2 ABSTRACT</AbstractText>
+      <AbstractText>ABSTRACT</AbstractText>
       <InfoTextMed>USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF</InfoTextMed>
       <InfoTextReg>QUANTUM COMPUTING</InfoTextReg>
     </InfoTextBox>

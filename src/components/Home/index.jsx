@@ -45,7 +45,7 @@ const Logo = styled.img`
 const WhiteLogo = styled.img`
   position: fixed;
   opacity: 0;
-  // transition: 1s;
+  // transition: 3s ease;
   top: 45px;
   @media only screen and (min-width: 768px) {
     top: 36px;
@@ -82,7 +82,7 @@ function Home() {
         <FlexColumn>
           <div>
             <Logo src={logo} alt="PhaseCraft" />
-            <WhiteLogo src={whiteLogo} alt="PhaseCraft" className="invert-opacity" />
+            {/* <WhiteLogo src={whiteLogo} alt="PhaseCraft" className="invert-opacity" /> */}
           </div>
           <InfoText />
         </FlexColumn>

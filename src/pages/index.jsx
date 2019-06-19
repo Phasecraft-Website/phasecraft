@@ -12,8 +12,10 @@ function Index() {
     const windowHeight = document.documentElement.offsetHeight;
     const windowBottom = windowHeight + window.pageYOffset;
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    const { clientHeight } = document.documentElement;
+    console.log(docHeight);
     // const svg = document.getElementById('svg-pattern');
-    if(windowBottom >= docHeight) {
+    if(windowBottom >= clientHeight * 2) {
       body.classList.add('invert');
     } else {
       body.classList.remove('invert');

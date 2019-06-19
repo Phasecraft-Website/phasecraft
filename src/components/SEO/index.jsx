@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import Facebook from './Facebook';
 import Twitter from './Twitter';
-import texture from '../../../assetts/images/texture-1366@2x.png'
+// import texture from '../../../assetts/images/texture-1366@2x.png'
 
 // Complete tutorial: https://www.gatsbyjs.org/docs/add-seo-component/
 
@@ -31,35 +31,44 @@ const SEO = ({ title, desc, pathname, author, images }) => {
 
   if (images !== null) metaImages.push(...images);
 
-  // const seo = {
-  //   title: `${meta_title_prefix} ${title || default_meta_title}`,
-  //   description: desc || default_meta_description,
-  //   image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
-  //   url: `${url}${pathname || ''}`,
-  //   author: author || default_author,
-  // };
-
   const seo = {
-    title: 'PhaseCraft',
-    description: 'USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF QUANTUM COMPUTING',
-    image: texture,
+    title: `${meta_title_prefix} ${title || default_meta_title}`,
+    description: desc || default_meta_description,
+    image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
     url: `${url}${pathname || ''}`,
     author: author || default_author,
   };
 
+  // const seo = {
+  //   title: 'PhaseCraft',
+  //   description: 'USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF QUANTUM COMPUTING',
+  //   image: texture,
+  //   url: `${url}${pathname || ''}`,
+  //   author: author || default_author,
+  // };
+
   return (
     <>
-      {/* <Helmet title={seo.title}> */}
-      <Helmet title="PhaseCraft">
-        <html lang={siteLanguage} />
-        <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image} />
+      <Helmet
+        title={seo.title}
+        html={{ lang: siteLanguage }}
+        meta={[
+          {
+            name: 'description',
+            content: seo.description,
+          },
+          {
+            name: 'image',
+            content: seo.image,
+          },
+        ]}
+      />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
         {/* {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
         {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script> */}
-      </Helmet>
-      <Facebook
+      {/* </Helmet> */}
+      {/* <Facebook
         desc={seo.description}
         image={seo.image}
         title={seo.title}
@@ -73,7 +82,7 @@ const SEO = ({ title, desc, pathname, author, images }) => {
         image={seo.image}
         desc={seo.description}
         username={twitter}
-      />
+      /> */}
     </>
   );
 };
