@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
 import { Content } from 'components';
@@ -39,6 +39,10 @@ const Title = styled.h2`
 `;
 
 function Contact({ body }) {
+  useEffect(() => {
+    const backgroundFader = document.getElementById('background-fader');
+    backgroundFader.classList.add('invert');
+  })
   const viewport = useViewport();
   return (
     <>

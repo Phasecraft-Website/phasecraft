@@ -78,6 +78,29 @@ function Layout({ isContact, children, ...props }) {
   function handleNavToggle() {
     setNavToggled(prev => !prev);
   }
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  const handleScroll = () => {
+    const { body, documentElement: html } = document;
+    const windowHeight = document.documentElement.offsetHeight;
+    const windowBottom = windowHeight + window.pageYOffset;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    const { clientHeight } = document.documentElement;
+    const backgroundFader = document.getElementById('background-fader');
+    console.log(docHeight);
+    // const svg = document.getElementById('svg-pattern');
+    if(windowBottom >= clientHeight * 2 && !isContact) {
+      backgroundFader.classList.add('invert');
+    } else if (!isContact) {
+      backgroundFader.classList.remove('invert');
+    } else {
+      backgroundFader.classList.add('invert');
+    }
+  }
+  console.log({ isContact });
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -123,10 +146,10 @@ function Layout({ isContact, children, ...props }) {
 export default Layout;
 
 Layout.defaultProps = {
-  dark: false,
+  isContact: false,
 }
 
 Layout.propTypes = {
-  dark: PropTypes.bool,
+  isContact: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };

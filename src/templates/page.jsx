@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Layout, SEO, SliceZone, Contact } from "components";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Layout, SEO, SliceZone, Contact } from 'components';
+import { graphql } from 'gatsby';
 
 function Page({ data: { prismicPage }, ...props }) {
   const {
