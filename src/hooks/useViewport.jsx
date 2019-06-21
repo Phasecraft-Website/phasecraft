@@ -5,7 +5,6 @@ export default function useViewport() {
 
   function handleViewportChange() {
     const vp = window.innerWidth;
-    console.log(vp);
     if (vp < 600) {
       setViewport('DEFAULT')
     } else if (vp < 1024) {

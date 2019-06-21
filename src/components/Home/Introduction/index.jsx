@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const IntroContainer = styled.div`
   min-height: calc(100vh - 90px);
+  width: 80%;
   @media only screen and (min-width: 768px) {
     padding: 0 36px;
     padding-top: 90px;
@@ -24,10 +25,14 @@ const AbstractText = styled.h2`
 
 const IntroText = styled.p`
   font-family: 'Sul Sans, Regular';
-  font-size: 35px;
-  line-height: 43px;
+  font-size: 20px;
+  line-height: 25px;
   color: #051736;
   transition: 3s ease;
+  ${props => props.theme.media.md`
+    font-size: 35px;
+    line-height: 43px;
+  `}
 `;
 
 const introText1 = 'Quantum computers are on the cusp of becoming a practical reality, and could ultimately solve currently intractable computational problems, with vital applications.';

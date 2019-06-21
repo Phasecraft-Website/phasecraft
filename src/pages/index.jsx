@@ -1,6 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Layout } from 'components';
 import Home from '../components/Home';
+
+const StyledOffCanvasContainer = styled.div`
+  height: 100%;
+`
 
 function Index() {
   React.useEffect(() => {
@@ -13,12 +18,13 @@ function Index() {
     const windowBottom = windowHeight + window.pageYOffset;
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     const { clientHeight } = document.documentElement;
+    const backgroundFader = document.getElementById('background-fader');
     console.log(docHeight);
     // const svg = document.getElementById('svg-pattern');
     if(windowBottom >= clientHeight * 2) {
-      body.classList.add('invert');
+      backgroundFader.classList.add('invert');
     } else {
-      body.classList.remove('invert');
+      backgroundFader.classList.remove('invert');
     }
   }
 
@@ -33,9 +39,12 @@ function Index() {
   }
 
   return (
-    <Layout>
-      <Home />
-    </Layout>
+    <>
+      <Layout>
+        <Home />
+      </Layout>
+      <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
+    </>
   );
 }
 

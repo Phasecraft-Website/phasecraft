@@ -40,7 +40,6 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: #E7E7E7;
-    transition: background-color 3s ease;
     color: ${props => props.theme.global.body.color};
     font-family: ${props =>
     renderFontFamily(
@@ -58,7 +57,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .invert {
-    background-color: #061637;
+    background-color: #061637!important;
     .invert-color {
       color: #E5E6E4!important;
     }
@@ -70,6 +69,10 @@ const GlobalStyles = createGlobalStyle`
 
     .invert-opacity {
       opacity: 1!important;
+    }
+
+    .invert-link {
+      color: #2FF2AF!important;
     }
   }
 

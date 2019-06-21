@@ -1,83 +1,20 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import useViewport from 'hooks/useViewport';
+import { isViewport } from 'helpers';
+import map from '../../../assetts/images/map.svg'
+import mapMobile from '../../../assetts/images/map-mobile.svg'
 import Radial from './Radial3';
-
-// const GradientAnimation = keyframes`
-//   0% {
-//     background-size: 120% 120%;
-//     background-position: 75% 75%;
-//   }
-//   25% {
-//     background-size: 75% 75%;
-//     background-position: 25% 75%;
-//   }
-//   50% {
-//     background-size: 60% 60%;
-//     background-position: 50% 50%;
-//   }
-//   75% {
-//     background-size: 75% 75%;
-//     background-position: 75% 25%;
-//   }
-//   100% {
-//     background-size: 120% 120%;
-//     background-position: 75% 75%;
-//   }
-// `;
-
-// const GradientAnimation2 = keyframes`
-//   0% {
-//     background-size: 120% 120%;
-//     background-position: 75% 75%;
-//   }
-//   25% {
-//     background-size: 75% 75%;
-//     background-position: 75% 25%;
-//   }
-//   50% {
-//     background-size: 60% 60%;
-//     background-position: 50% 50%;
-//   }
-//   75% {
-//     background-size: 75% 75%;
-//     background-position: 25% 75%;
-//   }
-//   100% {
-//     background-size: 120% 120%;
-//     background-position: 75% 75%;
-//   }
-// `;
 
 const Background = styled.div`
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
 `;
-
-// const Radial = styled.div`
-//   background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .28), rgba(43, 194, 210, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
-//   background-repeat: no-repeat;
-//   background-size: 100% 100%;
-//   background-position: 50% 50%;
-//   width: 98vh;
-//   height: 98vh;
-//   animation: ${GradientAnimation} 8s linear infinite;
-// `;
-
-// const Radial2 = styled.div`
-//   background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .28), rgba(43, 194, 210, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
-//   background-repeat: no-repeat;
-//   background-size: 100% 100%;
-//   background-position: 50% 50%;
-//   width: 98vh;
-//   height: 98vh;
-//   animation: ${GradientAnimation2} 8s linear infinite;
-// `;
 
 const PatternOverlay = styled.div`
   position: absolute;
@@ -101,24 +38,39 @@ const Svg = styled.svg`
   transition: 3s ease;
 `;
 
-const BackgroundTexture = () => (
-  <Background>
-    <RadialWrapper>
-      <Radial />
-    </RadialWrapper>
-    <PatternOverlay>
-      <Svg fill="#e7e7e7" className="invert-fill">
-        <pattern id="pattern-plus" 
-                x="0" 
-                y="0" 
-                width="6" 
-                height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse">
-          <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
-        </pattern>
-        <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
-      </Svg>
-    </PatternOverlay>
-  </Background>
-);
+const Map = styled.img`
+  float: right;
+  width: 100%;
+`;
+
+const BackgroundTexture = ({ isContact }) => {
+  const viewport = useViewport();
+  return (
+    <Background>
+      {!isContact &&
+        <RadialWrapper>
+          <Radial />
+        </RadialWrapper>
+      }
+      <PatternOverlay>
+        {isContact ?
+          <Map src={isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? mapMobile : map} />
+          :
+          <Svg fill="#e7e7e7" className="invert-fill">
+            <pattern id="pattern-plus" 
+              x="0" 
+              y="0" 
+              width="6" 
+              height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
+            >
+              <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
+            </pattern>
+            <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
+          </Svg>
+        }
+      </PatternOverlay>
+    </Background>
+  );
+};
   
 export default BackgroundTexture;

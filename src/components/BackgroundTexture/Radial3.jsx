@@ -176,10 +176,10 @@ class Radial extends React.Component {
           width={width}
           startAt={Math.floor(Math.random() * 20) + 1}
         >
-          <RadialGradient delay={speed * 0.25} rgb="0, 140, 200" />
+          <RadialGradient delay={speed * 0.25} rgb="23, 145, 189" />
           {/* <Phaser delay={speed * 0.25} /> */}
 
-          <RadialGradient delay={speed * 0.75} rgb="0, 140, 200" />
+          <RadialGradient delay={speed * 0.75} rgb="23, 145, 189" />
           {/* <Phaser delay={speed * 0.75} /> */}
         </RadialContainer>
         {/* <RadialContainer

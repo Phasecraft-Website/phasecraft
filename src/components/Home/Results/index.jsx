@@ -7,17 +7,22 @@ import whiteLogo from '../../../../assetts/images/logo-white.svg';
 const ResultsContainer = styled.div`
   position: relative;
   min-height: 100vh;
+  margin-top: 50px;
+  ${props => props.theme.media.md`
+    margin-top: 0;
+  `}
 `;
 
 const TextContainer = styled.div`
   height: 100vh;
-  @media only screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 30px;
+  ${props => props.theme.media.md`
     margin-left: 122px;
     width: 33%;
-  };
+  `}
 `;
 
 const AbstractText = styled.h2`
@@ -25,17 +30,48 @@ const AbstractText = styled.h2`
   color: #051736;
   text-transform: uppercase;
   transition: 3s ease;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
-  };
+  `}
 `;
 
 const ResultsText = styled.p`
   font-family: 'Sul Sans, Regular';
+  font-size: 20px;
+  line-height: 25px;
+  color: #051736;
+  transition: 3s ease;
+  ${props => props.theme.media.md`
+    font-size: 26px;
+    line-height: 32px;
+  `}
+`;
+
+const PhoneText = styled.p`
+  font-size: 26px;
+  line-height: 32px;
+  margin-bottom: 0;
+  transition: 3s ease;
+  color: #051736;
+`;
+
+const EmailText = styled.a`
   font-size: 26px;
   line-height: 32px;
   color: #051736;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-top: 0;
+  width: fit-content;
+  padding-bottom: 3px;
   transition: 3s ease;
+  &:visited, &:visited:visited {
+    color: #2FF2AF;
+  }
+  &:hover {
+    border-bottom: 2px solid #fff;
+    color: #2FF2AF;
+  }
 `;
 
 const WhiteLogo = styled.img`
@@ -43,10 +79,10 @@ const WhiteLogo = styled.img`
   opacity: 0;
   transition: 3s ease;
   top: 45px;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     top: 36px;
     left: 36px;
-  };
+  `}
 `;
 
 const resultsText = 'Phasecraft are pioneering a new quantum computing frontier. Get in touch, and be part of this seismic moment in science.';
@@ -60,6 +96,12 @@ function Results() {
         <ResultsText className="invert-color">
           {resultsText}
         </ResultsText>
+        <PhoneText className="invert-color">
+          0117 942 0101
+        </PhoneText>
+        <EmailText className="invert-link" href="mailto:info@phasecraft.io">
+          info@phasecraft.io
+        </EmailText>
       </TextContainer>
     </ResultsContainer>
   );

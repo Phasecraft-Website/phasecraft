@@ -6,7 +6,14 @@ import styled from 'styled-components';
 import linkResolver from 'helpers/linkResolver';
 import relResolver from 'helpers/relResolver';
 
-const StyledNav = styled.nav``;
+const StyledNav = styled.nav`
+  align-self: flex-end;
+  margin-right: 15%;
+  ${props => props.theme.media.md`
+    align-self: flex-start;
+    margin-right: 0;
+  `}
+`;
 
 const StyledList = styled.ul`
   list-style: none;
@@ -23,12 +30,21 @@ const StyledLink = styled(props => <Link {...props} />)`
   display: block;
   position: relative;
   font-family: 'Sul Sans, Regular';
-  font-size: 1.2rem;
-  line-height: 1.4rem;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  letter-spacing: 0.07em;
   letter-spacing: 0.07rem;
   color: #051736;
   text-decoration: none;
   text-transform: uppercase;
+  transition: 3s;
+  margin: 12px 0;
+
+  ${props => props.theme.media.md`
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    margin: 0;
+  `}
 
   span {
     position: relative;
@@ -49,7 +65,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     border-bottom: none;
 
     &:before {
-      background: #2FF2AF;
+      background: #ffffff;
       height: 8px;
       position: absolute;
       width: 8px;
@@ -58,6 +74,9 @@ const StyledLink = styled(props => <Link {...props} />)`
       top: calc(45% - 4px);
       content: "";
       z-index: 5;
+      ${props => props.theme.media.md`
+        background: #2FF2AF;
+      `}
     }
   }
 

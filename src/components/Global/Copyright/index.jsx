@@ -2,16 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CopyrightContainer = styled.div`
-  width: 156px;
   color: #051736;
-  @media only screen and (min-width: 768px) {
+  transition: color 3s;
+  ${props => props.theme.media.md`
+    width: 156px;
     margin-bottom: 17px;
-  }
-  .invert-background {
-    ${CopyrightContainer} {
-      color: white;
-    }
-  }
+  `}
 `;
 
 const CopyrightText = styled.p`
