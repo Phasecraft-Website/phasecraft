@@ -59,7 +59,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     color: #051736;
   }
 
-  &:active,
+  &.active,
   :hover {
     color: #051736;
     border-bottom: none;
