@@ -9,7 +9,7 @@ const IntroContainer = styled.div`
   @media only screen and (min-width: 768px) {
     padding: 0 36px;
     padding-top: 90px;
-    width: 46%;
+    width: 62%;
   };
 `;
 

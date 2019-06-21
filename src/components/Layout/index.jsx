@@ -8,7 +8,7 @@ import { isViewport } from 'helpers';
 import { NavigationContext } from 'context';
 import useViewport from 'hooks/useViewport';
 import Global from 'components/Global';
-import BackgroundTexture from 'components/BackgroundTexture/BackgroundExp';
+import BackgroundTexture from 'components/BackgroundTexture';
 import SEO from '../SEO';
 
 const StyledLayout = styled.main`
@@ -84,14 +84,12 @@ function Layout({ isContact, children, ...props }) {
   });
 
   const handleScroll = () => {
-    const { body, documentElement: html } = document;
+    // const { body, documentElement: html } = document;
     const windowHeight = document.documentElement.offsetHeight;
     const windowBottom = windowHeight + window.pageYOffset;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    // const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     const { clientHeight } = document.documentElement;
     const backgroundFader = document.getElementById('background-fader');
-    console.log(docHeight);
-    // const svg = document.getElementById('svg-pattern');
     if(windowBottom >= clientHeight * 2 && !isContact) {
       backgroundFader.classList.add('invert');
     } else if (!isContact) {
@@ -100,7 +98,6 @@ function Layout({ isContact, children, ...props }) {
       backgroundFader.classList.add('invert');
     }
   }
-  console.log({ isContact });
   return (
     <ThemeProvider theme={theme}>
       <>

@@ -24,25 +24,14 @@ const FlexColumn = styled.div`
 function Home() {
   return (
     <>
-      {/* <BackgroundTexture /> */}
-      {/* <FlexRow> */}
-        <FlexColumn>
-          <div>
-            <Logo />
-            {/* <WhiteLogo src={whiteLogo} alt="PhaseCraft" className="invert-opacity" /> */}
-          </div>
-          <InfoText />
-        </FlexColumn>
-        <Introduction />
-        <Results />
-        {/* <FlexColumn right>
-          <Contact />
-          <CopyrightContainer>
-            <Copyright>COPYRIGHT PHASECRAFT twenty nineteen. <br />ALL RIGHTS RESERVED. VAT.1234567 Co.1234567</Copyright>
-            <Copyright>brand and website <br />by <Brand>polleni</Brand></Copyright>
-          </CopyrightContainer>
-        </FlexColumn> */}
-      {/* </FlexRow> */}
+      <FlexColumn>
+        <div>
+          <Logo />
+        </div>
+        <InfoText />
+      </FlexColumn>
+      <Introduction />
+      <Results />
     </>
   );
 }

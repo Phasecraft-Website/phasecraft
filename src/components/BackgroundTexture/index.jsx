@@ -1,64 +1,76 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import useViewport from 'hooks/useViewport';
+import { isViewport } from 'helpers';
+import map from '../../../assetts/images/map.svg'
+import mapMobile from '../../../assetts/images/map-mobile.svg'
+import Radial from './Radial3';
 
-import textureS from '../../../../assetts/images/texture-mobile@2x.png';
-import textureM from '../../../../assetts/images/texture-1366@2x.png';
-import svgTexture from '../../../../assetts/images/Background-texture-1366.svg';
-import textureL from '../../../../assetts/images/texture-1920@2x.png';
-
-const BackgroundTextureDesktop = styled.img`
-  position: absolute;
-  top: 19px;
-  right: 5px;
-  z-index: -1;
-  height: 614px;
-  @media only screen 
-  and (min-width: 768px) {
-    top: 36px;
-    right: 69px;
-    height: 89%;
-  }
+const Background = styled.div`
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 `;
 
-class BackgroundTexture extends React.Component {
-  state = { windowWidth: null };
-  
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-  
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-  
-  updateWindowDimensions = () => {
-    this.setState({ windowWidth: window.innerWidth });
-  }
+const PatternOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+`;
 
-  render() {
-    const { windowWidth = window.innerWidth } = this.state;
-    console.log(window.innerWidth);
-    let image = textureM;
-    let height = '89%';
-    if (windowWidth < 786) {
-      image = textureS;
-      height = '614px';
-    } else if (windowWidth < 1920) {
-      image = textureM;
-    } else {
-      image = textureL;
-    }
-    return (
-      <BackgroundTextureDesktop
-        sizes="(min-width: 320px) 320px, (min-width: 786px) 786px, 1920px"
-        src={textureS}
-        srcSet={`${textureS} 320w, ${svgTexture} 786w, ${textureL} 1920w`}
-        alt="PhaseCraft"
-      />
-    );
-  }
-}
+const RadialWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
 
+const Svg = styled.svg`
+  border: 15px solid #e7e7e7;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  transition: 3s ease;
+`;
+
+const Map = styled.img`
+  float: right;
+  width: 100%;
+`;
+
+const BackgroundTexture = ({ isContact }) => {
+  const viewport = useViewport();
+  return (
+    <Background>
+      {!isContact &&
+        <RadialWrapper>
+          <Radial />
+        </RadialWrapper>
+      }
+      <PatternOverlay>
+        {isContact ?
+          <Map src={isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? mapMobile : map} />
+          :
+          <Svg fill="#e7e7e7" className="invert-fill">
+            <pattern id="pattern-plus" 
+              x="0" 
+              y="0" 
+              width="6" 
+              height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
+            >
+              <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
+            </pattern>
+            <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
+          </Svg>
+        }
+      </PatternOverlay>
+    </Background>
+  );
+};
+  
 export default BackgroundTexture;
