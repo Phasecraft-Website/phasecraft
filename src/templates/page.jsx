@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Layout, SEO, SliceZone, Contact } from 'components';
 import { graphql } from 'gatsby';
+
+const StyledOffCanvasContainer = styled.div`
+  height: 100%;
+`
 
 function Page({ data: { prismicPage }, ...props }) {
   const {
@@ -11,20 +16,23 @@ function Page({ data: { prismicPage }, ...props }) {
   console.log({ body })
   const isContact = page_title.text === 'Contact';
   return (
-    <Layout isContact={isContact}>
-      <SEO title={meta_title} desc={meta_description} images={meta_images} />
+    <>
+      <Layout isContact={isContact}>
+        <SEO title={meta_title} desc={meta_description} images={meta_images} />
 
-      {page_title && page_title.text &&
-        <>
-          {isContact ?
-            <Contact body={body} />
-            :
-            <h1>{page_title.text}</h1>
-          }
-        </>
-      }
-      
-    </Layout>
+        {page_title && page_title.text &&
+          <>
+            {isContact ?
+              <Contact body={body} />
+              :
+              <h1>{page_title.text}</h1>
+            }
+          </>
+        }
+        
+      </Layout>
+      <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
+    </>
   );
 }
 

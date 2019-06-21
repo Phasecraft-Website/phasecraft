@@ -41,6 +41,7 @@ const Svg = styled.svg`
 const Map = styled.img`
   float: right;
   width: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 `;
 
 const BackgroundTexture = ({ isContact }) => {
