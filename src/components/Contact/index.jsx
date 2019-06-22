@@ -15,7 +15,7 @@ const FlexColumn = styled.div`
   justify-content: space-between;
   padding-right: 20%;
   @media only screen and (min-width: 768px) {
-    padding: 0 35% 100px 36px;
+    padding: 0 40% 100px 36px;
     padding-bottom: 100px;
     align-items: ${props => props.right ? 'flex-end' : 'flex-start'};
   };

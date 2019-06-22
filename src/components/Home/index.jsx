@@ -1,8 +1,6 @@
 
 import React from 'react';
-// import BackgroundTexture from 'components/BackgroundTexture/BackgroundExp';
 import InfoText from 'components/Home/InfoText';
-import Contact from 'components/Home/Contact';
 import Results from 'components/Home/Results';
 import Logo from 'components/Global/Logo';
 import styled from 'styled-components';
