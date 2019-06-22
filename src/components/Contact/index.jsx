@@ -93,9 +93,11 @@ function Contact({ body }) {
             links
           />
         </ContactContainer>
-        <CopyrightContainer>
-          <Copyright />
-        </CopyrightContainer>
+        {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && (
+          <CopyrightContainer>
+            <Copyright />
+          </CopyrightContainer>
+        )}
       </FlexColumn>
     </>
   );

@@ -4,7 +4,7 @@ import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
 import map from '../../../assetts/images/map.svg'
 import mapMobile from '../../../assetts/images/map-mobile.svg'
-import Radial from './Radial3';
+import Radial from './Radial';
 
 const Background = styled.div`
   position: fixed;

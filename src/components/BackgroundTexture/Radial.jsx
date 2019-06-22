@@ -1,64 +1,57 @@
-/* eslint-disable */
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const radialSize = '30vw';
+const radialSize = '150vw';
+const speed = 18;
+const startPointX = `calc(25% - (${radialSize} / 2))`;
+const endPointX = (width) => `calc(${width}px - (${radialSize} / 2))`;
+const startPointY = `calc(0px - (${radialSize} / 2))`;
+const endPointY = (height) => `calc(${height}px - (${radialSize} / 2))`;
 
-const ScaleAnimation = keyframes`
-  from { transform: scale(1); } to { transform: scale(1.8); }
+const GradientAnimation = keyframes`
+  0% {
+    background-size: 95% 105%;
+    transform: scale(0) rotate(${Math.floor(Math.random() * 360) + 1}deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.7);
+    background-size: 105% 95%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 `;
 
-const HorizontalAnimation = keyframes`
-  from { left: 0; } to { left: calc(100% - ${radialSize}); }
+const HorizontalAnimation = (width) => keyframes`
+  from { transform: translateX(${startPointX}); } to { transform: translateX(${endPointX(width)}); }
 `;
 
-const HorizontalAnimation2 = keyframes`
-  from { left: calc(100% - ${radialSize}); } to { left: 0; }
-`;
-
-const VerticalAnimation = keyframes`
-  from { top: 0; } to { top: calc(100% - ${radialSize}); }
-`;
-
-const VerticalAnimation2 = keyframes`
-  from { top: calc(100% - ${radialSize}); } to { top: 0; }
+const VerticalAnimation = (height) => keyframes`
+  from { top: ${startPointY}; } to { top: ${endPointY(height)}; }
 `;
 
 const RadialContainer = styled.div`
+  display: inline-block;
   width: ${radialSize};
   height: ${radialSize};
-  animation: ${ScaleAnimation} 8s linear 0s infinite alternate,
-  ${props => props.top ? HorizontalAnimation : HorizontalAnimation2} ${props => props.hTime} linear 0s infinite alternate, 
-  ${props => props.top ? VerticalAnimation : VerticalAnimation2} ${props => props.vTime} linear 0s infinite alternate;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  animation: ${({ width }) => HorizontalAnimation(width)} ${({ time }) => time.h} -${({ startAt }) => startAt}s linear infinite alternate,
+  ${({ height }) => VerticalAnimation(height)} ${({ time }) => time.v} -${({ startAt }) => startAt}s linear infinite alternate;
 `;
 
 const RadialGradient = styled.div`
-  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .28), rgba(43, 194, 210, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
-  transition: background 0.5s ease;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  width: ${radialSize};
-  height: ${radialSize};
-`;
-
-const Phaser = styled.div`
+  transform: scale(0);
   position: absolute;
-  content: "";
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), #e36400, #e36400, rgba(255, 255, 255, .23), rgba(255, 255, 255, 0));
+  background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .38), rgba(${({ rgb }) => rgb}, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
   background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-blend-mode: luminosity;
   width: ${radialSize};
   height: ${radialSize};
-  transition: opacity 0.5s linear;
-  opacity: 0;
+  animation: ${GradientAnimation} ${speed}s ease-in ${props => props.delay}s infinite;
 `;
 
 class Radial extends React.Component {
@@ -68,41 +61,42 @@ class Radial extends React.Component {
     this.radial2 = React.createRef();
     this.phaser1 = React.createRef();
     this.phaser2 = React.createRef();
+    this.state = {
+      width: 0,
+      height: 0,
+    };
   }
 
   componentDidMount() {
-    const size = document.documentElement.clientWidth * 0.3;
-    setInterval(() => {
-      const r1 = this.getPositions(this.radial1.current, size);
-      const r2 = this.getPositions(this.radial2.current, size);
-      const d = Math.hypot(r2.left-r1.left, r2.top-r1.top);
-      if (d < size / 2) {
-        this.phaser1.current.style.opacity = 1 - (d / (size / 2));
-        this.phaser2.current.style.opacity = 1 - (d / (size / 2));
-      } else if (d > 250) {
-        this.phaser1.current.style.opacity = 0;
-        this.phaser2.current.style.opacity = 0;
-      }
-    }, 1000)
-  }
-
-  getPositions(el, size) {
-    return {
-      top: parseInt(window.getComputedStyle(el).getPropertyValue('top')) - size,
-      left: parseInt(window.getComputedStyle(el).getPropertyValue('left')) - size,
-    }
+    this.setState({
+      width: document.documentElement.clientWidth,
+      height: document.documentElement.clientHeight,
+    });
   }
 
   render() {
+    const { width, height } = this.state;
     return (
       <>
-        <RadialContainer hTime="19s" vTime="13s" top ref={this.radial1}>
-          <RadialGradient/>
-          <Phaser ref={this.phaser1} />
+        <RadialContainer
+          time={{ h: '62s', v: '84s'}}
+          height={height}
+          width={width}
+          startAt={Math.floor(Math.random() * 60) + 20}
+        >
+          <RadialGradient delay={0} rgb="43, 194, 210" />
+
+          <RadialGradient delay={speed / 2} rgb="43, 194, 210" />
         </RadialContainer>
-        <RadialContainer hTime="13s" vTime="19s" ref={this.radial2}>
-          <RadialGradient />
-          <Phaser ref={this.phaser2} />
+        <RadialContainer
+          time={{ h: '68s', v: '94s'}}
+          height={height}
+          width={width}
+          startAt={Math.floor(Math.random() * 20) + 1}
+        >
+          <RadialGradient delay={speed * 0.25} rgb="23, 145, 189" />
+
+          <RadialGradient delay={speed * 0.75} rgb="23, 145, 189" />
         </RadialContainer>
       </>
     );
