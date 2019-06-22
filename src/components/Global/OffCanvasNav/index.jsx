@@ -38,7 +38,7 @@ function OffCanvasNav({ navToggle, nav }) {
         <StyledNav>
           {navToggle}
           {nav}
-          <Copyright />
+          <Copyright isNav />
         </StyledNav>
       </StyledOffCanvasNavigation>
     </OffCanvas>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logoIcon from '../../../../assetts/images/logo-icon.svg';
 
 const CopyrightContainer = styled.div`
   color: #051736;
@@ -37,11 +38,14 @@ const TitleText = styled.h2`
   `}
 `;
 
-const Copyright = ({ isContact }) => (
+const Copyright = ({ isContact, isNav }) => (
   <CopyrightContainer isContact={isContact} className="invert-color">
+    {isNav &&
+      <img src={logoIcon} alt="Phasecraft" />
+    }
     {isContact && <TitleText>Contact</TitleText>}
-    <CopyrightText>COPYRIGHT PHASECRAFT twenty nineteen. <br />ALL RIGHTS RESERVED. VAT.1234567 Co.1234567</CopyrightText>
-    <CopyrightText>brand and website <br />by <Brand>polleni</Brand></CopyrightText>
+    <CopyrightText>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
+    {!isNav && <CopyrightText>brand and website <br />by <Brand>polleni</Brand></CopyrightText>}
   </CopyrightContainer>
 );
 
