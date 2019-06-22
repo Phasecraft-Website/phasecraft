@@ -6,6 +6,7 @@ import { Content } from 'components';
 import styled from 'styled-components';
 import Logo from 'components/Global/Logo';
 import ContactInfo from '../Global/ContactInfo';
+import Copyright from '../Global/Copyright';
 
 const FlexColumn = styled.div`
   display: flex;
@@ -59,6 +60,11 @@ const TopContainer = styled.div`
   `}
 `;
 
+const CopyrightContainer = styled.div`
+  width: 180px;
+  margin: 70px 0;
+`;
+
 function Contact({ body }) {
   useEffect(() => {
     const backgroundFader = document.getElementById('background-fader');
@@ -87,6 +93,9 @@ function Contact({ body }) {
             links
           />
         </ContactContainer>
+        <CopyrightContainer>
+          <Copyright />
+        </CopyrightContainer>
       </FlexColumn>
     </>
   );
