@@ -38,10 +38,61 @@ const Svg = styled.svg`
   transition: 3s ease;
 `;
 
+const MapContainer = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
 const Map = styled.img`
-  float: right;
+  // float: right;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  transform:translate(-50%,-50%);
   width: 100%;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+`;
+
+const Bristol = styled.div`
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: #2FF2AF;
+  position: absolute;
+  left: 36%;
+  top: 77%;
+  ${props => props.theme.media.md`
+    left: 38%;
+    top: 48%;
+  `}
+  ${props => props.theme.media.lg`
+    height: 30px;
+    width: 30px;
+    top: 46%;
+    left: 37%;
+  `}
+`;
+
+const London = styled.div`
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background-color: #2FF2AF;
+  position: absolute;
+  left: 71%;
+  top: 74%;
+  ${props => props.theme.media.md`
+    left: 50%;
+    top: 46%;
+  `}
+  ${props => props.theme.media.lg`
+    height: 30px;
+    width: 30px;
+    top: 41%;
+    left: 51%;
+  `}
 `;
 
 const BackgroundTexture = ({ isContact }) => {
@@ -55,7 +106,11 @@ const BackgroundTexture = ({ isContact }) => {
       }
       <PatternOverlay>
         {isContact ?
-          <Map src={isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? mapMobile : map} />
+          <MapContainer>
+            <Map src={isViewport(viewport, ['DEFAULT']) ? mapMobile : map} />
+            <Bristol />
+            <London />
+          </MapContainer>
           :
           <Svg fill="#e7e7e7" className="invert-fill">
             <pattern id="pattern-plus" 
