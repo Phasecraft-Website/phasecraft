@@ -84,13 +84,18 @@ function Layout({ isContact, children, ...props }) {
   });
 
   const handleScroll = () => {
-    // const { body, documentElement: html } = document;
+    const scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
     const windowHeight = document.documentElement.offsetHeight;
     const windowBottom = windowHeight + window.pageYOffset;
     // const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     const { clientHeight } = document.documentElement;
     const backgroundFader = document.getElementById('background-fader');
-    if(windowBottom >= clientHeight * 2 && !isContact) {
+    console.log(windowBottom, scrollHeight - (clientHeight * 0.3))
+    if(windowBottom >= scrollHeight - (clientHeight * 0.5) && !isContact) {
       backgroundFader.classList.add('invert');
     } else if (!isContact) {
       backgroundFader.classList.remove('invert');
