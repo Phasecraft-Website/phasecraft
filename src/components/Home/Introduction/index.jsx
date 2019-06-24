@@ -6,11 +6,11 @@ import styled from 'styled-components';
 const IntroContainer = styled.div`
   min-height: calc(100vh - 90px);
   width: 80%;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     padding: 0 36px;
     padding-top: 90px;
     width: 62%;
-  };
+  `}
 `;
 
 const AbstractText = styled.h2`
@@ -18,9 +18,9 @@ const AbstractText = styled.h2`
   color: #051736;
   text-transform: uppercase;
   transition: 3s ease;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
-  };
+  `}
 `;
 
 const IntroText = styled.p`

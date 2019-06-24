@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { graphql, StaticQuery } from 'gatsby'
+// import { graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 import { NavigationContext } from 'context'
 import styled from 'styled-components'

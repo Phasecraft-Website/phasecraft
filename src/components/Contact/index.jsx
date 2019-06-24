@@ -14,11 +14,11 @@ const FlexColumn = styled.div`
   min-height: calc(100vh - 100px);
   justify-content: space-between;
   padding-right: 20%;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     padding: 0 40% 100px 36px;
     padding-bottom: 100px;
-    align-items: ${props => props.right ? 'flex-end' : 'flex-start'};
-  };
+    align-items: ${props.right ? 'flex-end' : 'flex-start'};
+  `}
 `;
 
 const ContactContainer = styled.div`

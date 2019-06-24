@@ -12,11 +12,11 @@ const FlexColumn = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     flex-direction: column;
     padding: 0 36px;
-    align-items: ${props => props.right ? 'flex-end' : 'flex-start'};
-  };
+    align-items: ${props.right ? 'flex-end' : 'flex-start'};
+  `}
 `;
 
 function Home() {

@@ -6,9 +6,9 @@ import whiteLogo from '../../../../assetts/images/logo-white.svg';
 
 const LogoImg = styled.img`
   margin-top: 20px;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     margin-top: 36px;
-  };
+  `}
 `;
 
 const Logo = ({ white }) => (

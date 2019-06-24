@@ -21,7 +21,7 @@ const TextContainer = styled.div`
   padding: 0 30px;
   ${props => props.theme.media.md`
     margin-left: 122px;
-    width: 33%;
+    width: 45%;
   `}
 `;
 
