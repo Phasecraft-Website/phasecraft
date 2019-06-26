@@ -79,17 +79,20 @@ function Layout({ isContact, children, ...props }) {
   function handleNavToggle() {
     setNavToggled(prev => !prev);
   }
+  let scrollHeight;
+  let clientHeight;
+  let windowHeight;
 
   React.useEffect(() => {
+    scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    ({ clientHeight } = document.documentElement);
+    windowHeight = document.documentElement.offsetHeight;
     window.addEventListener('scroll', throttle(handleScroll, 100));
   });
-  const scrollHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-  );
-  const { clientHeight } = document.documentElement;
-  const windowHeight = document.documentElement.offsetHeight;
 
   const handleScroll = () => {
     const backgroundFader = document.getElementById('background-fader');
