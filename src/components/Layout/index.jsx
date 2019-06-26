@@ -79,24 +79,23 @@ function Layout({ isContact, children, ...props }) {
   function handleNavToggle() {
     setNavToggled(prev => !prev);
   }
-  let scrollHeight;
-  let clientHeight;
-  let windowHeight;
 
   React.useEffect(() => {
-    scrollHeight = Math.max(
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  const handleScroll = () => {
+    const scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    ({ clientHeight } = document.documentElement);
-    windowHeight = document.documentElement.offsetHeight;
-    window.addEventListener('scroll', throttle(handleScroll, 100));
-  });
-
-  const handleScroll = () => {
-    const backgroundFader = document.getElementById('background-fader');
+    const windowHeight = document.documentElement.offsetHeight;
     const windowBottom = windowHeight + window.pageYOffset;
+    // const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    const { clientHeight } = document.documentElement;
+    const backgroundFader = document.getElementById('background-fader');
+    console.log(windowBottom, scrollHeight - (clientHeight * 0.3))
     if(windowBottom >= scrollHeight - (clientHeight * 0.5) && !isContact) {
       backgroundFader.classList.remove('invert');
     } else if (!isContact) {
@@ -105,16 +104,7 @@ function Layout({ isContact, children, ...props }) {
       backgroundFader.classList.add('invert');
     }
   }
-
-  function throttle(fn, wait) {
-    let time = Date.now();
-    return function() {
-      if ((time + wait - Date.now()) < 0) {
-        fn();
-        time = Date.now();
-      }
-    }
-  }
+  
   return (
     <ThemeProvider theme={theme}>
       <>
