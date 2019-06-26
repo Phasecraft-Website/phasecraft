@@ -2,7 +2,6 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import whiteLogo from '../../../../assetts/images/logo-white.svg';
 import Logo from '../../Global/Logo';
 
 const ResultsContainer = styled.div`
