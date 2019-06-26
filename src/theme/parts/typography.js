@@ -14,6 +14,11 @@ const fontFamilies = [
     title: 'GT Pressura Mono Regular',
     value: '\'GT Pressura Mono Regular\'',
   },
+  {
+    key: 'Sul-Sans-Regular',
+    title: 'Sul Sans, Regular',
+    value: '\'Sul Sans, Regular\'',
+  },
 ];
 
 const typography = {
@@ -28,7 +33,7 @@ const typography = {
     lineHeight: 'normal',
   },
   h2: {
-    font: 'GT-Pressura-Mono-Regular',
+    font: 'Sul-Sans-Regular',
     fontSize: '1.3rem',
     letterSpacing: '0.3em',
     textTransform: 'uppercase',

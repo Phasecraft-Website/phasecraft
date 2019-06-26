@@ -4,5 +4,6 @@ import SEO from './SEO';
 import SliceZone from './SliceZone';
 import Home from './Home';
 import Contact from './Contact';
+import ListOfPersons from './ListOfPersons';
 
-export { Content, Layout, SEO, SliceZone, Contact, Home };
+export { Content, Layout, SEO, SliceZone, Contact, Home, ListOfPersons };
