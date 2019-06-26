@@ -13,11 +13,15 @@ const CopyrightContainer = styled.div`
 
 const CopyrightText = styled.p`
   font-family: 'GT Pressura Mono Light';
-  font-size: .8rem;
+  font-size: 10px;
+  line-height: 12px;
   text-transform: uppercase;
-  line-height: 8px;
   letter-spacing: 0.3em;
   margin-bottom: 18px;
+  ${props => props.theme.media.md`
+    font-size: .8rem;
+    line-height: 8px;
+  `}
 `;
 
 const Brand = styled.span`

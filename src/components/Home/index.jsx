@@ -14,7 +14,6 @@ const FlexColumn = styled.div`
   justify-content: space-between;
   ${props => props.theme.media.md`
     flex-direction: column;
-    padding: 0 36px;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
 `;
@@ -24,7 +23,7 @@ function Home() {
     <>
       <FlexColumn>
         <div>
-          <Logo />
+          <Logo white />
         </div>
         <InfoText />
       </FlexColumn>

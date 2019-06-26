@@ -5,9 +5,8 @@ import styled from 'styled-components';
 
 const IntroContainer = styled.div`
   min-height: calc(100vh - 90px);
-  width: 80%;
+  // width: 80%;
   ${props => props.theme.media.md`
-    padding: 0 36px;
     padding-top: 90px;
     width: 62%;
   `}

@@ -3,6 +3,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import whiteLogo from '../../../../assetts/images/logo-white.svg';
+import Logo from '../../Global/Logo';
 
 const ResultsContainer = styled.div`
   position: relative;
@@ -18,9 +19,8 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 30px;
   ${props => props.theme.media.md`
-    margin-left: 122px;
+    margin-left: 86px;
     width: 45%;
   `}
 `;
@@ -55,33 +55,61 @@ const PhoneText = styled.p`
   color: #051736;
 `;
 
-const EmailText = styled.a`
-  font-size: 26px;
-  line-height: 32px;
-  color: #051736;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  margin-top: 0;
-  width: fit-content;
-  padding-bottom: 3px;
-  transition: 3s ease;
-  &:visited, &:visited:visited {
-    color: #2FF2AF;
-  }
-  &:hover {
-    border-bottom: 2px solid #fff;
-    color: #2FF2AF;
-  }
-`;
+// const EmailText = styled.a`
+//   font-size: 26px;
+//   line-height: 32px;
+//   color: #051736;
+//   border-bottom: 2px solid transparent;
+//   cursor: pointer;
+//   margin-top: 0;
+//   width: fit-content;
+//   padding-bottom: 3px;
+//   transition: 3s ease;
+//   &:visited, &:visited:visited {
+//     color: #2FF2AF;
+//   }
+//   &:hover {
+//     border-bottom: 2px solid #fff;
+//     color: #2FF2AF;
+//   }
+// `;
 
-const WhiteLogo = styled.img`
+const LogoContainer = styled.div`
   position: absolute;
-  opacity: 0;
-  transition: 3s ease;
   top: 45px;
   ${props => props.theme.media.md`
     top: 36px;
-    left: 36px;
+  `}
+`;
+
+const EmailText = styled.a`
+  font-family: 'Sul Sans, Medium';
+  font-size: 26px;
+  line-height: 32px;
+  color: #051736;
+  margin: 0;
+  margin-top: 52px;
+  cursor: pointer;
+  position: relative;
+  max-width: fit-content;
+  transition: 3s ease;
+  &::after {
+		content: ' ';
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 1em;
+		left: -0.2em;
+		bottom: 0;
+    padding: 0.2em;
+    transition: 0.6s;
+  };
+  &:hover::after {
+    background-color: #2FF2AF;
+  }
+  ${props => props.theme.media.md`
+    font-size: 26px;
+    margin: 0;
   `}
 `;
 
@@ -90,7 +118,9 @@ const resultsText = 'Phasecraft are pioneering a new quantum computing frontier.
 function Results() {
   return (
     <ResultsContainer>
-      <WhiteLogo src={whiteLogo} alt="PhaseCraft" className="invert-opacity" />
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
       <TextContainer>
         <AbstractText className="invert-color">Results</AbstractText>
         <ResultsText className="invert-color">

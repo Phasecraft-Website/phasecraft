@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Layout, SEO, SliceZone, Contact } from 'components';
 import { graphql } from 'gatsby';
+import { Title } from '../components/Global/Typography';
 
 const StyledOffCanvasContainer = styled.div`
   height: 100%;
 `
 
-function Page({ data: { prismicPage }, ...props }) {
+function Page({ data: { prismicPage }}) {
   const {
-    data: { page_title, meta_title, meta_description, meta_images, body },
-    ...rest
+    data: { page_title, meta_title, meta_description, meta_images, body }
   } = prismicPage;
+  console.log(prismicPage);
   console.log({ body })
   const isContact = page_title.text === 'Contact';
   return (
@@ -25,7 +26,9 @@ function Page({ data: { prismicPage }, ...props }) {
             {isContact ?
               <Contact body={body} />
               :
-              <h1>{page_title.text}</h1>
+              <SliceZone allSlices={body}>
+                <Title>{page_title.text}</Title>
+              </SliceZone>
             }
           </>
         }
@@ -37,6 +40,16 @@ function Page({ data: { prismicPage }, ...props }) {
 }
 
 export default Page;
+
+Page.defaultProps = {}
+
+Page.propTypes = {
+  data: PropTypes.shape({
+    prismicPage: PropTypes.shape({
+      data: PropTypes.object.isRequired,
+    }).isRequired,
+  }).isRequired,
+}
 
 export const pageQuery = graphql`
   query($uid: String!) {
@@ -65,6 +78,35 @@ export const pageQuery = graphql`
             primary {
               content {
                 html
+              }
+            }
+          }
+          ... on PrismicPageBodyListOfPersons {
+            slice_type
+            id
+            items {
+              person {
+                document {
+                  id
+                  data {
+                    name: full_name {
+                      html
+                    }
+                    image {
+                      localFile {
+                        childImageSharp {
+                          fixed(width: 150, height: 150, quality: 100) {
+                            ...GatsbyImageSharpFixed
+                          }
+                        }
+                      }
+                    }
+                    workFunction: function
+                    information {
+                      html
+                    }
+                  }
+                }
               }
             }
           }

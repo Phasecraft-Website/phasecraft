@@ -20,7 +20,7 @@ const StyledMain = styled.div`
   z-index: 1;
   padding: 0 14px;
   ${props => props.theme.media.md`
-    padding: 0:
+    padding: 0 36px;
     font-size: 1.5rem;
     line-height: 4.0rem;
   `}
@@ -28,24 +28,25 @@ const StyledMain = styled.div`
 
 const StyledNav = styled.div`
   grid-area: menu;
-  // position: fixed;
   right: 0;
   height: 100vh;
   z-index: 1;
-  ${props => props.theme.media.md`
-    width: 25vw;
-  `}
 `;
 
 const BackgroundFader = styled.div`
   display: grid;
   width: 100%;
-  grid-template-areas:
-  "main main main menu";
+  grid-auto-columns: 1fr;
   grid-column-gap: 0;
   background-color: #E7E7E7;
   z-index: -1;
   transition: 3s;
+  grid-template-areas:
+  "main main main main main menu";
+  ${props => props.theme.media.md`
+    grid-template-areas:
+    "main main main menu";
+  `}
 `;
 
 const FixedNav = styled.div`
@@ -80,27 +81,35 @@ function Layout({ isContact, children, ...props }) {
   }
 
   React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttle(handleScroll, 100));
   });
+  const scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+  const { clientHeight } = document.documentElement;
+  const windowHeight = document.documentElement.offsetHeight;
 
   const handleScroll = () => {
-    const scrollHeight = Math.max(
-      document.body.scrollHeight, document.documentElement.scrollHeight,
-      document.body.offsetHeight, document.documentElement.offsetHeight,
-      document.body.clientHeight, document.documentElement.clientHeight
-    );
-    const windowHeight = document.documentElement.offsetHeight;
-    const windowBottom = windowHeight + window.pageYOffset;
-    // const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    const { clientHeight } = document.documentElement;
     const backgroundFader = document.getElementById('background-fader');
-    console.log(windowBottom, scrollHeight - (clientHeight * 0.3))
+    const windowBottom = windowHeight + window.pageYOffset;
     if(windowBottom >= scrollHeight - (clientHeight * 0.5) && !isContact) {
-      backgroundFader.classList.add('invert');
-    } else if (!isContact) {
       backgroundFader.classList.remove('invert');
+    } else if (!isContact) {
+      backgroundFader.classList.add('invert');
     } else {
       backgroundFader.classList.add('invert');
+    }
+  }
+
+  function throttle(fn, wait) {
+    let time = Date.now();
+    return function() {
+      if ((time + wait - Date.now()) < 0) {
+        fn();
+        time = Date.now();
+      }
     }
   }
   return (
@@ -111,7 +120,7 @@ function Layout({ isContact, children, ...props }) {
         <GlobalStyles />
         <NavigationContext.Provider value={navToggled}>
           <StyledLayout {...props}>
-            <BackgroundFader id="background-fader" className={isContact ? 'invert' : ''}>
+            <BackgroundFader id="background-fader" className="invert">
               <BackgroundTexture isContact={isContact} />
               <StyledMain>
                 {children}

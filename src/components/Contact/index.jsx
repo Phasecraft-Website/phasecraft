@@ -2,20 +2,19 @@
 import React, { useEffect } from 'react';
 import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
-import { Content } from 'components';
 import styled from 'styled-components';
 import Logo from 'components/Global/Logo';
-import ContactInfo from '../Global/ContactInfo';
-import Copyright from '../Global/Copyright';
+import { Title, BodyText } from 'components/Global/Typography';
+import ContactInfo from 'components/Global/ContactInfo';
+import Copyright from 'components/Global/Copyright';
 
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 100px);
   justify-content: space-between;
-  padding-right: 20%;
   ${props => props.theme.media.md`
-    padding: 0 40% 100px 36px;
+    padding: 0 40% 100px 0;
     padding-bottom: 100px;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
@@ -30,27 +29,6 @@ const ContactContainer = styled.div`
     justify-content: space-between;
     // margin-right: 35%;
   `}
-`;
-
-const BodyText = styled(Content)`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
-  color: #fff;
-  // margin-right: 28%;
-  transition: 3s ease;
-  ${props => props.theme.media.md`
-    font-size: 26px;
-    line-height: 32px;
-    margin-top: 60px;
-    // margin-right: 35%;
-  `}
-`;
-
-const Title = styled.h2`
-  font-size: 36px;
-  line-height: 45px;
-  color: #E5E6E4;
 `;
 
 const TopContainer = styled.div`
@@ -76,7 +54,7 @@ function Contact({ body }) {
       <FlexColumn>
         <TopContainer>
           <Logo white />
-          {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title>Contact</Title>}
+          {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title dark>Contact</Title>}
           <BodyText html={body[0].primary.content.html} />
         </TopContainer>
         <ContactContainer>
