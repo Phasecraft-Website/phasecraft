@@ -55,6 +55,21 @@ const GlobalStyles = createGlobalStyle`
   #svg-pattern {
     transition: 3s ease;
   }
+  .invert-color {
+    will-change: color;
+  }
+
+  .invert-fill {
+    will-change: fill, border-color;
+  }
+
+  .invert-opacity {
+    will-change: opacity;
+  }
+
+  .invert-link {
+    will-change: color;
+  }
 
   .invert {
     background-color: #061637!important;

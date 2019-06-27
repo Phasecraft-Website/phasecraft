@@ -10,14 +10,10 @@ const endPointY = (height) => `calc(${height}px - (${radialSize} / 2))`;
 
 const GradientAnimation = keyframes`
   0% {
-    background-size: 95% 105%;
-    transform: scale(0) rotate(${Math.floor(Math.random() * 360) + 1}deg);
-    opacity: 1;
+    transform: scale(0);
   }
   70% {
     opacity: 1;
-    transform: scale(0.7);
-    background-size: 105% 95%;
   }
   100% {
     transform: scale(1);
@@ -38,11 +34,13 @@ const RadialContainer = styled.div`
   width: ${radialSize};
   height: ${radialSize};
   position: absolute;
+  will-change: transform, top;
   animation: ${({ width }) => HorizontalAnimation(width)} ${({ time }) => time.h} -${({ startAt }) => startAt}s linear infinite alternate,
   ${({ height }) => VerticalAnimation(height)} ${({ time }) => time.v} -${({ startAt }) => startAt}s linear infinite alternate;
 `;
 
 const RadialGradient = styled.div`
+  // will-change: transform, opacity, background-size;
   transform: scale(0);
   position: absolute;
   background: radial-gradient(50% 50%, rgba(0, 0, 0, 0), rgba(43, 194, 210, .38), rgba(${({ rgb }) => rgb}, 1), rgba(44, 210, 198, .23), rgba(44, 210, 198, 0));
@@ -55,17 +53,10 @@ const RadialGradient = styled.div`
 `;
 
 class Radial extends React.Component {
-  constructor(props) {
-    super(props);
-    this.radial1 = React.createRef();
-    this.radial2 = React.createRef();
-    this.phaser1 = React.createRef();
-    this.phaser2 = React.createRef();
-    this.state = {
-      width: 0,
-      height: 0,
-    };
-  }
+  state = {
+    width: 0,
+    height: 0,
+  };
 
   componentDidMount() {
     this.setState({
