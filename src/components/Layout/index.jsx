@@ -80,23 +80,28 @@ function Layout({ isContact, children, ...props }) {
     setNavToggled(prev => !prev);
   }
 
+  let scrollHeight;
+  let windowHeight;
+  let clientHeight;
+  let backgroundFader;
+  let scrollPoint;
+
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-  });
-
-  const handleScroll = () => {
-    const scrollHeight = Math.max(
+    scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    const windowHeight = document.documentElement.offsetHeight;
+    windowHeight = document.documentElement.offsetHeight;
+    ({ clientHeight } = document.documentElement);
+    backgroundFader = document.getElementById('background-fader');
+    scrollPoint = scrollHeight - (clientHeight * 0.5);
+  });
+
+  const handleScroll = () => {
     const windowBottom = windowHeight + window.pageYOffset;
-    // const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    const { clientHeight } = document.documentElement;
-    const backgroundFader = document.getElementById('background-fader');
-    console.log(windowBottom, scrollHeight - (clientHeight * 0.3))
-    if(windowBottom >= scrollHeight - (clientHeight * 0.5) && !isContact) {
+    if(windowBottom >= scrollPoint && !isContact) {
       backgroundFader.classList.remove('invert');
     } else if (!isContact) {
       backgroundFader.classList.add('invert');
