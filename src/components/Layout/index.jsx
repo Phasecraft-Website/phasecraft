@@ -106,13 +106,13 @@ function Layout({ isContact, children, ...props }) {
   const handleScroll = () => {
     const windowBottom = windowHeight + window.pageYOffset;
     Array.from(fadeOuts).forEach(item => {
-      const { top } = item.getBoundingClientRect();
-      console.log(top);
-      item.setAttribute('style', `opacity: ${(top - 100) / 100}`);
+      const { top, bottom } = item.getBoundingClientRect();
+      const topOpacity = (top - 100) / 100;
+      const bottomOpacity = (bottom - (bottom - top)) / 100;
+      console.log(top, bottom);
+      // item.setAttribute('style', `opacity: ${(top - 100) / 100}`);
+      item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))`);
     });
-    // const fadeOutY = fadeOut.getBoundingClientRect();
-    // console.log(fadeOutY.top);
-    // fadeOut.setAttribute('style', `opacity: ${fadeOutY.top / 100}`);
     if(windowBottom >= scrollPoint && !isContact) {
       backgroundFader.classList.remove('invert');
     } else if (!isContact) {

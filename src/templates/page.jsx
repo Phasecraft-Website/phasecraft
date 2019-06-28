@@ -12,7 +12,6 @@ function Page({ data: { prismicPage } }) {
   const {
     data: { page_title, meta_title, meta_description, meta_images, body },
   } = prismicPage;
-  console.log({ body })
   const isContact = page_title.text === 'Contact';
   return (
     <>
