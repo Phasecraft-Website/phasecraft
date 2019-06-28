@@ -85,6 +85,10 @@ const GlobalStyles = createGlobalStyle`
     background-color: #061637!important;
     .invert-color {
       color: #E5E6E4!important;
+
+      &:visited, &:visited:visited {
+        color: #E5E6E4!important;
+      }
     }
 
     .invert-fill {

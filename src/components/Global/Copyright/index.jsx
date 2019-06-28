@@ -25,8 +25,21 @@ const CopyrightText = styled.p`
   `}
 `;
 
-const Brand = styled.span`
+const Brand = styled.a`
   font-family: 'GT Pressura Mono Bold';
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 0;
+  color: #051736;
+  &:visited, &:visited:visited {
+    color: #051736;
+  }
+  ${props => props.theme.media.md`
+    font-size: 1rem;
+    line-height: 1.2rem;
+  `}
 `;
 
 const TitleText = styled.h1`
@@ -50,7 +63,7 @@ const Copyright = ({ isContact, isNav }) => (
     }
     {isContact && <TitleText>Contact</TitleText>}
     <CopyrightText>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
-    {!isNav && <CopyrightText>brand and website <br />by <Brand>polleni</Brand></CopyrightText>}
+    {!isNav && <CopyrightText>brand and website <br />by <Brand className="invert-color" href="https://www.polleni.com/" target="__blank">polleni</Brand></CopyrightText>}
   </CopyrightContainer>
 );
 
