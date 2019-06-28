@@ -45,9 +45,9 @@ const InfoTextMed = styled.h3`
 function InfoText() {
   return (
     <InfoTextBox>
-      <AbstractText className="invert-color">ABSTRACT</AbstractText>
-      <InfoTextMed className="invert-color">USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF</InfoTextMed>
-      <InfoTextReg className="invert-color">QUANTUM COMPUTING</InfoTextReg>
+      <AbstractText className="invert-color fade-out">ABSTRACT</AbstractText>
+      <InfoTextMed className="invert-color fade-out">USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF</InfoTextMed>
+      <InfoTextReg className="invert-color fade-out">QUANTUM COMPUTING</InfoTextReg>
     </InfoTextBox>
   );
 }

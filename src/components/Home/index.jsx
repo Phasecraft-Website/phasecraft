@@ -47,8 +47,8 @@ function Home() {
   return (
     <>
       <LogoContainer>
-        <LogoBackground className="invert-opacity" />
-        <LogoBackgroundWhite className="invert-opacity-reverse" />
+        {/* <LogoBackground className="invert-opacity" />
+        <LogoBackgroundWhite className="invert-opacity-reverse" /> */}
         <Logo white />
       </LogoContainer>
       <FlexColumn>

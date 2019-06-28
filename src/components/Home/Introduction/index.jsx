@@ -41,11 +41,11 @@ const introText2 = 'Phasecraft can help investigate novel quantum materials, hel
 function Introduction() {
   return (
     <IntroContainer>
-      <AbstractText className="invert-color">Introduction</AbstractText>
-      <IntroText className="invert-color">
+      <AbstractText className="invert-color fade-out">Introduction</AbstractText>
+      <IntroText className="invert-color fade-out">
         {introText1}
       </IntroText>
-      <IntroText className="invert-color">
+      <IntroText className="invert-color fade-out">
         {introText2}
       </IntroText>
     </IntroContainer>

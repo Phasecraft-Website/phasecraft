@@ -87,6 +87,7 @@ function Layout({ isContact, children, ...props }) {
   let clientHeight;
   let backgroundFader;
   let scrollPoint;
+  let fadeOuts = [];
 
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -98,11 +99,20 @@ function Layout({ isContact, children, ...props }) {
     windowHeight = document.documentElement.offsetHeight;
     ({ clientHeight } = document.documentElement);
     backgroundFader = document.getElementById('background-fader');
+    fadeOuts = document.getElementsByClassName('fade-out');
     scrollPoint = scrollHeight - (clientHeight * 0.5);
   });
 
   const handleScroll = () => {
     const windowBottom = windowHeight + window.pageYOffset;
+    Array.from(fadeOuts).forEach(item => {
+      const { top } = item.getBoundingClientRect();
+      console.log(top);
+      item.setAttribute('style', `opacity: ${(top - 100) / 100}`);
+    });
+    // const fadeOutY = fadeOut.getBoundingClientRect();
+    // console.log(fadeOutY.top);
+    // fadeOut.setAttribute('style', `opacity: ${fadeOutY.top / 100}`);
     if(windowBottom >= scrollPoint && !isContact) {
       backgroundFader.classList.remove('invert');
     } else if (!isContact) {
