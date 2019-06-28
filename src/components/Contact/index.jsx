@@ -11,11 +11,10 @@ import Copyright from 'components/Global/Copyright';
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 50px);
   justify-content: space-between;
   ${props => props.theme.media.md`
-    padding: 0 40% 100px 0;
-    padding-bottom: 100px;
+    padding: 0 40% 50px 0;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
 `;
@@ -33,6 +32,7 @@ const ContactContainer = styled.div`
 
 const TopContainer = styled.div`
   height: 85vh;
+  width: 90%;
   ${props => props.theme.media.md`
     height: auto;
   `}

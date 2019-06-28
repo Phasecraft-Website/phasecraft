@@ -17,6 +17,7 @@ const AbstractText = styled.h2`
   color: #051736;
   text-transform: uppercase;
   transition: 3s ease;
+  margin-bottom: 1.83em;
   ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
   `}

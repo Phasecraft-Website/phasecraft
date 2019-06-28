@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Content } from 'components';
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-size: 36px;
+  margin-top: 40px;
   line-height: 45px;
   color: ${({ dark }) => dark ? `#E5E6E4` : `#051736`};
 `;

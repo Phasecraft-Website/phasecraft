@@ -2,24 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LocationText = styled.p`
-  font-size: 26px;
-  line-height: 32px;
+  font-family: 'Sul Sans, Regular';
+  font-size: 20px;
+  line-height: 25px;
   // margin-bottom: 0;
   transition: 3s ease;
   color: #051736;
 `;
 
 const PhoneText = styled.p`
-  font-size: 26px;
-  line-height: 32px;
+  font-family: 'Sul Sans, Regular';
+  font-size: 20px;
+  line-height: 25px;
   margin-bottom: 0;
   transition: 3s ease;
   color: #051736;
 `;
 
 const EmailText = styled.a`
-  font-size: 26px;
-  line-height: 32px;
+  font-family: 'Sul Sans, Regular';
+  font-size: 20px;
+  line-height: 25px;
   color: #2FF2AF;
   border-bottom: 2px solid transparent;
   cursor: pointer;

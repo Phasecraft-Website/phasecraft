@@ -19,6 +19,10 @@ const Svg = styled.svg`
   transition: 3s;
 `;
 
+const CloseSvg = styled.svg`
+  margin-left: 5px;
+`;
+
 function NavigationToggleComponent({
   // data: {
   //   prismicGlobal: {

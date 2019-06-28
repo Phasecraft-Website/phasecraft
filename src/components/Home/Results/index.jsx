@@ -30,7 +30,7 @@ const AbstractText = styled.h2`
   text-transform: uppercase;
   transition: 3s ease;
   ${props => props.theme.media.md`
-    margin-bottom: 3.6rem;
+    margin-bottom: 1rem;
   `}
 `;
 
@@ -87,7 +87,7 @@ const EmailText = styled.a`
   line-height: 32px;
   color: #051736;
   margin: 0;
-  margin-top: 52px;
+  margin-top: 10px;
   cursor: pointer;
   position: relative;
   max-width: fit-content;
@@ -107,6 +107,7 @@ const EmailText = styled.a`
     background-color: #2FF2AF;
   }
   ${props => props.theme.media.md`
+    margin-top: 52px;
     font-size: 26px;
     margin: 0;
   `}
@@ -117,8 +118,8 @@ const resultsText = 'Phasecraft are pioneering a new quantum computing frontier.
 function Results() {
   return (
     <ResultsContainer>
-      <LogoContainer>
-        <Logo />
+      <LogoContainer className="invert-opacity" >
+        <Logo/>
       </LogoContainer>
       <TextContainer>
         <AbstractText className="invert-color">Results</AbstractText>

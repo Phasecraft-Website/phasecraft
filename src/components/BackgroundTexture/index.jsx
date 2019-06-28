@@ -39,8 +39,10 @@ const Svg = styled.svg`
 `;
 
 const MapContainer = styled.div`
-  position: relative;
-  height: 100%;
+  // position: relative;
+  // height: 100%;
+  max-height: 100vh;
+  overflow: none;
 `;
 
 const Map = styled.img`
@@ -53,6 +55,7 @@ const Map = styled.img`
   transform:translate(-50%,-50%);
   width: 100%;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  overflow: none;
 `;
 
 const Bristol = styled.div`
@@ -98,34 +101,36 @@ const London = styled.div`
 const BackgroundTexture = ({ isContact }) => {
   const viewport = useViewport();
   return (
-    <Background>
-      {!isContact &&
-        <RadialWrapper>
-          <Radial />
-        </RadialWrapper>
+    <>
+      {isContact ?
+        <MapContainer>
+          <Map src={isViewport(viewport, ['DEFAULT']) ? mapMobile : map} />
+          <Bristol />
+          <London />
+        </MapContainer>
+        :
+        <Background>
+          {!isContact &&
+            <RadialWrapper>
+              <Radial />
+            </RadialWrapper>
+          }
+          <PatternOverlay>
+            <Svg fill="#e7e7e7" className="invert-fill">
+              <pattern id="pattern-plus" 
+                x="0" 
+                y="0" 
+                width="6" 
+                height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
+              >
+                <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
+              </pattern>
+              <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
+            </Svg>
+          </PatternOverlay>
+        </Background>
       }
-      <PatternOverlay>
-        {isContact ?
-          <MapContainer>
-            <Map src={isViewport(viewport, ['DEFAULT']) ? mapMobile : map} />
-            <Bristol />
-            <London />
-          </MapContainer>
-          :
-          <Svg fill="#e7e7e7" className="invert-fill">
-            <pattern id="pattern-plus" 
-              x="0" 
-              y="0" 
-              width="6" 
-              height="6" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
-            >
-              <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
-            </pattern>
-            <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
-          </Svg>
-        }
-      </PatternOverlay>
-    </Background>
+    </>
   );
 };
   

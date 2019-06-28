@@ -2,7 +2,6 @@ import React from 'react';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { renderColor } from 'helpers/styles';
 import linkResolver from 'helpers/linkResolver';
 import relResolver from 'helpers/relResolver';
 
@@ -29,7 +28,7 @@ const StyledItem = styled.li`
 const StyledLink = styled(props => <Link {...props} />)`
   display: block;
   position: relative;
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Medium';
   font-size: 1.8rem;
   line-height: 2rem;
   letter-spacing: 0.07em;
@@ -69,7 +68,7 @@ const StyledLink = styled(props => <Link {...props} />)`
       width: 6px;
       height: 6px;
       border-radius: 3px;
-      left: -15px;
+      left: -20px;
       top: calc(45% - 4px);
       content: "";
       z-index: 5;
@@ -78,6 +77,7 @@ const StyledLink = styled(props => <Link {...props} />)`
         width: 8px;
         height: 8px;
         border-radius: 4px;
+        left: -15px;
       `}
     }
   }
@@ -122,12 +122,11 @@ function NavigationComponent({ data }) {
   return (
     <StyledNav>
       <StyledList>
-        {navigation_items.map((item, i) => (
+        {navigation_items.map((item) => (
           <StyledItem key={item.id}>
             <StyledLink to={item.url} className="invert-color" activeClassName="active">
               <span>{item.link_text}</span>
             </StyledLink>
-            {/* <Num>{`0.${i + 1}`}</Num> */}
           </StyledItem>
         ))}
       </StyledList>

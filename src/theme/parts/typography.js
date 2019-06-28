@@ -23,14 +23,14 @@ const fontFamilies = [
 
 const typography = {
   h1: {
-    font: 'georgia',
-    fontSize: '40px',
-    letterSpacing: '0',
-    textTransform: 'none',
+    font: 'Sul-Sans-Regular',
+    fontSize: '1.3rem',
+    // letterSpacing: '0.3em',
+    lineHeight: '1.5rem',
+    textTransform: 'uppercase',
     fontStyle: 'normal',
     fontWeight: 'normal',
     color: 'currentColor',
-    lineHeight: 'normal',
   },
   h2: {
     font: 'Sul-Sans-Regular',

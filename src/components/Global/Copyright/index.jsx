@@ -6,21 +6,22 @@ const CopyrightContainer = styled.div`
   color: #051736;
   transition: color 3s;
   ${props => props.theme.media.md`
-    width: 156px;
-    margin-bottom: ${props.isContact ? '82px' : '17px'};
+    width: 200px;
+    margin-bottom: ${props.isContact ? '32px' : '17px'};
   `}
 `;
 
 const CopyrightText = styled.p`
   font-family: 'GT Pressura Mono Light';
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
+  line-height: 14px;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   ${props => props.theme.media.md`
-    font-size: .8rem;
-    line-height: 8px;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    margin-bottom: 18px;
   `}
 `;
 
@@ -28,7 +29,7 @@ const Brand = styled.span`
   font-family: 'GT Pressura Mono Bold';
 `;
 
-const TitleText = styled.h2`
+const TitleText = styled.h1`
   font-family: 'Sul Sans, Regular';
   font-size: 3.3rem;
   margin: 0;

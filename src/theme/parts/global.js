@@ -22,6 +22,10 @@ const global = {
       value: 'Sul-Sans-Regular',
     },
     {
+      title: 'Sul Sans, Light',
+      value: 'Sul-Sans-Light',
+    },
+    {
       title: 'GT Pressura Mono Regular',
       value: 'GT-Pressura-Mono-Regular',
     },

@@ -9,7 +9,13 @@ const StyledContent = styled(Content)`
   ${props => props.theme.media.md`
     width: 766px;
   `}
-`
+`;
+
+const Title = styled.h2`
+  font-size: 36px;
+  line-height: 45px;
+  color: ${({ dark }) => dark ? `#E5E6E4` : `#051736`};
+`;
 
 export default class SliceZone extends Component {
   render() {
@@ -36,7 +42,9 @@ export default class SliceZone extends Component {
     });
     return (
       <>
-        {children}
+        <Title>
+          {children}
+        </Title>
         {slice}
       </>
     );

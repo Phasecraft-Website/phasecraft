@@ -15,6 +15,7 @@ const AbstractText = styled.h2`
   margin-left: 3px;
   color: #051736;
   transition: 3s ease;
+  margin-bottom: 1.83em;
   ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
   `}
@@ -23,6 +24,7 @@ const AbstractText = styled.h2`
 const InfoTextReg = styled.h3`
   font-family: 'Sul Sans, Medium';
   font-size: 3.3rem;
+  line-height: 45px;
   margin: 0;
   transition: 3s ease;
   ${props => props.theme.media.md`
@@ -31,8 +33,9 @@ const InfoTextReg = styled.h3`
 `;
 
 const InfoTextMed = styled.h3`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   font-size: 3.3rem;
+  line-height: 45px;
   margin: 0;
   transition: 3s ease;
   ${props => props.theme.media.md`

@@ -25,7 +25,7 @@ const StyledNav = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 2rem 3rem;
+  padding: 2rem 2rem;
 `;
 
 function OffCanvasNav({ navToggle, nav }) {
