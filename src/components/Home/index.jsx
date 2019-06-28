@@ -13,18 +13,45 @@ const FlexColumn = styled.div`
   flex-direction: column;
   justify-content: space-between;
   ${props => props.theme.media.md`
+    justify-content: flex-end;
     flex-direction: column;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
 `;
 
+const LogoContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  left: 0;
+`;
+
+const LogoBackground = styled.div`
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(6, 22, 55, 1), rgba(6, 22, 55, 1), rgba(6, 22, 55, 0));
+  width: 100%;
+  height: 180px;
+  z-index: -1;
+  opacity: 0;
+`;
+
+const LogoBackgroundWhite = styled.div`
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(231, 231, 231, 1), rgba(231, 231, 231, 1), rgba(231, 231, 231, 0));
+  width: 100%;
+  height: 180px;
+  z-index: -1;
+  opacity: 1;
+`;
+
 function Home() {
   return (
     <>
+      <LogoContainer>
+        <LogoBackground className="invert-opacity" />
+        <LogoBackgroundWhite className="invert-opacity-reverse" />
+        <Logo white />
+      </LogoContainer>
       <FlexColumn>
-        <div>
-          <Logo white />
-        </div>
         <InfoText />
       </FlexColumn>
       <Introduction />

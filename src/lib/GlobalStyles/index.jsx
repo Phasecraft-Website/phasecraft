@@ -53,25 +53,35 @@ const GlobalStyles = createGlobalStyle`
   }
 
   #svg-pattern {
-    transition: 3s ease;
+    transition: fill, border-color 3s ease;
   }
   .invert-color {
+    transition: color 3s ease;
     will-change: color;
   }
 
   .invert-fill {
+    transition: fill, border-color 3s ease;
     will-change: fill, border-color;
   }
 
   .invert-opacity {
+    transition: opacity 3s ease;
+    will-change: opacity;
+  }
+
+  .invert-opacity-reverse {
+    transition: opacity 3s ease;
     will-change: opacity;
   }
 
   .invert-link {
+    transition: color 3s ease;
     will-change: color;
   }
 
   .invert {
+    transition: background-color 3s ease;
     background-color: #061637!important;
     .invert-color {
       color: #E5E6E4!important;
@@ -84,6 +94,10 @@ const GlobalStyles = createGlobalStyle`
 
     .invert-opacity {
       opacity: 1!important;
+    }
+
+    .invert-opacity-reverse {
+      opacity: 0!important;
     }
 
     .invert-link {

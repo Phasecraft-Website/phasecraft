@@ -40,7 +40,7 @@ const BackgroundFader = styled.div`
   grid-column-gap: 0;
   background-color: #E7E7E7;
   z-index: 0;
-  transition: 3s;
+  transition: background-color 3s;
   grid-template-areas:
   "main main main main main menu";
   ${props => props.theme.media.md`

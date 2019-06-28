@@ -12,9 +12,10 @@ const InfoTextBox = styled.div`
 `;
 
 const AbstractText = styled.h2`
+  font-family: 'GT Pressura Mono Light';
+  font-size: 1.2rem;
   margin-left: 3px;
   color: #051736;
-  transition: 3s ease;
   margin-bottom: 1.83em;
   ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
@@ -26,7 +27,6 @@ const InfoTextReg = styled.h3`
   font-size: 3.3rem;
   line-height: 45px;
   margin: 0;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     font-size: 42px;
   `}
@@ -37,7 +37,6 @@ const InfoTextMed = styled.h3`
   font-size: 3.3rem;
   line-height: 45px;
   margin: 0;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     font-size: 42px;
   `}

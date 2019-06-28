@@ -6,7 +6,6 @@ const LocationText = styled.p`
   font-size: 20px;
   line-height: 25px;
   // margin-bottom: 0;
-  transition: 3s ease;
   color: #051736;
 `;
 
@@ -15,7 +14,6 @@ const PhoneText = styled.p`
   font-size: 20px;
   line-height: 25px;
   margin-bottom: 0;
-  transition: 3s ease;
   color: #051736;
 `;
 
@@ -24,23 +22,37 @@ const EmailText = styled.a`
   font-size: 20px;
   line-height: 25px;
   color: #2FF2AF;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid #fff;
   cursor: pointer;
   margin-top: 0;
   width: fit-content;
   padding-bottom: 3px;
-  transition: 3s ease;
+  position: relative;
   &:visited, &:visited:visited {
     color: #2FF2AF;
   }
-  &:hover {
-    border-bottom: 2px solid #fff;
-    color: #2FF2AF;
+  &::after {
+		content: ' ';
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 1em;
+		left: -0.2em;
+		bottom: 0;
+    padding: 0.2em;
+    transition: background-color 0.6s;
+  };
+  &:hover::after {
+    background-color: #2FF2AF;
   }
 `;
 
+const ContactContainer = styled.div`
+  margin-top: 26px;
+`;
+
 const ContactInfo = ({ location, email, phone, links }) => (
-  <div>
+  <ContactContainer>
     <LocationText className="invert-color">
       {location}
     </LocationText>
@@ -50,7 +62,7 @@ const ContactInfo = ({ location, email, phone, links }) => (
     <EmailText>
       {email}
     </EmailText>
-  </div>
+  </ContactContainer>
 );
 
 export default ContactInfo;

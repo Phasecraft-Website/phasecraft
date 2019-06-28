@@ -4,7 +4,7 @@ import logoIcon from '../../../../assetts/images/logo-icon.svg';
 
 const CopyrightContainer = styled.div`
   color: #051736;
-  transition: color 3s;
+  width: 240px;
   ${props => props.theme.media.md`
     width: 200px;
     margin-bottom: ${props.isContact ? '32px' : '17px'};

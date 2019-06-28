@@ -16,7 +16,6 @@ const StyledNavToggle = styled.button`
 `
 const Svg = styled.svg`
   color: #323149;
-  transition: 3s;
 `;
 
 const CloseSvg = styled.svg`
@@ -41,10 +40,10 @@ function NavigationToggleComponent({
   return (
     <StyledNavToggle type="button" onClick={onToggle} id="toggle">
       {toggled ?
-        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <CloseSvg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
           <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
-        </svg>
+        </CloseSvg>
         
         :
         <Svg className="invert-color" width="30" height="9" viewBox="0 0 30 9" xmlns="http://www.w3.org/2000/svg">

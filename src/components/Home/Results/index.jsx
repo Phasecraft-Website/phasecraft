@@ -25,10 +25,11 @@ const TextContainer = styled.div`
 `;
 
 const AbstractText = styled.h2`
+  font-family: 'GT Pressura Mono Light';
+  font-size: 1.2rem;
   margin-left: 3px;
   color: #051736;
   text-transform: uppercase;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     margin-bottom: 1rem;
   `}
@@ -39,7 +40,6 @@ const ResultsText = styled.p`
   font-size: 20px;
   line-height: 25px;
   color: #051736;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     font-size: 26px;
     line-height: 32px;
@@ -50,7 +50,6 @@ const PhoneText = styled.p`
   font-size: 26px;
   line-height: 32px;
   margin-bottom: 0;
-  transition: 3s ease;
   color: #051736;
 `;
 
@@ -63,7 +62,6 @@ const PhoneText = styled.p`
 //   margin-top: 0;
 //   width: fit-content;
 //   padding-bottom: 3px;
-//   transition: 3s ease;
 //   &:visited, &:visited:visited {
 //     color: #2FF2AF;
 //   }
@@ -91,7 +89,6 @@ const EmailText = styled.a`
   cursor: pointer;
   position: relative;
   max-width: fit-content;
-  transition: 3s ease;
   &::after {
 		content: ' ';
 		position: absolute;
@@ -101,7 +98,7 @@ const EmailText = styled.a`
 		left: -0.2em;
 		bottom: 0;
     padding: 0.2em;
-    transition: 0.6s;
+    transition: background-color 0.6s;
   };
   &:hover::after {
     background-color: #2FF2AF;
@@ -118,9 +115,7 @@ const resultsText = 'Phasecraft are pioneering a new quantum computing frontier.
 function Results() {
   return (
     <ResultsContainer>
-      <LogoContainer className="invert-opacity" >
-        <Logo/>
-      </LogoContainer>
+      <div />
       <TextContainer>
         <AbstractText className="invert-color">Results</AbstractText>
         <ResultsText className="invert-color">

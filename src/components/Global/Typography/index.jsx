@@ -13,7 +13,6 @@ export const BodyText = styled(Content)`
   font-size: 20px;
   line-height: 25px;
   color: #fff;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     font-size: 26px;
     line-height: 32px;

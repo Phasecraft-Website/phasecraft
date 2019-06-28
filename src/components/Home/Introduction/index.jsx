@@ -13,10 +13,11 @@ const IntroContainer = styled.div`
 `;
 
 const AbstractText = styled.h2`
+  font-family: 'GT Pressura Mono Light';
+  font-size: 1.2rem;
   margin-left: 3px;
   color: #051736;
   text-transform: uppercase;
-  transition: 3s ease;
   margin-bottom: 1.83em;
   ${props => props.theme.media.md`
     margin-bottom: 3.6rem;
@@ -28,7 +29,6 @@ const IntroText = styled.p`
   font-size: 20px;
   line-height: 25px;
   color: #051736;
-  transition: 3s ease;
   ${props => props.theme.media.md`
     font-size: 35px;
     line-height: 43px;

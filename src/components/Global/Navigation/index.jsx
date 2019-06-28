@@ -36,13 +36,13 @@ const StyledLink = styled(props => <Link {...props} />)`
   color: #051736;
   text-decoration: none;
   text-transform: uppercase;
-  // transition: 3s;
   margin: 12px 0;
 
   ${props => props.theme.media.md`
     font-size: 1.2rem;
     line-height: 1.4rem;
     margin: 0;
+    transition: color 1.5s;
   `}
 
   span {
@@ -77,26 +77,30 @@ const StyledLink = styled(props => <Link {...props} />)`
         width: 8px;
         height: 8px;
         border-radius: 4px;
-        left: -15px;
+        left: -20px;
       `}
     }
+  }
+  &:after {
+    transition: 0.6s;
+    background: #2FF2AF;
+    height: 2.4rem;
+    position: absolute;
+    width: calc(100% + 8px);
+    left: -4px;
+    right: -4px;
+    bottom: 10px;
+    content: "";
+    z-index: 5;
+    opacity: 0;
   }
 
   &:hover {
     color: #051736!important;
     border-bottom: none;
-    transition: 0s;
 
     &:after {
-      background: #2FF2AF;
-      height: 2rem;
-      position: absolute;
-      width: calc(100% + 8px);
-      left: -4px;
-      right: -4px;
-      bottom: 12px;
-      content: "";
-      z-index: 5;
+      opacity: 1;
     }
   }
 
