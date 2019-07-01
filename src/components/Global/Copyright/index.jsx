@@ -13,8 +13,8 @@ const CopyrightContainer = styled.div`
 
 const CopyrightText = styled.p`
   font-family: 'GT Pressura Mono Light';
-  font-size: 12px;
-  line-height: 14px;
+  font-size: ${({ isNav }) => isNav ? '10px' : '12px'};
+  line-height: ${({ isNav }) => isNav ? '12px' : '14px'};
   text-transform: uppercase;
   letter-spacing: 0.3em;
   margin-bottom: 0;
@@ -62,7 +62,7 @@ const Copyright = ({ isContact, isNav }) => (
       <img src={logoIcon} alt="Phasecraft" />
     }
     {isContact && <TitleText>Contact</TitleText>}
-    <CopyrightText>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
+    <CopyrightText isNav={isNav}>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
     {!isNav && <CopyrightText>brand and website <br />by <Brand className="invert-color" href="https://www.polleni.com/" target="__blank">polleni</Brand></CopyrightText>}
   </CopyrightContainer>
 );

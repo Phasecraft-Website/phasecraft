@@ -87,7 +87,7 @@ const GlobalStyles = createGlobalStyle`
       color: #E5E6E4!important;
 
       &:visited, &:visited:visited {
-        color: #E5E6E4!important;
+        color: #E5E6E4;
       }
     }
 
