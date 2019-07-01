@@ -11,9 +11,8 @@ const FlexColumn = styled.div`
   min-height: 100vh;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   ${props => props.theme.media.md`
-    justify-content: flex-end;
     flex-direction: column;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
@@ -23,6 +22,14 @@ const LogoContainer = styled.div`
   position: fixed;
   width: 100%;
   left: 0;
+`;
+
+const LogoAbsolute = styled.div`
+  position: absolute;
+  margin-left: 14px;
+  ${props => props.theme.media.md`
+    margin-left: 36px;
+  `}
 `;
 
 const LogoBackground = styled.div`
@@ -47,9 +54,9 @@ function Home() {
   return (
     <>
       <LogoContainer>
-        {/* <LogoBackground className="invert-opacity" />
-        <LogoBackgroundWhite className="invert-opacity-reverse" /> */}
-        <Logo white />
+        <LogoAbsolute>
+          <Logo white />
+        </LogoAbsolute>
       </LogoContainer>
       <FlexColumn>
         <InfoText />

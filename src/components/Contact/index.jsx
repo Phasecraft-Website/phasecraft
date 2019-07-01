@@ -43,6 +43,13 @@ const CopyrightContainer = styled.div`
   margin: 70px 0;
 `;
 
+const BodyTextContainer = styled.div`
+  margin-top: 100px;
+  ${props => props.theme.media.md`
+    margin-top: 136px;
+  `}
+`;
+
 function Contact({ body }) {
   useEffect(() => {
     const backgroundFader = document.getElementById('background-fader');
@@ -54,8 +61,10 @@ function Contact({ body }) {
       <FlexColumn>
         <TopContainer>
           <Logo white />
-          {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title dark>Contact</Title>}
-          <BodyText html={body[0].primary.content.html} />
+          <BodyTextContainer>
+            {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title dark>Contact</Title>}
+            <BodyText html={body[0].primary.content.html} />
+          </BodyTextContainer>
         </TopContainer>
         <ContactContainer>
           <ContactInfo

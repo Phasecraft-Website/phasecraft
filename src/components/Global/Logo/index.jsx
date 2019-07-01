@@ -7,28 +7,24 @@ import whiteLogo from '../../../../assetts/images/logo-white.svg';
 
 const LogoDark = styled.img`
   position: absolute;
-  margin-top: 20px;
   opacity: 1;
+  top: 20px;
   ${props => props.theme.media.md`
-    margin-top: 36px;
+    top: 36px;
   `}
 `;
 
 const LogoWhite = styled.img`
   position: absolute;
-  margin-top: 20px;
   opacity: 0;
+  top: 20px;
   ${props => props.theme.media.md`
-    margin-top: 36px;
+    top: 36px;
   `}
 `;
 
 const StyledLink = styled(props => <Link {...props} />)`
   position: relative;
-  margin-left: 14px;
-  ${props => props.theme.media.md`
-    margin-left: 36px;
-  `}
 `;
 
 const Logo = ({ white }) => (

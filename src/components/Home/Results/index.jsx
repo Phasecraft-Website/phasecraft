@@ -18,7 +18,11 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: -15px;
+  padding-left: 40px;
   ${props => props.theme.media.md`
+    padding-left: 0;
+    margin-right: 0;
     margin-left: 86px;
     width: 45%;
   `}
