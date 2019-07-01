@@ -80,6 +80,11 @@ const GlobalStyles = createGlobalStyle`
     will-change: color;
   }
 
+  .fade-out {
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: 100% 100%;
+  }
+
   .invert {
     transition: background-color 3s ease;
     background-color: #061637!important;
