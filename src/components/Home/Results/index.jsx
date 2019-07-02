@@ -92,6 +92,7 @@ const EmailText = styled.a`
   cursor: pointer;
   position: relative;
   max-width: fit-content;
+  border-bottom: 2px solid #051736;
   &::after {
 		content: ' ';
 		position: absolute;
@@ -105,6 +106,9 @@ const EmailText = styled.a`
   };
   &:hover::after {
     background-color: #2FF2AF;
+  }
+  &:hover {
+    border-bottom: 2px solid transparent;
   }
   ${props => props.theme.media.md`
     margin-top: 52px;
