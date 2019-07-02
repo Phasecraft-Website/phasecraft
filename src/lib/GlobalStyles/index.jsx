@@ -111,6 +111,9 @@ const GlobalStyles = createGlobalStyle`
 
     .invert-link {
       color: #2FF2AF!important;
+      &:hover {
+        color: #051736!important;
+      }
     }
   }
 

@@ -51,6 +51,20 @@ const BodyTextContainer = styled.div`
   `}
 `;
 
+const LogoContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  left: 0;
+`;
+
+const LogoAbsolute = styled.div`
+  position: absolute;
+  margin-left: 14px;
+  ${props => props.theme.media.md`
+    margin-left: 36px;
+  `}
+`;
+
 function Contact({ body }) {
   useEffect(() => {
     const backgroundFader = document.getElementById('background-fader');
@@ -61,13 +75,17 @@ function Contact({ body }) {
     <>
       <FlexColumn>
         <TopContainer>
-          <Logo white />
+          <LogoContainer>
+            <LogoAbsolute>
+              <Logo white />
+            </LogoAbsolute>
+          </LogoContainer>
           <BodyTextContainer>
             {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title dark>Contact</Title>}
-            <BodyText html={body[0].primary.content.html} />
+            <BodyText className="fade-out" html={body[0].primary.content.html} />
           </BodyTextContainer>
         </TopContainer>
-        <ContactContainer>
+        <ContactContainer className="fade-out">
           <ContactInfo
             location="London"
             email="london@phasecraft.io"
@@ -82,7 +100,7 @@ function Contact({ body }) {
           />
         </ContactContainer>
         {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && (
-          <CopyrightContainer>
+          <CopyrightContainer className="fade-out">
             <Copyright />
           </CopyrightContainer>
         )}

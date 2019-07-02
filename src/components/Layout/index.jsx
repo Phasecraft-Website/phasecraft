@@ -108,8 +108,8 @@ function Layout({ isContact, children, ...props }) {
     Array.from(fadeOuts).forEach(item => {
       const { top, bottom } = item.getBoundingClientRect();
       const height = bottom - top;
-      const topOpacity = Math.max(0, (top - 100) / 100);
-      const bottomOpacity = Math.max(.95, (bottom + 100) / 100);
+      const topOpacity = Math.max(0, (top - 75) / 100);
+      const bottomOpacity = Math.max(.95, (bottom + 75) / 100);
       const fadeHeight = Math.max(0, ((bottom - 100) / (height)) * 100);
       item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
     });
