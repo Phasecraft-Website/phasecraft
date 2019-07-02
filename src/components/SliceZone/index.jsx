@@ -5,16 +5,24 @@ import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 
 const StyledContent = styled(Content)`
-
   ${props => props.theme.media.md`
-    width: 766px;
+    color: #E5E6E4;
+    width: 70%;
+    p {
+      font-size: 2rem;
+      line-height: 2.2rem;
+      margin-top: 115px
+    }
   `}
 `;
 
 const Title = styled.h2`
   font-size: 36px;
   line-height: 45px;
-  color: ${({ dark }) => dark ? `#E5E6E4` : `#051736`};
+  color: ${({ dark }) => dark ? `#051736` : `#E5E6E4`};
+  ${props => props.theme.media.md`
+    margin-top: 175px;
+  `}
 `;
 
 export default class SliceZone extends Component {

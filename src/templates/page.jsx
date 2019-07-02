@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Layout, SEO, SliceZone, Contact } from 'components';
 import { graphql } from 'gatsby';
+import Logo from '../components/Global/Logo';
+import Results from '../components/Home/Results';
 
 const StyledOffCanvasContainer = styled.div`
   height: 100%;
@@ -23,13 +25,16 @@ function Page({ data: { prismicPage } }) {
             {isContact ?
               <Contact body={body} />
               :
-              <SliceZone allSlices={body}>
-                {page_title.text}
-              </SliceZone>
+              <>
+                <Logo dark />
+                <SliceZone allSlices={body}>
+                  {page_title.text}
+                </SliceZone>
+              </>
             }
           </>
         }
-        
+        <Results />
       </Layout>
       <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
     </>

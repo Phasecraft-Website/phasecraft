@@ -12,8 +12,9 @@ const StyledPersonList = styled.section`
   ${props => props.theme.media.sm`
      padding-left: 0;
      padding-right: 0;
+     margin-top: 70px;
   `}
-`
+`;
 
 function ListOfPersons({ items }) {
   return (

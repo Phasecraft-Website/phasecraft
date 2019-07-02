@@ -34,6 +34,7 @@ const TopContainer = styled.div`
   height: 85vh;
   width: 90%;
   ${props => props.theme.media.md`
+    width: 100%;
     height: auto;
   `}
 `;

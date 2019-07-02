@@ -108,20 +108,20 @@ const StyledLink = styled(props => <Link {...props} />)`
     font-size: 1.5rem;
     line-height: 4.0rem;
   `}
-`
+`;
 
 function NavigationComponent({ data }) {
   let { navigation_items } = relResolver(
     data,
     'prismicGlobal',
     'main_navigation'
-  )
+  );
 
   navigation_items = navigation_items.map(item => ({
     id: item.navigation_link !== null ? item.navigation_link.id : 'home-link',
     link_text: item.navigation_link_text,
     url: linkResolver()(item.navigation_link),
-  }))
+  }));
 
   return (
     <StyledNav>
@@ -135,8 +135,8 @@ function NavigationComponent({ data }) {
         ))}
       </StyledList>
     </StyledNav>
-  )
-}
+  );
+};
 
 const Navigation = props => (
   <StaticQuery
@@ -165,7 +165,7 @@ const Navigation = props => (
     `}
     render={data => <NavigationComponent data={data} {...props} />}
   />
-)
+);
 
 export default Navigation
 
@@ -177,4 +177,4 @@ NavigationComponent.propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
-}
+};

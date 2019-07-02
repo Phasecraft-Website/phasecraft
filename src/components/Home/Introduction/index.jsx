@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 const IntroContainer = styled.div`
@@ -38,7 +38,8 @@ const IntroText = styled.p`
 const introText1 = 'Quantum computers are on the cusp of becoming a practical reality, and could ultimately solve currently intractable computational problems, with vital applications.';
 const introText2 = 'Phasecraft can help investigate novel quantum materials, helping to develop better batteries and more efficient solar panels; simulating chemical reactions, helping to discover new catalysts and optimise key industrial processes; and solving hard constraint satisfaction problems, helping to make the most of scarce resources in logistics.'
 
-function Introduction() {
+function IntroductionComponent({ data }) {
+
   return (
     <IntroContainer>
       <AbstractText className="invert-color fade-out">Introduction</AbstractText>
@@ -52,4 +53,31 @@ function Introduction() {
   );
 }
 
-export default Introduction;
+
+
+// const Introduction = props => (
+//   <StaticQuery
+//     query={graphql`
+//       {
+//         prismicGlobal {
+//           data {
+//             about {
+//               id
+//               document {
+//                 data {
+//                   body {
+
+//                     }
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     `}
+//     render={data => <IntroductionComponent data={data} {...props} />}
+//   />
+// );
+
+export default IntroductionComponent;

@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useViewport from 'hooks/useViewport';
-import { isViewport } from 'helpers';
-import map from '../../../assetts/images/map.svg'
-import mapMobile from '../../../assetts/images/map-mobile.svg'
+import Map from './Map';
 import Radial from './Radial';
 
 const Background = styled.div`
@@ -38,83 +36,17 @@ const Svg = styled.svg`
   transition: 3s ease;
 `;
 
-const MapContainer = styled.div`
-  // position: relative;
-  // height: 100%;
-  max-height: 100vh;
-  overflow: none;
-`;
-
-const Map = styled.img`
-  // float: right;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: 50%;
-  bottom: 50%;
-  transform:translate(-50%,-50%);
-  width: 100%;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-  overflow: none;
-`;
-
-const Bristol = styled.div`
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  background-color: #2FF2AF;
-  position: absolute;
-  left: 36%;
-  top: 77%;
-  ${props => props.theme.media.md`
-    left: 38%;
-    top: 48%;
-  `}
-  ${props => props.theme.media.lg`
-    height: 30px;
-    width: 30px;
-    top: 46%;
-    left: 37%;
-  `}
-`;
-
-const London = styled.div`
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  background-color: #2FF2AF;
-  position: absolute;
-  left: 71%;
-  top: 74%;
-  ${props => props.theme.media.md`
-    left: 50%;
-    top: 46%;
-  `}
-  ${props => props.theme.media.lg`
-    height: 30px;
-    width: 30px;
-    top: 41%;
-    left: 51%;
-  `}
-`;
-
 const BackgroundTexture = ({ isContact }) => {
   const viewport = useViewport();
   return (
     <>
       {isContact ?
-        <MapContainer>
-          <Map src={isViewport(viewport, ['DEFAULT']) ? mapMobile : map} />
-          <Bristol />
-          <London />
-        </MapContainer>
+        <Map />
         :
         <Background>
-          {!isContact &&
-            <RadialWrapper>
-              <Radial />
-            </RadialWrapper>
-          }
+          <RadialWrapper>
+            <Radial />
+          </RadialWrapper>
           <PatternOverlay>
             <Svg fill="#e7e7e7" className="invert-fill">
               <pattern id="pattern-plus" 
