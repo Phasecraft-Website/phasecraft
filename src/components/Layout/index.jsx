@@ -103,10 +103,8 @@ function Layout({ isContact, children, ...props }) {
     fadeOuts = document.getElementsByClassName('fade-out');
     scrollPoint = scrollHeight - (clientHeight * 0.5);
     if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
-      console.log('small');
       logoHeight = 80;
     } else {
-      console.log('big');
       logoHeight = 85;
     }
   });
@@ -121,10 +119,11 @@ function Layout({ isContact, children, ...props }) {
       const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
       item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
     });
-    if(windowBottom >= scrollPoint && !isContact) {
+    if(windowBottom >= scrollPoint) {
       backgroundFader.classList.remove('invert');
-    } else if (!isContact) {
-      backgroundFader.classList.add('invert');
+      console.log('inverting');
+    // } else if (!isContact) {
+    //   backgroundFader.classList.add('invert');
     } else {
       backgroundFader.classList.add('invert');
     }

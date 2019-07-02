@@ -48,6 +48,7 @@ const TitleText = styled.h1`
   margin: 0;
   color: #E5E6E4;
   display: none;
+  opacity: 0;
   ${props => props.theme.media.md`
     display: block;
     font-size: 42px;
@@ -61,7 +62,7 @@ const Copyright = ({ isContact, isNav }) => (
     {isNav &&
       <img src={logoIcon} alt="Phasecraft" />
     }
-    {isContact && <TitleText>Contact</TitleText>}
+    {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
     <CopyrightText isNav={isNav}>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
     {!isNav && <CopyrightText>brand and website <br />by <Brand className="invert-color" href="https://www.polleni.com/" target="__blank">polleni</Brand></CopyrightText>}
   </CopyrightContainer>
