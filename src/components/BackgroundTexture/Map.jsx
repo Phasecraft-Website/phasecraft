@@ -104,8 +104,8 @@ const AbsoluteContainer = styled.div`
 const Map = () => (
   <AbsoluteContainer>
     <RelativeContainer>
-      <Bristol />
-      <London />
+      <Bristol className="fade-out" />
+      <London className="fade-out" />
       <Background>
         <MapSvg src={europe} />
         <PatternOverlay>

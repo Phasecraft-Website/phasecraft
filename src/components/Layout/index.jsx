@@ -88,6 +88,7 @@ function Layout({ isContact, children, ...props }) {
   let backgroundFader;
   let scrollPoint;
   let fadeOuts = [];
+  let logoHeight;
 
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -101,6 +102,13 @@ function Layout({ isContact, children, ...props }) {
     backgroundFader = document.getElementById('background-fader');
     fadeOuts = document.getElementsByClassName('fade-out');
     scrollPoint = scrollHeight - (clientHeight * 0.5);
+    if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
+      console.log('small');
+      logoHeight = 80;
+    } else {
+      console.log('big');
+      logoHeight = 85;
+    }
   });
 
   const handleScroll = () => {
@@ -108,9 +116,9 @@ function Layout({ isContact, children, ...props }) {
     Array.from(fadeOuts).forEach(item => {
       const { top, bottom } = item.getBoundingClientRect();
       const height = bottom - top;
-      const topOpacity = Math.max(0, (top - 75) / 100);
-      const bottomOpacity = Math.max(.95, (bottom + 75) / 100);
-      const fadeHeight = Math.max(0, ((bottom - 100) / (height)) * 100);
+      const topOpacity = Math.max(0, (top - logoHeight) / 100);
+      const bottomOpacity = Math.max(.95, (bottom + logoHeight) / 100);
+      const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
       item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
     });
     if(windowBottom >= scrollPoint && !isContact) {

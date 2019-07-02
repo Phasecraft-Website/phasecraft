@@ -81,7 +81,7 @@ function Contact({ body }) {
             </LogoAbsolute>
           </LogoContainer>
           <BodyTextContainer>
-            {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title dark>Contact</Title>}
+            {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && <Title className="fade-out" dark>Contact</Title>}
             <BodyText className="fade-out" html={body[0].primary.content.html} />
           </BodyTextContainer>
         </TopContainer>
