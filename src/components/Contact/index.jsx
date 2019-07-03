@@ -11,22 +11,22 @@ import Copyright from 'components/Global/Copyright';
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 32px);
   justify-content: space-between;
   ${props => props.theme.media.md`
-    padding: 0 40% 50px 0;
+    // padding: 0 40% 50px 0;
+    padding-bottom: 32px;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
 `;
 
 const ContactContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   ${props => props.theme.media.md`
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    // margin-right: 35%;
+    // flex-direction: row;
+    // justify-content: space-between;
   `}
 `;
 

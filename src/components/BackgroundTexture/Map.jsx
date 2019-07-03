@@ -107,10 +107,10 @@ const Map = () => (
     <RelativeContainer>
       <Bristol className="fade-out" />
       <London className="fade-out" />
-      <Background className="invert-opacity">
+      <Background>
         <MapSvg src={europe} />
         <PatternOverlay>
-          <Svg fill="#e7e7e7" className="invert-fill">
+          <Svg fill="#051736">
             <pattern id="pattern-plus" 
               x="0"
               y="0"

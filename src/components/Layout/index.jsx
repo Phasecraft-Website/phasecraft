@@ -35,14 +35,14 @@ const StyledNav = styled.div`
 
 const BackgroundFader = styled.div`
   display: grid;
-  width: 100%;
+  grid-template-areas:
+  "main main main main main menu";
   grid-auto-columns: 1fr;
   grid-column-gap: 0;
+  width: 100%;
   background-color: #E7E7E7;
   z-index: 0;
   transition: background-color 3s;
-  grid-template-areas:
-  "main main main main main menu";
   ${props => props.theme.media.md`
     grid-template-areas:
     "main main main menu";
@@ -88,7 +88,7 @@ function Layout({ isContact, children, ...props }) {
   let backgroundFader;
   let scrollPoint;
   let fadeOuts = [];
-  let logoHeight;
+  let fadeHeader;
 
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -100,30 +100,37 @@ function Layout({ isContact, children, ...props }) {
     windowHeight = document.documentElement.offsetHeight;
     ({ clientHeight } = document.documentElement);
     backgroundFader = document.getElementById('background-fader');
+    fadeHeader = document.getElementById('fade-header');
     fadeOuts = document.getElementsByClassName('fade-out');
     scrollPoint = scrollHeight - (clientHeight * 0.5);
-    if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
-      logoHeight = 80;
-    } else {
-      logoHeight = 85;
-    }
+    // if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
+    //   logoHeight = 80;
+    // } else {
+    //   logoHeight = 85;
+    // }
   });
 
   const handleScroll = () => {
     const windowBottom = windowHeight + window.pageYOffset;
-    Array.from(fadeOuts).forEach(item => {
-      const { top, bottom } = item.getBoundingClientRect();
-      const height = bottom - top;
-      const topOpacity = Math.max(0, (top - logoHeight) / 100);
-      const bottomOpacity = Math.max(.95, (bottom + logoHeight) / 100);
-      const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
-      item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
-    });
-    if(windowBottom >= scrollPoint) {
+    // Array.from(fadeOuts).forEach(item => {
+    //   const { top, bottom } = item.getBoundingClientRect();
+    //   const height = bottom - top;
+    //   const topOpacity = Math.max(0, (top - logoHeight) / 100);
+    //   const bottomOpacity = Math.max(.95, (bottom + logoHeight) / 100);
+    //   const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
+    //   item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
+    // });
+    console.log(window.pageYOffset, scrollHeight - windowHeight - 10);
+    if (window.pageYOffset > 20 && window.pageYOffset < scrollHeight - windowHeight - 10) {
+      fadeHeader.setAttribute('style', 'opacity: 1');
+    } else {
+      fadeHeader.removeAttribute('style');
+    }
+
+    if (windowBottom >= scrollPoint && !isContact) {
       backgroundFader.classList.remove('invert');
-      console.log('inverting');
-    // } else if (!isContact) {
-    //   backgroundFader.classList.add('invert');
+    } else if (!isContact) {
+      backgroundFader.classList.add('invert');
     } else {
       backgroundFader.classList.add('invert');
     }

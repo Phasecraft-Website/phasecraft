@@ -49,6 +49,24 @@ const EmailText = styled.a`
 
 const ContactContainer = styled.div`
   margin-top: 26px;
+  ${props => props.theme.media.md`
+    margin-right: 10%;
+    width: fit-content;
+    float: left;
+  `}
+`;
+
+const LinkContainer = styled.div`
+  display: flex;
+  margin-top: 15px;
+`;
+
+const LinkText = styled.a`
+  font-family: 'Sul Sans, Regular';
+  margin-right: 38px;
+  color: #051736;
+  font-size: 13px;
+  line-height: 16px;
 `;
 
 const ContactInfo = ({ location, email, phone, links }) => (
@@ -62,6 +80,10 @@ const ContactInfo = ({ location, email, phone, links }) => (
     <EmailText>
       {email}
     </EmailText>
+    <LinkContainer>
+      <LinkText className="invert-color">Open in Google Maps</LinkText>
+      <LinkText className="invert-color">Get Directions</LinkText>
+    </LinkContainer>
   </ContactContainer>
 );
 
