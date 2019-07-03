@@ -33,7 +33,7 @@ const LogoContainer = styled.div`
 
 const LogoBackground = styled.div`
   position: absolute;
-  background: linear-gradient(to bottom, rgba(6, 22, 55, 1), rgba(6, 22, 55, 0.7), rgba(6, 22, 55, 0));
+  background: linear-gradient(to bottom, rgba(6, 22, 55, 1), rgba(6, 22, 55, 0.9), rgba(6, 22, 55, 0));
   width: 100%;
   height: 180px;
   // z-index: 0;
@@ -42,7 +42,7 @@ const LogoBackground = styled.div`
 
 const LogoBackgroundWhite = styled.div`
   position: absolute;
-  background: linear-gradient(to bottom, rgba(231, 231, 231, 1), rgba(231, 231, 231, 0.7), rgba(231, 231, 231, 0));
+  background: linear-gradient(to bottom, rgba(231, 231, 231, 1), rgba(231, 231, 231, 0.9), rgba(231, 231, 231, 0));
   width: 100%;
   height: 180px;
   z-index: -1;

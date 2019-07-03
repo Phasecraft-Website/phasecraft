@@ -102,7 +102,7 @@ function Layout({ isContact, children, ...props }) {
     backgroundFader = document.getElementById('background-fader');
     fadeHeader = document.getElementById('fade-header');
     fadeOuts = document.getElementsByClassName('fade-out');
-    scrollPoint = scrollHeight - (clientHeight * 0.5);
+    scrollPoint = scrollHeight - (clientHeight * 0.25);
     // if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
     //   logoHeight = 80;
     // } else {
