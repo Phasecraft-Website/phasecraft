@@ -48,6 +48,7 @@ const BodyTextContainer = styled.div`
   margin-top: 100px;
   ${props => props.theme.media.md`
     margin-top: 136px;
+    width: 63%;
   `}
 `;
 

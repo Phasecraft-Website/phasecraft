@@ -14,8 +14,8 @@ export const BodyText = styled(Content)`
   line-height: 25px;
   color: #fff;
   ${props => props.theme.media.md`
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 2.6rem;
+    line-height: 3.2rem;
     margin-top: 60px;
   `}
 `;

@@ -73,7 +73,7 @@ const TitleText = styled.h1`
 `;
 
 const Copyright = ({ isContact, isNav }) => (
-  <CopyrightContainer isContact={isContact} className="invert-color">
+  <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
     {isNav &&
       <img src={logoIcon} alt="Phasecraft" />
     }

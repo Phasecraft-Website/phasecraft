@@ -120,10 +120,11 @@ function Layout({ isContact, children, ...props }) {
     //   const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
     //   item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
     // });
-    console.log(window.pageYOffset, scrollHeight - windowHeight - 20);
-    if (window.pageYOffset > 20 && window.pageYOffset < scrollHeight - windowHeight - 10) {
+    const scrollIsBelowTop = window.pageYOffset >= 20;
+    const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - windowHeight - 10;
+    if (scrollIsBelowTop && scrollIsAboveBottom) {
       fadeHeader.setAttribute('style', 'opacity: 1');
-    } else {
+    } else if (!scrollIsBelowTop || (!scrollIsAboveBottom && !isContact)) {
       fadeHeader.removeAttribute('style');
     }
 

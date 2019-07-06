@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import europe from '../../../assetts/images/Europe.svg';
+import europe from '../../../assetts/images/matrix.svg';
 
 const Background = styled.div`
   position: absolute;
@@ -9,7 +9,6 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
 `;
 
 const PatternOverlay = styled.div`
@@ -23,67 +22,109 @@ const PatternOverlay = styled.div`
 `;
 
 const Svg = styled.svg`
-  border: 15px solid #e7e7e7;
   width: calc(100% - 30px);
   height: calc(100% - 30px);
   transition: 3s ease;
 `;
 
+const AbsoluteContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+const MapContainer = styled.div`
+  width: 100%;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+`;
+
 const MapSvg = styled.img`
   position: absolute;
-  top: -20%;
-  left: -14%;
-  width: 75%;
+  width: 1725px;
+  left: -320px;
+  top: 90px;
+  // width: 460%;
+  // left: -85%;
+  // top: 14%;
+  height: auto;
   ${props => props.theme.media.md`
-    top: -30%;
-    left: -6%;
-    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    width: 1400px;
+  `}
+  ${props => props.theme.media.lg`
+    width: 2200px;
+  `}
+`;
+
+const Gradient = styled.div`
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 1));
+  ${props => props.theme.media.md`
+    background: radial-gradient(rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0.7), rgba(6, 22, 55, 1));
+    height: auto;
+    width: 1400px;
+  `}
+  ${props => props.theme.media.lg`
+    width: 2200px;
   `}
 `;
 
 const Bristol = styled.div`
-  z-index: 3;
+  z-index: 1;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 23px;
+  width: 23px;
   background-color: #2FF2AF;
   position: absolute;
-  top: 14%;
-  left: 4%;
+  top: 502px;
+  left: 141px;
   ${props => props.theme.media.md`
-    height: 30px;
-    width: 30px;
-    top: 15%;
-    left: 18%;
+    height: 20px;
+    width: 20px;
+    top: 376px;
+    left: 372px;
   `}
   ${props => props.theme.media.lg`
     height: 30px;
     width: 30px;
-    top: 15%;
-    left: 18%;
+    top: 523px;
+    left: 586px;
   `}
 `;
 
 const London = styled.div`
-  z-index: 3;
+  z-index: 1;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 23px;
+  width: 23px;
   background-color: #2FF2AF;
   position: absolute;
-  top: 13%;
-  left: 8%;
+  top: 524px;
+  left: 270px;
   ${props => props.theme.media.md`
-    height: 30px;
-    width: 30px;
-    top: 14%;
-    left: 23.5%;
+    height: 20px;
+    width: 20px;
+    top: 394px;
+    left: 477px;
   `}
   ${props => props.theme.media.lg`
     height: 30px;
     width: 30px;
-    top: 14%;
-    left: 23.5%;
+    top: 551px;
+    left: 750px;
   `}
 `;
 
@@ -93,38 +134,37 @@ const RelativeContainer = styled.div`
   height: 3595px;
 `;
 
-const AbsoluteContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  max-width: 100%;
-  max-height: 100%;
-`;
-
 const Map = () => (
   <AbsoluteContainer>
-    <RelativeContainer>
+    <MapContainer>
+      <MapSvg src={europe} />
+      <Gradient />
       <Bristol className="fade-out" />
       <London className="fade-out" />
-      <Background>
-        <MapSvg src={europe} />
-        <PatternOverlay>
-          <Svg fill="#051736">
-            <pattern id="pattern-plus" 
-              x="0"
-              y="0"
-              width="8"
-              height="8" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
-            >
-              <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
-            </pattern>
-            <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
-          </Svg>
-        </PatternOverlay>
-      </Background>
-    </RelativeContainer>
+    </MapContainer>
   </AbsoluteContainer>
+  // <AbsoluteContainer>
+  //   <RelativeContainer>
+  //     {/* <Bristol className="fade-out" />
+  //     <London className="fade-out" /> */}
+  //     <Background>
+  //       <MapSvg src={europe} />
+  //       {/* <PatternOverlay>
+  //         <Svg fill="#051736">
+  //           <pattern id="pattern-plus" 
+  //             x="0"
+  //             y="0"
+  //             width="8"
+  //             height="8" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"
+  //           >
+  //             <path d="M 2 0 L 2 2 L 0 2 L 0 6 L 2 6 L 2 8 L 6 8 L 6 6 L 8 6 L 8 2 L 6 2 L 6 0 Z" />
+  //           </pattern>
+  //           <rect id="rect" x="0" y="0" width="100%" height="100%" fill="url(#pattern-plus)" />
+  //         </Svg>
+  //       </PatternOverlay> */}
+  //     </Background>
+  //   </RelativeContainer>
+  // </AbsoluteContainer>
 );
   
 export default Map;
