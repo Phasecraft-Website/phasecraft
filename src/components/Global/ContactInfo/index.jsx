@@ -1,54 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-const LocationText = styled.p`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
-  // margin-bottom: 0;
-  color: #051736;
-`;
-
-const PhoneText = styled.p`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
-  margin-bottom: 0;
-  color: #051736;
-`;
-
-const EmailText = styled.a`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
-  color: #2FF2AF;
-  border-bottom: 1px solid #fff;
-  cursor: pointer;
-  margin-top: 0;
-  width: fit-content;
-  padding-bottom: 3px;
-  position: relative;
-  &:visited, &:visited:visited {
-    color: #2FF2AF;
-  }
-  &::after {
-		content: ' ';
-		position: absolute;
-		z-index: -1;
-		width: 100%;
-		height: 1em;
-		left: -0.2em;
-		bottom: 0;
-    padding: 0.2em;
-    transition: background-color 0.6s;
-  };
-  &:hover::after {
-    background-color: #2FF2AF;
-  }
-`;
+import { Content } from 'components';
 
 const ContactContainer = styled.div`
+  font-family: 'Sul Sans, Regular';
+  font-size: 20px;
+  line-height: 25px;
+  color: #E5E6E4;
   margin-top: 26px;
+  p:nth-child(2) {
+    margin-bottom: 0;
+  }
+  p:nth-child(3) {
+    margin: 0;
+    a {
+      font-size: 20px;
+      line-height: 25px;
+      color: #2FF2AF;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 3px;
+      position: relative;
+      &::after {
+        content: ' ';
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 1em;
+        left: -0.2em;
+        bottom: 0;
+        padding: 0.2em;
+        transition: background-color 0.6s;
+      };
+      &:hover {
+        border-bottom-color: transparent;
+        color: #051736;
+      }
+      &:hover::after {
+        background-color: #2FF2AF;
+      }
+    }
+  }
   ${props => props.theme.media.md`
     margin-right: 10%;
     width: fit-content;
@@ -59,32 +51,42 @@ const ContactContainer = styled.div`
 const LinkContainer = styled.div`
   display: flex;
   margin-top: 15px;
+  p {
+    margin: 0;
+  }
+  a {
+    font-family: 'Sul Sans, Regular';
+    color: #E5E6E4;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  div:nth-child(1) {
+    margin-right: 38px;
+  }
 `;
 
-const LinkText = styled.a`
-  font-family: 'Sul Sans, Regular';
-  margin-right: 38px;
-  color: #051736;
-  font-size: 13px;
-  line-height: 16px;
-`;
-
-const ContactInfo = ({ location, email, phone, links }) => (
+const ContactInfo = ({ content, directions, maps } ) => (
   <ContactContainer>
-    <LocationText className="invert-color">
-      {location}
-    </LocationText>
-    <PhoneText className="invert-color">
-      {phone}
-    </PhoneText>
-    <EmailText>
-      {email}
-    </EmailText>
+    <Content html={content.html} />
     <LinkContainer>
-      <LinkText className="invert-color">Open in Google Maps</LinkText>
-      <LinkText className="invert-color">Get Directions</LinkText>
+      <Content html={maps.html} />
+      <Content html={directions.html} />
     </LinkContainer>
   </ContactContainer>
 );
 
 export default ContactInfo;
+
+ContactInfo.defaultProps = {};
+
+ContactInfo.propTypes = {
+  content: PropTypes.shape({
+    html: PropTypes.string,
+  }).isRequired,
+  directions: PropTypes.shape({
+    html: PropTypes.string,
+  }).isRequired,
+  maps: PropTypes.shape({
+    html: PropTypes.string,
+  }).isRequired,
+};

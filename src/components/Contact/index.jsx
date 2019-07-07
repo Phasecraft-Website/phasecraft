@@ -1,5 +1,7 @@
 
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
 import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
 import styled from 'styled-components';
@@ -14,27 +16,21 @@ const FlexColumn = styled.div`
   min-height: calc(100vh - 32px);
   justify-content: space-between;
   ${props => props.theme.media.md`
-    // padding: 0 40% 50px 0;
     padding-bottom: 32px;
     align-items: ${props.right ? 'flex-end' : 'flex-start'};
   `}
 `;
 
 const ContactContainer = styled.div`
-  // display: flex;
-  // flex-direction: column;
   ${props => props.theme.media.md`
     width: 100%;
-    // flex-direction: row;
-    // justify-content: space-between;
   `}
 `;
 
 const TopContainer = styled.div`
   height: 85vh;
-  width: 90%;
+  width: 100%;
   ${props => props.theme.media.md`
-    width: 100%;
     height: auto;
   `}
 `;
@@ -66,7 +62,7 @@ const LogoAbsolute = styled.div`
   `}
 `;
 
-function Contact({ body }) {
+function ContactComponent({ body, data: { allPrismicLocation: { nodes }} }) {
   useEffect(() => {
     const backgroundFader = document.getElementById('background-fader');
     backgroundFader.classList.add('invert');
@@ -87,18 +83,13 @@ function Contact({ body }) {
           </BodyTextContainer>
         </TopContainer>
         <ContactContainer className="fade-out">
-          <ContactInfo
-            location="London"
-            email="london@phasecraft.io"
-            phone="+44 (0)20 7679 2000"
-            links
-          />
-          <ContactInfo
-            location="Bristol"
-            email="bristol@phasecraft.io"
-            phone="+44 (0)117 928 9000"
-            links
-          />
+          {nodes.map(({ data: { content, directions_text, google_maps_text }}) => (
+            <ContactInfo
+              content={content}
+              directions={directions_text}
+              maps={google_maps_text}
+            />
+          ))}
         </ContactContainer>
         {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && (
           <CopyrightContainer className="fade-out">
@@ -110,4 +101,40 @@ function Contact({ body }) {
   );
 }
 
+const Contact = props => (
+  <StaticQuery
+    query={graphql`
+      {
+        allPrismicLocation {
+          nodes {
+            data {
+              content {
+                html
+              }
+              directions_text {
+                html
+              }
+              google_maps_text {
+                html
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <ContactComponent data={data} {...props} />}
+  />
+);
+
 export default Contact;
+
+ContactComponent.defaultProps = {};
+
+ContactComponent.propTypes = {
+  body: PropTypes.array.isRequired,
+  data: PropTypes.shape({
+    allPrismicLocation: PropTypes.shape({
+      nodes: PropTypes.array,
+    }),
+  }).isRequired,
+};

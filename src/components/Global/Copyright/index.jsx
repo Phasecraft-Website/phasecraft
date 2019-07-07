@@ -1,14 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import { Content } from 'components';
 import logoIcon from '../../../../assetts/images/logo-icon.svg';
 
 const CopyrightContainer = styled.div`
+  font-family: 'GT Pressura Mono Light';
   color: #051736;
   width: 240px;
+  font-size: ${({ isNav }) => isNav ? '10px' : '12px'};
+  line-height: ${({ isNav }) => isNav ? '12px' : '14px'};
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
   ${props => props.theme.media.md`
     width: 200px;
     margin-bottom: ${props.isContact ? '32px' : '17px'};
+    font-size: 1rem;
+    line-height: 1.2rem;
   `}
+  p {
+    margin: 0;
+  }
+  p:nth-last-child(2) {
+    margin-bottom: 1em;
+  }
+  a, a:visited {
+    margin-top: 1em;
+    font-size: ${({ isNav }) => isNav ? '10px' : '12px'};
+    line-height: ${({ isNav }) => isNav ? '12px' : '14px'};
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: inherit;
+    ${props => props.theme.media.md`
+      font-size: 1rem;
+      line-height: 1.2rem;
+    `}
+  }
+  strong {
+    font-family: 'GT Pressura Mono Bold';
+  }
 `;
 
 const CopyrightText = styled.p`
@@ -72,15 +103,55 @@ const TitleText = styled.h1`
   `}
 `;
 
-const Copyright = ({ isContact, isNav }) => (
-  <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
-    {isNav &&
-      <img src={logoIcon} alt="Phasecraft" />
-    }
-    {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
-    <CopyrightText isNav={isNav}>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
-    {!isNav && <CopyrightLink className="invert-color" href="https://www.polleni.com/" target="__blank">brand and website <br />by <Brand className="invert-color" >polleni</Brand></CopyrightLink>}
-  </CopyrightContainer>
+const CopyrightComponent = ({ isContact, isNav, data: { copyright_information: { html } } }) => {
+  console.log({ html });
+  return (
+    <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
+      {isNav && <img src={logoIcon} alt="Phasecraft" />}
+      {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
+      <Content html={html} />
+    </CopyrightContainer>
+    // <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
+    //   {isNav &&
+    //     <img src={logoIcon} alt="Phasecraft" />
+    //   }
+    //   {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
+    //   <CopyrightText isNav={isNav}>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
+    //   {!isNav && <CopyrightLink className="invert-color" href="https://www.polleni.com/" target="__blank">brand and website <br />by <Brand className="invert-color" >polleni</Brand></CopyrightLink>}
+    // </CopyrightContainer>
+  )
+};
+
+const Copyright = props => (
+  <StaticQuery
+    query={graphql`
+      {
+        prismicGlobal {
+          data {
+            copyright_information {
+              html
+            }
+          }
+        }
+      }
+    `}
+    render={({ prismicGlobal: { data } }) => <CopyrightComponent data={data} {...props} />}
+  />
 );
 
 export default Copyright;
+
+CopyrightComponent.defaultProps = {
+  isContact: false,
+  isNav: false,
+};
+
+CopyrightComponent.propTypes = {
+  isContact: PropTypes.bool,
+  isNav: PropTypes.bool,
+  data: PropTypes.shape({
+    copyright_information: PropTypes.shape({
+      html: PropTypes.string,
+    }),
+  }).isRequired,
+};
