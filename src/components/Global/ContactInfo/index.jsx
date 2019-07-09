@@ -32,6 +32,10 @@ const ContactContainer = styled.div`
         padding: 0.2em;
         transition: background-color 0.6s;
       };
+
+      a:visited, a:visited:visited {
+        color: #2FF2AF;
+      }
       &:hover {
         border-bottom-color: transparent;
         color: #051736;
@@ -59,6 +63,9 @@ const LinkContainer = styled.div`
     color: #E5E6E4;
     font-size: 13px;
     line-height: 16px;
+  }
+  a:visited, a:visited:visited {
+    color: #E5E6E4;
   }
   div:nth-child(1) {
     margin-right: 38px;
