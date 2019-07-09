@@ -83,11 +83,11 @@ function ContactComponent({ body, data: { allPrismicLocation: { nodes }} }) {
           </BodyTextContainer>
         </TopContainer>
         <ContactContainer className="fade-out">
-          {nodes.map(({ data: { content, directions_text, google_maps_text }}) => (
+          {nodes.map(({ data: { content }}) => (
             <ContactInfo
               content={content}
-              directions={directions_text}
-              maps={google_maps_text}
+              // directions={directions_text}
+              // maps={google_maps_text}
             />
           ))}
         </ContactContainer>
@@ -109,12 +109,6 @@ const Contact = props => (
           nodes {
             data {
               content {
-                html
-              }
-              directions_text {
-                html
-              }
-              google_maps_text {
                 html
               }
             }

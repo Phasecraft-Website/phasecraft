@@ -9,11 +9,11 @@ const ContactContainer = styled.div`
   line-height: 25px;
   color: #E5E6E4;
   margin-top: 26px;
-  p:nth-child(2) {
+  p:nth-child(1) {
     margin-bottom: 0;
   }
-  p:nth-child(3) {
-    margin: 0;
+  p:nth-child(2) {
+    // margin: 0;
     a {
       font-size: 20px;
       line-height: 25px;
@@ -72,13 +72,13 @@ const LinkContainer = styled.div`
   }
 `;
 
-const ContactInfo = ({ content, directions, maps } ) => (
+const ContactInfo = ({ content } ) => (
   <ContactContainer>
     <Content html={content.html} />
-    <LinkContainer>
-      <Content html={maps.html} />
-      <Content html={directions.html} />
-    </LinkContainer>
+    {/* <LinkContainer> */}
+    {/* <Content html={maps.html} /> */}
+    {/* <Content html={directions.html} /> */}
+    {/* </LinkContainer> */}
   </ContactContainer>
 );
 
