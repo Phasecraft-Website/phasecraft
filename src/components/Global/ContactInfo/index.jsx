@@ -52,25 +52,25 @@ const ContactContainer = styled.div`
   `}
 `;
 
-const LinkContainer = styled.div`
-  display: flex;
-  margin-top: 15px;
-  p {
-    margin: 0;
-  }
-  a {
-    font-family: 'Sul Sans, Regular';
-    color: #E5E6E4;
-    font-size: 13px;
-    line-height: 16px;
-  }
-  a:visited, a:visited:visited {
-    color: #E5E6E4;
-  }
-  div:nth-child(1) {
-    margin-right: 38px;
-  }
-`;
+// const LinkContainer = styled.div`
+//   display: flex;
+//   margin-top: 15px;
+//   p {
+//     margin: 0;
+//   }
+//   a {
+//     font-family: 'Sul Sans, Regular';
+//     color: #E5E6E4;
+//     font-size: 13px;
+//     line-height: 16px;
+//   }
+//   a:visited, a:visited:visited {
+//     color: #E5E6E4;
+//   }
+//   div:nth-child(1) {
+//     margin-right: 38px;
+//   }
+// `;
 
 const ContactInfo = ({ content } ) => (
   <ContactContainer>

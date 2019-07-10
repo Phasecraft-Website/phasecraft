@@ -92,8 +92,8 @@ function ContactComponent({ body, data: { allPrismicLocation: { nodes }} }) {
           ))}
         </ContactContainer>
         {isViewport(viewport, ['DEFAULT', 'MEDIUM']) && (
-          <CopyrightContainer className="fade-out">
-            <Copyright />
+          <CopyrightContainer>
+            <Copyright isContact />
           </CopyrightContainer>
         )}
       </FlexColumn>
