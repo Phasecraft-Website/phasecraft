@@ -29,24 +29,31 @@ const LogoContainer = styled.div`
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 10;
 `;
 
 const LogoBackground = styled.div`
   position: absolute;
-  background: linear-gradient(to bottom, rgba(6, 22, 55, 1), rgba(6, 22, 55, 0.9), rgba(6, 22, 55, 0));
+  background: linear-gradient(to bottom, rgba(6, 22, 55, 1), rgba(6, 22, 55, 0));
   width: 100%;
-  height: 180px;
+  height: 140px;
   // z-index: 0;
   opacity: 0;
+  ${props => props.theme.media.md`
+    height: 180px;
+  `}
 `;
 
 const LogoBackgroundWhite = styled.div`
   position: absolute;
   background: linear-gradient(to bottom, rgba(231, 231, 231, 1), rgba(231, 231, 231, 0.9), rgba(231, 231, 231, 0));
   width: 100%;
-  height: 180px;
+  height: 140px;
   z-index: -1;
   opacity: 1;
+  ${props => props.theme.media.md`
+    height: 180px;
+  `}
 `;
 
 const FadeHeader = styled.div`

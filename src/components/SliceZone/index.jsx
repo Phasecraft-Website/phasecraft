@@ -5,8 +5,9 @@ import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 
 const StyledContent = styled(Content)`
+  font-family: 'Sul Sans, Regular';
+  color: #051736;
   ${props => props.theme.media.md`
-    color: #E5E6E4;
     width: 70%;
     p {
       font-size: 2rem;
@@ -19,7 +20,7 @@ const StyledContent = styled(Content)`
 const Title = styled.h2`
   font-size: 36px;
   line-height: 45px;
-  color: ${({ dark }) => dark ? `#051736` : `#E5E6E4`};
+  color: #051736;
   ${props => props.theme.media.md`
     margin-top: 175px;
   `}
@@ -32,7 +33,7 @@ export default class SliceZone extends Component {
     const slice = allSlices.map((s, i) => {
       switch (s.slice_type) {
         case 'paragraph':
-          return <StyledContent key={s.id} html={s.primary.content.html} />
+          return <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
         case 'list_of_persons':
           return (
             <ListOfPersons
@@ -50,7 +51,7 @@ export default class SliceZone extends Component {
     });
     return (
       <>
-        <Title>
+        <Title className="invert-color">
           {children}
         </Title>
         {slice}

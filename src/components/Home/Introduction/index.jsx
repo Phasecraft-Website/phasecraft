@@ -1,14 +1,27 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+// eslint-disable-next-line import/no-cycle
+import { Content } from 'components';
 import styled from 'styled-components';
 
 const IntroContainer = styled.div`
   min-height: calc(100vh - 90px);
-  // width: 80%;
+  color: #051736;
+  p {
+    font-family: 'Sul Sans, Regular';
+    font-size: 20px;
+    line-height: 25px;
+    // color: #051736;
+  }
   ${props => props.theme.media.md`
     padding-top: 90px;
-    width: 62%;
+    width: 75%;
+    p {
+      font-size: 35px;
+      line-height: 43px;
+    }
   `}
 `;
 
@@ -16,7 +29,7 @@ const AbstractText = styled.h2`
   font-family: 'GT Pressura Mono Light';
   font-size: 1.2rem;
   margin-left: 3px;
-  color: #051736;
+  // color: #051736;
   text-transform: uppercase;
   margin-bottom: 1.83em;
   ${props => props.theme.media.md`
@@ -24,60 +37,38 @@ const AbstractText = styled.h2`
   `}
 `;
 
-const IntroText = styled.p`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
-  color: #051736;
-  ${props => props.theme.media.md`
-    font-size: 35px;
-    line-height: 43px;
-  `}
-`;
+const IntroductionComponent = ({ paragraphs }) => (
+  <IntroContainer className="invert-color">
+    <AbstractText>Introduction</AbstractText>
+    {paragraphs.map(({ primary: { content: { html } } }) => <Content html={html} />)}
+  </IntroContainer>
+);
 
-const introText1 = 'Quantum computers are on the cusp of becoming a practical reality, and could ultimately solve currently intractable computational problems, with vital applications.';
-const introText2 = 'Phasecraft can help investigate novel quantum materials, helping to develop better batteries and more efficient solar panels; simulating chemical reactions, helping to discover new catalysts and optimise key industrial processes; and solving hard constraint satisfaction problems, helping to make the most of scarce resources in logistics.'
+const Introduction = props => (
+  <StaticQuery
+    query={graphql`
+      {
+        prismicPage(uid: {eq: "about"}) {
+          data {
+            body {
+              ... on PrismicPageBodyParagraph {
+                primary {
+                  content {
+                    html
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={({ prismicPage: { data: { body } } }) => <IntroductionComponent paragraphs={body} {...props} />}
+  />
+);
 
-function IntroductionComponent({ data }) {
+export default Introduction;
 
-  return (
-    <IntroContainer>
-      <AbstractText className="invert-color fade-out">Introduction</AbstractText>
-      <IntroText className="invert-color fade-out">
-        {introText1}
-      </IntroText>
-      <IntroText className="invert-color fade-out">
-        {introText2}
-      </IntroText>
-    </IntroContainer>
-  );
-}
-
-
-
-// const Introduction = props => (
-//   <StaticQuery
-//     query={graphql`
-//       {
-//         prismicGlobal {
-//           data {
-//             about {
-//               id
-//               document {
-//                 data {
-//                   body {
-
-//                     }
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     `}
-//     render={data => <IntroductionComponent data={data} {...props} />}
-//   />
-// );
-
-export default IntroductionComponent;
+IntroductionComponent.propTypes = {
+  paragraphs: PropTypes.array.isRequired,
+};

@@ -111,14 +111,6 @@ const CopyrightComponent = ({ isContact, isNav, data: { copyright_information: {
       {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
       <Content html={html} />
     </CopyrightContainer>
-    // <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
-    //   {isNav &&
-    //     <img src={logoIcon} alt="Phasecraft" />
-    //   }
-    //   {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
-    //   <CopyrightText isNav={isNav}>COPYRIGHT PHASECRAFT {isNav ? '2019' : 'twenty nineteen.'} <br />ALL RIGHTS RESERVED. {isNav && <br />} VAT.1234567 Co.1234567</CopyrightText>
-    //   {!isNav && <CopyrightLink className="invert-color" href="https://www.polleni.com/" target="__blank">brand and website <br />by <Brand className="invert-color" >polleni</Brand></CopyrightLink>}
-    // </CopyrightContainer>
   )
 };
 

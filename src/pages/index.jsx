@@ -10,7 +10,7 @@ const StyledOffCanvasContainer = styled.div`
 function Index() {
   return (
     <>
-      <Layout>
+      <Layout isHome>
         <Home />
       </Layout>
       <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />

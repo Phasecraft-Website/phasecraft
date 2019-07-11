@@ -65,16 +65,7 @@ const FixedToggle = styled.div`
   right: 24px;
 `;
 
-// const StickyNav = styled.div`
-//   position: absolute;
-//   right: 0;
-//   left: 0;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// `;
-
-function Layout({ isContact, children, ...props }) {
+function Layout({ isContact, isHome, children, ...props }) {
   const [navToggled, setNavToggled] = useState(false);
   const viewport = useViewport();
 
@@ -87,7 +78,6 @@ function Layout({ isContact, children, ...props }) {
   let clientHeight;
   let backgroundFader;
   let scrollPoint;
-  let fadeOuts = [];
   let fadeHeader;
 
   React.useEffect(() => {
@@ -101,25 +91,11 @@ function Layout({ isContact, children, ...props }) {
     ({ clientHeight } = document.documentElement);
     backgroundFader = document.getElementById('background-fader');
     fadeHeader = document.getElementById('fade-header');
-    fadeOuts = document.getElementsByClassName('fade-out');
     scrollPoint = scrollHeight - (clientHeight * 0.25);
-    // if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
-    //   logoHeight = 80;
-    // } else {
-    //   logoHeight = 85;
-    // }
   });
 
   const handleScroll = () => {
     const windowBottom = windowHeight + window.pageYOffset;
-    // Array.from(fadeOuts).forEach(item => {
-    //   const { top, bottom } = item.getBoundingClientRect();
-    //   const height = bottom - top;
-    //   const topOpacity = Math.max(0, (top - logoHeight) / 100);
-    //   const bottomOpacity = Math.max(.95, (bottom + logoHeight) / 100);
-    //   const fadeHeight = Math.max(0, ((bottom - logoHeight) / (height)) * 100);
-    //   item.setAttribute('style', `-webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,${topOpacity})), to(rgba(0,0,0,${bottomOpacity}))); -webkit-mask-size: 100% ${fadeHeight}%;`);
-    // });
     const scrollIsBelowTop = window.pageYOffset >= 20;
     const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - windowHeight - 10;
     if (scrollIsBelowTop && scrollIsAboveBottom) {
@@ -128,11 +104,9 @@ function Layout({ isContact, children, ...props }) {
       fadeHeader.removeAttribute('style');
     }
 
-    if (windowBottom >= scrollPoint && !isContact) {
+    if ((windowBottom >= scrollPoint && isHome) || (windowBottom < scrollPoint && !isHome)) {
       backgroundFader.classList.remove('invert');
-    } else if (!isContact) {
-      backgroundFader.classList.add('invert');
-    } else {
+    } else if ((windowBottom < scrollPoint && isHome) || (windowBottom >= scrollPoint && !isHome)) {
       backgroundFader.classList.add('invert');
     }
   }
@@ -145,7 +119,7 @@ function Layout({ isContact, children, ...props }) {
         <GlobalStyles />
         <NavigationContext.Provider value={navToggled}>
           <StyledLayout {...props}>
-            <BackgroundFader id="background-fader" className="invert">
+            <BackgroundFader id="background-fader" className={isHome || isContact ? 'invert' : ''}>
               <BackgroundTexture isContact={isContact} />
               <StyledMain>
                 {children}
@@ -183,9 +157,11 @@ export default Layout;
 
 Layout.defaultProps = {
   isContact: false,
+  isHome: false,
 }
 
 Layout.propTypes = {
   isContact: PropTypes.bool,
+  isHome: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
