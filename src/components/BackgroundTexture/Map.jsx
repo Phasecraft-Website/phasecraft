@@ -36,31 +36,10 @@ const MapSvg = styled.img`
   `}
 `;
 
-const Gradient = styled.div`
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(to bottom, rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 1));
-  ${props => props.theme.media.md`
-    background: radial-gradient(rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0), rgba(6, 22, 55, 0.7), rgba(6, 22, 55, 1));
-    height: auto;
-    width: 1400px;
-  `}
-  ${props => props.theme.media.lg`
-    width: 2200px;
-  `}
-`;
-
 const Map = () => (
   <AbsoluteContainer>
     <MapContainer>
       <MapSvg src={europe} />
-      {/* <Gradient /> */}
     </MapContainer>
   </AbsoluteContainer>
 );

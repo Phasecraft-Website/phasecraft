@@ -50,6 +50,7 @@ const ResultsText = styled.p`
 `;
 
 const PhoneText = styled.p`
+  font-family: 'Sul Sans, Regular';
   font-size: 26px;
   line-height: 32px;
   margin-bottom: 0;
@@ -124,12 +125,12 @@ function Results() {
     <ResultsContainer>
       <div />
       <TextContainer>
-        <AbstractText className="invert-color">Results</AbstractText>
+        <AbstractText className="invert-color">Synthesis</AbstractText>
         <ResultsText className="invert-color">
           {resultsText}
         </ResultsText>
         <PhoneText className="invert-color">
-          0117 942 0101
+          +44 (0)117 942 0101
         </PhoneText>
         <EmailText className="invert-link" href="mailto:info@phasecraft.io">
           info@phasecraft.io
