@@ -35,7 +35,7 @@ const SocialContainer = styled.div`
 const SocialComponent = ({ links }) => (
   <SocialContainer>
     <p><strong>Social</strong></p>
-    {links.map(({ link, site }) => <a href={link.url} target={link.target}>&nbsp;{site}</a>)}
+    {links.map(({ link, site }) => <a key={link.url} href={link.url} target={link.target}>&nbsp;{site}</a>)}
   </SocialContainer>
 );
 

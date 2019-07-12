@@ -40,7 +40,7 @@ const AbstractText = styled.h2`
 const IntroductionComponent = ({ paragraphs }) => (
   <IntroContainer className="invert-color">
     <AbstractText>Introduction</AbstractText>
-    {paragraphs.map(({ primary: { content: { html } } }) => <Content html={html} />)}
+    {paragraphs.map(({ primary: { content: { html } } }) => <Content key={html} html={html} />)}
   </IntroContainer>
 );
 
