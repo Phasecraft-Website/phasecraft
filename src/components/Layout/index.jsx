@@ -104,7 +104,7 @@ function Layout({ isContact, isHome, children, ...props }) {
       fadeHeader.removeAttribute('style');
     }
 
-    if ((windowBottom >= scrollPoint && isHome) || (windowBottom < scrollPoint && !isHome)) {
+    if ((windowBottom >= scrollPoint && isHome) || (windowBottom < scrollPoint && !isHome && !isContact)) {
       backgroundFader.classList.remove('invert');
     } else if ((windowBottom < scrollPoint && isHome) || (windowBottom >= scrollPoint && !isHome)) {
       backgroundFader.classList.add('invert');

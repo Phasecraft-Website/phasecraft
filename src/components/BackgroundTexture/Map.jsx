@@ -24,6 +24,8 @@ const MapSvg = styled.img`
   top: 90px;
   height: auto;
   mask-image: linear-gradient(to bottom, rgba(6, 22, 55, 1) 50%, rgba(6, 22, 55, 0) 65%);
+  outline: 2px solid rgba(6, 22, 55, 1);
+  outline-offset: -2px;
   ${props => props.theme.media.md`
     mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(6, 22, 55, 1) 50%, rgba(6, 22, 55, 0) 75%);
     height: auto;
