@@ -32,15 +32,12 @@ const SocialContainer = styled.div`
   }
 `;
 
-const SocialComponent = ({ links }) => {
-  console.log({ links });
-  return (
-    <SocialContainer>
-      <p><strong>Social</strong></p>
-      {links.map(({ link, site }) => <a href={link.url} target={link.target}>&nbsp;{site}</a>)}
-    </SocialContainer>
-  )
-};
+const SocialComponent = ({ links }) => (
+  <SocialContainer>
+    <p><strong>Social</strong></p>
+    {links.map(({ link, site }) => <a href={link.url} target={link.target}>&nbsp;{site}</a>)}
+  </SocialContainer>
+);
 
 const Social = props => (
   <StaticQuery

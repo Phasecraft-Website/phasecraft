@@ -103,16 +103,13 @@ const TitleText = styled.h1`
   `}
 `;
 
-const CopyrightComponent = ({ isContact, isNav, data: { copyright_information: { html } } }) => {
-  console.log({ html });
-  return (
-    <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
-      {isNav && <img src={logoIcon} alt="Phasecraft" />}
-      {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
-      <Content html={html} />
-    </CopyrightContainer>
-  )
-};
+const CopyrightComponent = ({ isContact, isNav, data: { copyright_information: { html } } }) => (
+  <CopyrightContainer isContact={isContact} className={!isContact && !isNav ? 'invert-opacity-reverse' : 'invert-color'}>
+    {isNav && <img src={logoIcon} alt="Phasecraft" />}
+    {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
+    <Content html={html} />
+  </CopyrightContainer>
+);
 
 const Copyright = props => (
   <StaticQuery
