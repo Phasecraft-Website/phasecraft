@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Layout, SEO, SliceZone, Contact } from 'components';
 import { graphql } from 'gatsby';
 import Logo from '../components/Global/Logo';
+import Results from '../components/Home/Results';
 
 const StyledOffCanvasContainer = styled.div`
   height: 100%;
@@ -29,6 +30,7 @@ function Page({ data: { prismicPage } }) {
                 <SliceZone allSlices={body}>
                   {page_title.text}
                 </SliceZone>
+                <Results />
               </>
             }
           </>
@@ -95,8 +97,8 @@ export const pageQuery = graphql`
                     image {
                       localFile {
                         childImageSharp {
-                          fixed(width: 150, height: 150, quality: 100) {
-                            ...GatsbyImageSharpFixed
+                          fluid(maxWidth: 750) {
+                            ...GatsbyImageSharpFluid_noBase64
                           }
                         }
                       }

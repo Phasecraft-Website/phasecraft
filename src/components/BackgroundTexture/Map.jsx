@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import europe from '../../../assetts/images/matrix.svg';
+import europe from '../../../assetts/images/map.jpg';
 
 const AbsoluteContainer = styled.div`
   position: absolute;

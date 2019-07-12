@@ -8,6 +8,9 @@ import { Person } from 'lib'
 const StyledPersonList = styled.section`
   padding: 0 1.6rem 3.8rem;
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
 
   ${props => props.theme.media.sm`
      padding-left: 0;
@@ -17,6 +20,7 @@ const StyledPersonList = styled.section`
 `;
 
 function ListOfPersons({ items }) {
+  console.log(items[0].image.localFile.childImageSharp);
   return (
     <StyledPersonList>
       {items.map(({ id, information, name, image, workFunction }, index) => {
@@ -24,7 +28,7 @@ function ListOfPersons({ items }) {
         const nameContent = <Content html={name.html} />
         const img =
           image.localFile !== null ? (
-            <Img fixed={image.localFile.childImageSharp.fixed} />
+            <Img fluid={{ ...image.localFile.childImageSharp.fluid, aspectRatio: 1 }} />
           ) : null
         return (
           <Person
