@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useViewport from 'hooks/useViewport';
+import { isViewport } from 'helpers';
 import Map from './Map';
 import Radial from './Radial';
 
@@ -11,7 +13,10 @@ const Background = styled.div`
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100%;
+  height: ${({ height }) => height}px;
+  ${props => props.theme.media.md`
+    height: 100%;
+  `}
 `;
 
 const PatternOverlay = styled.div`
@@ -38,12 +43,23 @@ const Svg = styled.svg`
 
 const BackgroundTexture = ({ isContact }) => {
   const viewport = useViewport();
+  const [windowHeight, setWindowHeight] = useState()
+  useEffect(() => {
+    if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
+      setWindowHeight(window.innerHeight);
+      window.addEventListener('resize', () => {
+        if (windowHeight !== window.innerHeight) {
+          setWindowHeight(window.innerHeight);
+        }
+      });
+    }
+  });
   return (
     <>
       {isContact ?
         <Map />
         :
-        <Background>
+        <Background height={windowHeight}>
           <RadialWrapper>
             <Radial />
           </RadialWrapper>
@@ -67,3 +83,11 @@ const BackgroundTexture = ({ isContact }) => {
 };
   
 export default BackgroundTexture;
+
+BackgroundTexture.defaultProps = {
+  isContact: false,
+};
+
+BackgroundTexture.propTypes = {
+  isContact: PropTypes.bool,
+};
