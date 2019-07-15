@@ -129,9 +129,9 @@ function Results() {
         <ResultsText className="invert-color">
           {resultsText}
         </ResultsText>
-        <PhoneText className="invert-color">
+        {/* <PhoneText className="invert-color">
           +44 (0)117 942 0101
-        </PhoneText>
+        </PhoneText> */}
         <EmailText className="invert-link" href="mailto:info@phasecraft.io">
           info@phasecraft.io
         </EmailText>
