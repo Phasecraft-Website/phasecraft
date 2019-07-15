@@ -12,7 +12,10 @@ import BackgroundTexture from 'components/BackgroundTexture';
 import SEO from '../SEO';
 
 const StyledLayout = styled.main`
-  min-height: 100vh;
+  min-height: 110vh;
+  ${props => props.theme.media.md`
+    min-height: 100vh;
+  `}
 `;
 
 const StyledMain = styled.div`
