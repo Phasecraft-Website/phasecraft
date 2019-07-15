@@ -1,9 +1,9 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 import {
   renderFontStyles,
   renderFontFamily,
   renderBorders,
-} from "../../helpers/styles";
+} from '../../helpers/styles';
 
 function renderGoogleFont(googleFont) {
   return `@import url('https://fonts.googleapis.com/css?family=${googleFont}');`;
@@ -27,11 +27,11 @@ const GlobalStyles = createGlobalStyle`
   ${props =>
     props.theme.global.googleFont
       ? renderGoogleFont(props.theme.global.googleFont)
-      : ""}
+      : ''}
   ${props =>
     props.theme.global.fontFace
       ? renderFontFace(props.theme.global.fontFace)
-      : ""}
+      : ''}
 
   html {
     font-size: 62.5%;
@@ -39,17 +39,82 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: #E7E7E7;
+    background-color: #E7E7E7;
     color: ${props => props.theme.global.body.color};
     font-family: ${props =>
-      renderFontFamily(
-        props.theme.fontFamilies,
-        props.theme.typography,
-        "body"
-      )};
+    renderFontFamily(
+      props.theme.fontFamilies,
+      props.theme.typography,
+      'body'
+    )};
     height: 100%;
     min-height: 100vh;
-    ${props => renderFontStyles(props.theme.typography, "body")}
+    ${props => renderFontStyles(props.theme.typography, 'body')}
+  }
+
+  #svg-pattern {
+    transition: fill, border-color 3s ease;
+  }
+  .invert-color {
+    transition: color 3s ease;
+    will-change: color;
+  }
+
+  .invert-fill {
+    transition: fill, border-color 3s ease;
+    will-change: fill, border-color;
+  }
+
+  .invert-opacity {
+    transition: opacity 3s ease;
+    will-change: opacity;
+  }
+
+  .invert-opacity-reverse {
+    transition: opacity 3s ease;
+    will-change: opacity;
+  }
+
+  .invert-link {
+    transition: color 3s ease;
+    will-change: color;
+  }
+
+  .fade-out {
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: 100% 100%;
+  }
+
+  .invert {
+    transition: background-color 3s ease;
+    background-color: #061637!important;
+    .invert-color {
+      color: #E5E6E4!important;
+
+      &:visited, &:visited:visited {
+        color: #E5E6E4;
+      }
+    }
+
+    .invert-fill {
+      fill: #061637!important;
+      border-color: #061637!important;
+    }
+
+    .invert-opacity {
+      opacity: 1!important;
+    }
+
+    .invert-opacity-reverse {
+      opacity: 0!important;
+    }
+
+    .invert-link {
+      color: #2FF2AF!important;
+      &:hover {
+        color: #051736!important;
+      }
+    }
   }
 
   #___gatsby, main {
@@ -58,59 +123,59 @@ const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h1")};
-    ${props => renderFontStyles(props.theme.typography, "h1")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h1')};
+    ${props => renderFontStyles(props.theme.typography, 'h1')}
   }
 
   h2 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h2")};
-    ${props => renderFontStyles(props.theme.typography, "h2")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h2')};
+    ${props => renderFontStyles(props.theme.typography, 'h2')}
   }
 
   h3 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h3")};
-    ${props => renderFontStyles(props.theme.typography, "h3")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h3')};
+    ${props => renderFontStyles(props.theme.typography, 'h3')}
   }
 
   h4 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h4")};
-    ${props => renderFontStyles(props.theme.typography, "h4")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h4')};
+    ${props => renderFontStyles(props.theme.typography, 'h4')}
   }
 
   h5 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h5")};
-    ${props => renderFontStyles(props.theme.typography, "h5")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h5')};
+    ${props => renderFontStyles(props.theme.typography, 'h5')}
   }
 
   h6 {
     font-family: ${props =>
-      renderFontFamily(props.theme.fontFamilies, props.theme.typography, "h6")};
-    ${props => renderFontStyles(props.theme.typography, "h6")}
+    renderFontFamily(props.theme.fontFamilies, props.theme.typography, 'h6')};
+    ${props => renderFontStyles(props.theme.typography, 'h6')}
   }
 
   blockquote {
     font-family: ${props =>
-      renderFontFamily(
-        props.theme.fontFamilies,
-        props.theme.typography,
-        "quote"
-      )};
+    renderFontFamily(
+      props.theme.fontFamilies,
+      props.theme.typography,
+      'quote'
+    )};
     font-size: ${props => props.theme.typography.quote.fontSize};
-    ${props => renderFontStyles(props.theme.typography, "quote")}
+    ${props => renderFontStyles(props.theme.typography, 'quote')}
   }
 
   figcaption {
     font-family: ${props =>
-      renderFontFamily(
-        props.theme.fontFamilies,
-        props.theme.typography,
-        "figCaption"
-      )};
-    ${props => renderFontStyles(props.theme.typography, "figCaption")}
+    renderFontFamily(
+      props.theme.fontFamilies,
+      props.theme.typography,
+      'figCaption'
+    )};
+    ${props => renderFontStyles(props.theme.typography, 'figCaption')}
   }
 
   a {

@@ -14,22 +14,26 @@ const global = {
       value: 'euclidsquare-semibold-webfont',
     },
     {
-      // key: 'sulsansmed',
       title: 'Sul Sans, Medium',
       value: 'Sul-Sans-Medium',
     },
     {
-      // key: 'sulsansreg',
       title: 'Sul Sans, Regular',
       value: 'Sul-Sans-Regular',
     },
     {
-      // key: 'gtpressura',
+      title: 'Sul Sans, Light',
+      value: 'Sul-Sans-Light',
+    },
+    {
       title: 'GT Pressura Mono Regular',
       value: 'GT-Pressura-Mono-Regular',
     },
     {
-      // key: 'gtpressura',
+      title: 'GT Pressura Mono Bold',
+      value: 'GT-Pressura-Mono-Bold',
+    },
+    {
       title: 'GT Pressura Mono Light',
       value: 'GT-Pressura-Mono-Light',
     },

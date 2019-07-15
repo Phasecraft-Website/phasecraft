@@ -1,25 +1,57 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Layout, SEO, SliceZone } from "components";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Layout, SEO, SliceZone, Contact } from 'components';
+import { graphql } from 'gatsby';
+import Logo from '../components/Global/Logo';
+import Results from '../components/Home/Results';
 
-function Page({ data: { prismicPage }, ...props }) {
+const StyledOffCanvasContainer = styled.div`
+  height: 100%;
+`
+
+function Page({ data: { prismicPage } }) {
   const {
     data: { page_title, meta_title, meta_description, meta_images, body },
-    ...rest
   } = prismicPage;
+  const isContact = page_title.text === 'Contact';
   return (
-    <Layout>
-      <SEO title={meta_title} desc={meta_description} images={meta_images} />
-      {page_title && page_title.text &&
-        <h1>{page_title.text}</h1>
-      }
-      
-    </Layout>
+    <>
+      <Layout isContact={isContact}>
+        <SEO title={meta_title} desc={meta_description} images={meta_images} />
+
+        {page_title && page_title.text &&
+          <>
+            {isContact ?
+              <Contact body={body} />
+              :
+              <>
+                <Logo dark />
+                <SliceZone allSlices={body}>
+                  {page_title.text}
+                </SliceZone>
+                <Results />
+              </>
+            }
+          </>
+        }
+        {/* <Results /> */}
+      </Layout>
+      <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
+    </>
   );
 }
-
 export default Page;
+
+Page.defaultProps = {}
+
+Page.propTypes = {
+  data: PropTypes.shape({
+    prismicPage: PropTypes.shape({
+      data: PropTypes.object.isRequired,
+    }).isRequired,
+  }).isRequired,
+}
 
 export const pageQuery = graphql`
   query($uid: String!) {
@@ -41,7 +73,46 @@ export const pageQuery = graphql`
         page_title {
           text
         }
-        
+        body {
+          ... on PrismicPageBodyParagraph {
+            slice_type
+            id
+            primary {
+              content {
+                html
+              }
+            }
+          }
+          ... on PrismicPageBodyListOfPersons {
+            slice_type
+            id
+            items {
+              person {
+                document {
+                  id
+                  data {
+                    name: full_name {
+                      html
+                    }
+                    image {
+                      localFile {
+                        childImageSharp {
+                          fluid(maxWidth: 750) {
+                            ...GatsbyImageSharpFluid_noBase64
+                          }
+                        }
+                      }
+                    }
+                    workFunction: function
+                    information {
+                      html
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

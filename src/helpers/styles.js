@@ -52,11 +52,13 @@ export function renderFontStyles(typography, key) {
     font-size: ${typography[key].fontSize};
     font-style: ${typography[key].fontStyle};
     font-weight: ${typography[key].fontWeight};
+    line-height: ${typography[key].lineHeight};
     letter-spacing: ${typography[key].letterSpacing};
     text-transform: ${typography[key].textTransform};
     color: ${typography[key].color};
-    ${renderMargins(typography[key])}
-  `;
+    ${typography[key].margin ? renderMargins(typography[key]) : ``}
+    ${typography[key].padding ? renderPaddings(typography[key]) : ``}
+  `
 }
 
 /**
@@ -65,6 +67,14 @@ export function renderFontStyles(typography, key) {
 
 export function renderFontFamily(fontFamilies, typography, key) {
   return fontFamilies.find(font => font.key === typography[key].font).value;
+}
+
+/**
+ * Helper for font family (by key)
+ */
+
+export function renderFontFamilyByKey(fontFamilies, key) {
+  return fontFamilies.find(font => font.key === key).value;
 }
 
 /**

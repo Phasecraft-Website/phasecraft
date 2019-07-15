@@ -36,19 +36,19 @@ const ContactTextReg = styled.a`
   &:hover::after {
     background-color: #2FF2AF;
   }
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     font-size: 26px;
     margin: 0;
-  };
+  `}
 `;
 
 const ContactTextMed = styled.h4`
   font-family: 'Sul Sans, Regular';
   margin: 0;
   font-size: 2.2rem;
-  @media only screen and (min-width: 768px) {
+  ${props => props.theme.media.md`
     font-size: 26px;
-  }
+  `}
 `;
 
 function Contact() {

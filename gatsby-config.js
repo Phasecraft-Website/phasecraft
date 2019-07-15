@@ -2,7 +2,7 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const linkResolver = require(`./src/linkResolver`)
+const linkResolver = require(`./src/helpers/linkResolver`)
 
 const {
   _pathPrefix,
@@ -44,16 +44,8 @@ module.exports = {
     {
       resolve: `gatsby-source-prismic`,
       options: {
-        repositoryName: `Startabrand`,
+        repositoryName: `phascraft`,
         accessToken: `${process.env.API_KEY}`,
-        linkResolver,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-prismic-preview`,
-      options: {
-        repositoryName: `Startabrand`,
-        path: `/preview`,
         linkResolver,
       },
     },
@@ -68,8 +60,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `PhaseCraft`,
-        short_name: `phasecraft`,
+        name: `Phasecraft`,
+        short_name: `Phasecraft`,
         start_url: `/`,
         background_color: backgroundColor,
         theme_color: themeColor,
@@ -82,13 +74,5 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /assets/
-        }
-      }
-    }
   ],
 };

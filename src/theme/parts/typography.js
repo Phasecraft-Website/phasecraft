@@ -9,28 +9,38 @@ const fontFamilies = [
     title: 'Arial',
     value: 'Arial, sans-serif',
   },
+  {
+    key: 'GT-Pressura-Mono-Regular',
+    title: 'GT Pressura Mono Regular',
+    value: '\'GT Pressura Mono Regular\'',
+  },
+  {
+    key: 'Sul-Sans-Regular',
+    title: 'Sul Sans, Regular',
+    value: '\'Sul Sans, Regular\'',
+  },
 ];
 
 const typography = {
   h1: {
-    font: 'georgia',
-    fontSize: '40px',
-    letterSpacing: '0',
-    textTransform: 'none',
+    font: 'Sul-Sans-Regular',
+    fontSize: '1.3rem',
+    // letterSpacing: '0.3em',
+    lineHeight: '1.5rem',
+    textTransform: 'uppercase',
     fontStyle: 'normal',
     fontWeight: 'normal',
     color: 'currentColor',
-    lineHeight: 'normal',
   },
   h2: {
-    font: 'georgia',
-    fontSize: '30px',
-    letterSpacing: '0',
-    textTransform: 'none',
+    font: 'Sul-Sans-Regular',
+    fontSize: '1.3rem',
+    letterSpacing: '0.3em',
+    textTransform: 'uppercase',
     fontStyle: 'normal',
     fontWeight: 'normal',
     color: 'currentColor',
-    lineHeight: 'normal',
+    lineHeight: '12px',
   },
   h3: {
     font: 'georgia',
@@ -136,15 +146,15 @@ const typography = {
 
 const link = {
   default: Object.assign({}, typography.body, {
-    borderBottom: '1px solid transparent',
+    borderBottom: 'none',
     textDecoration: 'none',
   }),
   hover: {
-    color: 'rgba(38, 153, 251, 1)',
-    borderBottom: '1px solid rgba(38, 153, 251, 1)',
+    color: '#051736',
+    borderBottom: 'none',
   },
   visited: {
-    color: 'rgba(127, 196, 253, 1)',
+    color: '#051736',
   },
 };
 
