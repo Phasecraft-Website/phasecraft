@@ -25,6 +25,12 @@ const CopyrightContainer = styled.div`
   p:nth-last-child(2) {
     margin-bottom: 1em;
   }
+  p:nth-last-child(1) {
+    display: none;
+    ${props => props.theme.media.md`
+      display: block;
+    `}
+  }
   a, a:visited {
     margin-top: 1em;
     font-size: ${({ isNav }) => isNav ? '10px' : '12px'};
@@ -32,6 +38,7 @@ const CopyrightContainer = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.3em;
     color: inherit;
+
     ${props => props.theme.media.md`
       font-size: 1rem;
       line-height: 1.2rem;

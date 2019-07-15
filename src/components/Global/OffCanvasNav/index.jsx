@@ -4,7 +4,8 @@ import { NavigationContext } from 'context';
 import styled from 'styled-components';
 import OffCanvas from 'lib/OffCanvas';
 import { useLockBodyScroll } from 'hooks/useLockBodyScroll';
-import Social from './Social';
+import Copyright from 'components/Global/Copyright';
+// import Social from './Social';
 
 const StyledOffCanvasNavigation = styled.div`
   background: #2FF2AF;
@@ -38,8 +39,8 @@ function OffCanvasNav({ navToggle, nav }) {
         <StyledNav>
           {navToggle}
           {nav}
-          {/* <Copyright isNav /> */}
-          <Social />
+          <Copyright isNav />
+          {/* <Social /> */}
         </StyledNav>
       </StyledOffCanvasNavigation>
     </OffCanvas>
