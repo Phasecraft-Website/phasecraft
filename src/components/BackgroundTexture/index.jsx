@@ -13,7 +13,7 @@ const Background = styled.div`
   right: 0;
   bottom: 0;
   width: 100%;
-  height: ${({ height }) => height}px;
+  height: 110vh;
   ${props => props.theme.media.md`
     height: 100%;
   `}
