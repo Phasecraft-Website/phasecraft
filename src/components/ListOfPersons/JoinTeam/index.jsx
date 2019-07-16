@@ -39,7 +39,6 @@ const TextContainer = styled.div`
     padding-left: 0;
     margin-right: 0;
     margin-left: 86px;
-    width: 45%;
   `}
 `;
 
