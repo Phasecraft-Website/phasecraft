@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { wrapGrid } from 'animate-css-grid';
+// import { wrapGrid } from 'animate-css-grid';
 import { Content } from 'components'
 import { Person } from 'lib'
 import JoinTeam from './JoinTeam';
@@ -33,7 +33,10 @@ function ListOfPersons({ items }) {
   let forceGridAnimation;
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      ({ forceGridAnimation } = wrapGrid(grid.current));
+      import('animate-css-grid')
+        .then(({ wrapGrid }) => {
+          ({ forceGridAnimation } = wrapGrid(grid.current));
+        });
     }
   });
   return (
