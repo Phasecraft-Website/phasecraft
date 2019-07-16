@@ -32,8 +32,9 @@ function ListOfPersons({ items }) {
   const grid = useRef();
   let forceGridAnimation;
   useEffect(() => {
-    ({ forceGridAnimation } = wrapGrid(grid.current));
-    console.log(forceGridAnimation);
+    if (window) {
+      ({ forceGridAnimation } = wrapGrid(grid.current));
+    }
   });
   return (
     <>
