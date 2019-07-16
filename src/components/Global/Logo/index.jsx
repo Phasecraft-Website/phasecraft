@@ -45,6 +45,7 @@ const LogoBackground = styled.div`
   height: 140px;
   // z-index: 0;
   opacity: 0;
+  pointer-events: none;
   ${props => props.theme.media.md`
     height: 180px;
   `}
@@ -57,6 +58,7 @@ const LogoBackgroundWhite = styled.div`
   height: 140px;
   z-index: -1;
   opacity: 1;
+  pointer-events: none;
   ${props => props.theme.media.md`
     height: 180px;
   `}

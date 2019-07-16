@@ -13,7 +13,7 @@ const Background = styled.div`
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 110vh;
+  height: ${({ height }) => height}px;
   ${props => props.theme.media.md`
     height: 100%;
   `}
@@ -48,7 +48,7 @@ const BackgroundTexture = ({ isContact }) => {
     if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
       setWindowHeight(window.innerHeight);
       window.addEventListener('resize', () => {
-        if (windowHeight !== window.innerHeight) {
+        if (windowHeight < window.innerHeight) {
           setWindowHeight(window.innerHeight);
         }
       });
