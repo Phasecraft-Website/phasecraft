@@ -34,6 +34,7 @@ const StyledNav = styled.div`
   right: 0;
   height: 100vh;
   z-index: 1;
+  pointer-events: none;
 `;
 
 const BackgroundFader = styled.div`

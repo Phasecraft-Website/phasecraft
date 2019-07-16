@@ -104,7 +104,14 @@ export const pageQuery = graphql`
                       }
                     }
                     workFunction: function
-                    information {
+                    qualification
+                    socialLinks: social_links {
+                      html
+                    }
+                    contact {
+                      html
+                    }
+                    bio {
                       html
                     }
                   }

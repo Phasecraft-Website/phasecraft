@@ -1,36 +1,61 @@
 {
-  "Main": {
-    "image": {
-      "type": "Image",
-      "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "Image"
+  "Main" : {
+    "image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "Image"
       }
     },
-    "full_name": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading2",
-        "label": "Full Name",
-        "placeholder": "The persons full name",
-        "useAsTitle": true
+    "full_name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2",
+        "label" : "Full Name",
+        "placeholder" : "The persons full name",
+        "useAsTitle" : true
       }
     },
-    "function": {
-      "type": "Text",
-      "config": {
-        "label": "Function",
-        "placeholder": "The persons function, e.g. 'Founder', 'Assistant to CEO' or 'Copywriter'"
+    "function" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Function",
+        "placeholder" : "The persons function, e.g. 'Founder', 'Assistant to CEO' or 'Copywriter'"
       }
     },
-    "information": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph, strong, em, hyperlink",
-        "allowTargetBlank": true,
-        "label": "Information",
-        "placeholder": "Other information. Email, phone numbers and links."
+    "qualification" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Qualification",
+        "placeholder" : "PhD MSc"
+      }
+    },
+    "contact" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Contact",
+        "placeholder" : "Other information. Email, phone numbers and links."
+      }
+    },
+    "social_links" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Social Links",
+        "placeholder" : "eg, Twitter, Medium, LinkedIn"
+      }
+    },
+    "bio" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, strong, em, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Bio",
+        "placeholder" : "Long, expanded bio text"
       }
     }
   }

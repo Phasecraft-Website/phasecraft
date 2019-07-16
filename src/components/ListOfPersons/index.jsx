@@ -24,6 +24,7 @@ const StyledPersonList = styled.section`
     padding-right: 0;
     margin-top: 70px;
     margin-right: 0;
+    margin-bottom: 70px
   `}
 `;
 
@@ -37,9 +38,11 @@ function ListOfPersons({ items }) {
   return (
     <>
     <StyledPersonList ref={grid}>
-      {items.map(({ id, information, name, image, workFunction }, index) => {
-        const info = <Content html={information.html} />
+      {items.map(({ id, bio, name, contact, image, workFunction, qualification, socialLinks }, index) => {
+        const bioContent = <Content html={bio.html} />
         const nameContent = <Content html={name.html} />
+        const contactContent = <Content html={contact.html} />
+        const socialContent = <Content html={socialLinks.html} />
         const img =
           image.localFile !== null ? (
             <Img fluid={{ ...image.localFile.childImageSharp.fluid, aspectRatio: 1 }} />
@@ -49,9 +52,12 @@ function ListOfPersons({ items }) {
             key={id}
             even={index % 2 === 0}
             name={nameContent}
-            information={info}
+            bio={bioContent}
             workFunction={workFunction}
+            qualification={qualification}
             image={img}
+            contact={contactContent}
+            socialLinks={socialContent}
             animate={() => forceGridAnimation()}
           />
         )

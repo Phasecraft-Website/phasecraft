@@ -85,7 +85,7 @@ const StyledPicture = styled.figure`
 const StyledFunction = styled.span`
   font-family: 'Sul Sans, Light';
   color: #051736;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 2.8rem;
   ${props => props.theme.media.md`
     font-size: 1.8rem;
@@ -204,8 +204,14 @@ const ExpandedContact = styled.div`
   p {
     margin: 0;
   }
-  p:nth-child(1) {
-    margin-bottom: 30%;
+  div {
+    margin-top: 30%;
+  }
+  a {
+    font-family: 'Sul Sans, Light';
+    color: #051736;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
   }
 `;
 
@@ -225,7 +231,12 @@ const SocialContainer = styled.div`
   overflow: hidden;
   margin: 10px -10px -10px -10px;
   p {
-    margin: 0!important;
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+  }
+  div > p {
+    display: inline;
+    margin-right: 8px;
   }
   a, a:visited {
     font-size: 11px;
@@ -233,6 +244,7 @@ const SocialContainer = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.3em;
     color: inherit;
+    letter-spacing: 0.3em;
     ${props => props.theme.media.md`
       font-size: 1rem;
       line-height: 1.2rem;
@@ -243,10 +255,7 @@ const SocialContainer = styled.div`
   }
 `;
 
-const longText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper sit amet mi quis aliquam. Donec felis est, pellentesque nec ante vel, hendrerit dictum lectus. Nullam in congue elit. Morbi in libero odio. Phasellus vehicula dui a enim rutrum, et consequat nibh varius. Aenean faucibus semper tempor.';
-const longText2 = 'Ut consequat nulla non iaculis porta. Phasellus maximus mattis pellentesque. Integer vulputate ex non vulputate lacinia. Mauris scelerisque at ex non luctus. Nulla non semper neque, id euismod lacus. Fusce condimentum sapien non euismod scelerisque. Suspendisse ut eros erat. Praesent viverra malesuada est, rhoncus vehicula magna lobortis ac. Vestibulum nec massa in tellus congue sollicitudin. Donec sodales, purus consectetur lobortis congue, nisi leo egestas ante, a dapibus odio urna at dui. Aenean rutrum aliquam aliquam. Sed ultrices justo at posuere malesuada. Sed pellentesque cursus venenatis. Vivamus eu faucibus nisl. Proin consequat ipsum quis laoreet dignissim. Curabitur eleifend porta ipsum, vel faucibus felis. Sed pellentesque cursus venenatis. Vivamus eu faucibus nisl. Proin consequat ipsum quis laoreet dignissim. Curabitur eleifend porta ipsum, vel faucibus felis.';
-
-function Person({ image, name, workFunction, information, animate, ...props }) {
+function Person({ image, name, workFunction, bio, socialLinks, animate, qualification, contact, ...props }) {
   const [active, setActive] = useState(false);
   const el = useRef(null);
   const expand = () => {
@@ -256,7 +265,9 @@ function Person({ image, name, workFunction, information, animate, ...props }) {
   const viewport = useViewport();
   // There is no listener for checking an element's height, best to fire an event to reset the height when a person is expanded/collapsed
   // Try using the useViewport as an example?
-
+  console.log(bio.props.html);
+  const isBio = bio.props.html && bio.props.html !== '<p></p>';
+  const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
     <StyledPerson className="grid-item" ref={el} active={active} {...props}>
       <GridContainer>
@@ -278,16 +289,13 @@ function Person({ image, name, workFunction, information, animate, ...props }) {
           <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
           <StyledFunction className="invert-color">{workFunction}</StyledFunction>
           <ExpandedContact active={active}>
-            <p id="expanded_title">PhD MSc</p>
-            <p id="contact_email">toby@phasecraft.io</p>
-            <p id="contact_phone">+44 (0)000 0000 000</p>
+            {qualification}
+            {contact}
           </ExpandedContact>
-          <SocialContainer active={active}>
+          {isSocial && <SocialContainer active={active}>
             <p><strong>Social</strong></p>
-            <a>LINKEDIN&nbsp;</a>
-            <a>MEDIUM&nbsp;</a>
-            <a>TWITTER&nbsp;</a>
-          </SocialContainer>
+            {socialLinks}
+          </SocialContainer>}
         </BasicInfo>
         <ExpandedInfo active={active}>
           <BioContainer active={active}>
@@ -297,15 +305,7 @@ function Person({ image, name, workFunction, information, animate, ...props }) {
                 <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
               </svg>
             </CloseButton>
-            <p>
-              {longText}
-            </p>
-            <p>
-              {longText2}
-            </p>
-            {/* <p>
-              {longText}
-            </p> */}
+            {isBio ? bio : <p>More info coming soon...</p>}
           </BioContainer>
         </ExpandedInfo>
       </GridContainer>
@@ -318,6 +318,7 @@ export default Person;
 
 Person.defaultProps = {
   workFunction: null,
+  qualification: null,
 };
 
 Person.propTypes = {
@@ -325,5 +326,9 @@ Person.propTypes = {
   information: PropTypes.node.isRequired,
   name: PropTypes.node.isRequired,
   workFunction: PropTypes.node,
+  contact: PropTypes.node.isRequired,
+  qualification: PropTypes.node,
+  bio: PropTypes.node.isRequired,
+  socialLinks: PropTypes.node.isRequired,
   animate: PropTypes.func.isRequired,
 };
