@@ -265,7 +265,6 @@ function Person({ image, name, workFunction, bio, socialLinks, animate, qualific
   const viewport = useViewport();
   // There is no listener for checking an element's height, best to fire an event to reset the height when a person is expanded/collapsed
   // Try using the useViewport as an example?
-  console.log(bio.props.html);
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
   const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
