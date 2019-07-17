@@ -39,8 +39,10 @@ const StyledInfo = styled.button`
   border-radius: 50%;
   background-color: #2FF2AF;
   border: none;
-  padding-top: 4px;
-  display: ${({ active }) => active ? 'none' : 'block'};
+  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${props => props.theme.media.md`
     padding-top: 0;
     display: block;
