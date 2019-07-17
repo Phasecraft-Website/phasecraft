@@ -43,6 +43,10 @@ const StyledInfo = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  svg {
+    width: 15px;
+    height: 15px;
+  }
   ${props => props.theme.media.md`
     padding-top: 0;
     display: block;
