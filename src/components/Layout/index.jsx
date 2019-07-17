@@ -27,6 +27,7 @@ const StyledMain = styled.div`
     padding: 0 36px;
     font-size: 1.5rem;
     line-height: 4.0rem;
+    width: 85%;
   `}
 `;
 
@@ -50,7 +51,7 @@ const BackgroundFader = styled.div`
   transition: background-color 3s;
   ${props => props.theme.media.md`
     grid-template-areas:
-    "main main main menu";
+    "main main main main menu";
     overflow: hidden;
     position: relative;
   `}

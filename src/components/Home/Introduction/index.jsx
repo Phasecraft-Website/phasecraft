@@ -13,11 +13,10 @@ const IntroContainer = styled.div`
     font-family: 'Sul Sans, Regular';
     font-size: 20px;
     line-height: 25px;
-    // color: #051736;
   }
   ${props => props.theme.media.md`
     padding-top: 90px;
-    width: 75%;
+    width: 85%;
     p {
       font-size: 35px;
       line-height: 43px;
