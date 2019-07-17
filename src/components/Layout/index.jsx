@@ -142,7 +142,7 @@ function Layout({ isContact, isHome, children, ...props }) {
                 ) : (
                   <FixedNav>
                     <Global.Navigation />
-                    <Global.Copyright isContact={isContact} />
+                    <Global.Copyright isHome={isHome} isContact={isContact} />
                   </FixedNav>
                 )}
               </StyledNav>
