@@ -345,7 +345,6 @@ Person.defaultProps = {
 
 Person.propTypes = {
   image: PropTypes.node.isRequired,
-  information: PropTypes.node.isRequired,
   name: PropTypes.node.isRequired,
   workFunction: PropTypes.node,
   contact: PropTypes.node.isRequired,

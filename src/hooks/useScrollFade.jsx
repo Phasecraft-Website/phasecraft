@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ScrollFade = React.createContext();
@@ -29,6 +29,11 @@ const reducer = (state, action) => {
 const ScrollFadeProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const value = { state, dispatch };
+  useEffect(() => {
+    if (getScrollFade() !== state.scrollFade) {
+      dispatch({ type: 'update' });
+    }
+  });
   return (
     <ScrollFade.Provider value={value}>{children}</ScrollFade.Provider>
   );

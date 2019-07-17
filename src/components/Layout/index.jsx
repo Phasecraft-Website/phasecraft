@@ -102,7 +102,9 @@ function Layout({ isContact, isHome, children, ...props }) {
   });
 
   React.useEffect(() => {
-    ({ scrollFade } = state);
+    if (state.scrollFade !== 0) {
+      ({ scrollFade } = state);
+    }
   }, [state.scrollFade]);
 
   const handleScroll = () => {
