@@ -71,12 +71,27 @@ const StyledPicture = styled.figure`
   margin: 0;
   background-color: ${({ active }) => active ? 'rgba(238, 238, 238, 0.8)' : 'rgba(255, 255, 255, 0.3)'};
   ${props => props.theme.media.md`
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+      background: rgba(5, 23, 54, 0.3);
+      transition: opacity 0.8s;
+    }
     &:hover {
       ${Grayscale} {
-        filter: grayscale(1) blur(3px);
+        filter: grayscale(1) hue-rotate(245deg);
       }
       ${StyledInfo} {
         transform: scale(1) translate(-50%, -50%);
+        opacity: 1;
+        z-index: 1;
+      }
+      &::after {
         opacity: 1;
       }
     }
