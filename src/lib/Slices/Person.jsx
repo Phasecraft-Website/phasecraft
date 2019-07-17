@@ -90,10 +90,10 @@ const StyledPicture = styled.figure`
 const StyledFunction = styled.span`
   font-family: 'Sul Sans, Light';
   color: #051736;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   line-height: 2.8rem;
   ${props => props.theme.media.md`
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   `}
 `;
 
@@ -220,7 +220,7 @@ const ExpandedContact = styled.div`
   transition-duration: ${({ active }) => active ? '0.5s' : '0.5s'};
   font-family: 'Sul Sans, Light';
   color: #051736;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   line-height: 2.8rem;
   p {
     margin: 0;
@@ -231,7 +231,7 @@ const ExpandedContact = styled.div`
   a {
     font-family: 'Sul Sans, Light';
     color: #051736;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     line-height: 2.8rem;
   }
 `;
