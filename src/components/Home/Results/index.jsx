@@ -33,16 +33,15 @@ const AbstractText = styled.h2`
   margin-left: 3px;
   color: #051736;
   text-transform: uppercase;
-  ${props => props.theme.media.md`
-    margin-bottom: 1rem;
-  `}
+  margin-bottom: 5rem;
 `;
 
 const ResultsText = styled.p`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   font-size: 20px;
   line-height: 25px;
   color: #051736;
+  margin-top: 0;
   ${props => props.theme.media.md`
     font-size: 26px;
     line-height: 32px;
@@ -50,7 +49,7 @@ const ResultsText = styled.p`
 `;
 
 const PhoneText = styled.p`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   font-size: 26px;
   line-height: 32px;
   margin-bottom: 0;
@@ -84,7 +83,7 @@ const LogoContainer = styled.div`
 `;
 
 const EmailText = styled.a`
-  font-family: 'Sul Sans, Medium';
+  font-family: 'Sul Sans, Regular';
   font-size: 26px;
   line-height: 32px;
   color: #051736;
@@ -93,7 +92,7 @@ const EmailText = styled.a`
   cursor: pointer;
   position: relative;
   max-width: fit-content;
-  border-bottom: 2px solid #051736;
+  border-bottom: 2px solid #e7e7e7;
   &::after {
 		content: ' ';
 		position: absolute;

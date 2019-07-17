@@ -6,9 +6,10 @@ import { Title } from 'components/Global/Typography';
 
 const ResultsContainer = styled.div`
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   margin-top: 50px;
   ${props => props.theme.media.md`
+    min-height: 100vh;
     margin-top: 0;
   `}
 `;
@@ -19,23 +20,25 @@ const AbsoluteBackground = styled.div`
   left: -15px;
   right: calc(-20% - 20px);
   bottom: 0;
-  min-height: 200vh;
+  min-height: 180vh;
   background: linear-gradient(to bottom, rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0));
   z-index: -1;
   ${props => props.theme.media.md`
+    min-height: 200vh;
     left: -35px;
     right: calc(-40% - 35px);
   `}
 `;
 
 const TextContainer = styled.div`
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-right: -15px;
   padding-left: 40px;
   ${props => props.theme.media.md`
+    height: 100vh;
     padding-left: 0;
     margin-right: 0;
     margin-left: 86px;
