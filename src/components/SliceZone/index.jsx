@@ -18,7 +18,7 @@ const StyledContent = styled(Content)`
     margin-right: 0;
     p {
       font-size: 2rem;
-      line-height: 2.2rem;
+      line-height: 2.5rem;
       margin-top: 115px
     }
   `}
