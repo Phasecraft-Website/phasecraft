@@ -103,6 +103,7 @@ const StyledName = styled.header`
     line-height: 2.2rem;
     margin-bottom: 10px;
     text-transform: none;
+    letter-spacing: normal;
     cursor: pointer;
     position: relative;
     max-width: fit-content;
