@@ -39,14 +39,10 @@ const StyledInfo = styled.button`
   border-radius: 50%;
   background-color: #2FF2AF;
   border: none;
-  padding-top: 3px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  svg {
-    width: 15px;
-    height: 15px;
-  }
   ${props => props.theme.media.md`
     padding-top: 0;
     display: block;
