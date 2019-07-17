@@ -92,7 +92,7 @@ const EmailText = styled.a`
   cursor: pointer;
   position: relative;
   max-width: fit-content;
-  border-bottom: 2px solid #e7e7e7;
+  border-bottom: 2px solid #2FF2AF;
   &::after {
 		content: ' ';
 		position: absolute;
@@ -131,7 +131,7 @@ function Results() {
         {/* <PhoneText className="invert-color">
           +44 (0)117 942 0101
         </PhoneText> */}
-        <EmailText className="invert-link" href="mailto:info@phasecraft.io">
+        <EmailText className="invert-link invert-border" href="mailto:info@phasecraft.io">
           info@phasecraft.io
         </EmailText>
       </TextContainer>
