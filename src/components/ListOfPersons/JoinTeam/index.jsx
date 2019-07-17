@@ -19,7 +19,7 @@ const AbsoluteBackground = styled.div`
   left: -15px;
   right: calc(-20% - 20px);
   bottom: 0;
-  min-height: 100vh;
+  min-height: 200vh;
   background: rgba(255, 253, 252, 0.4);
   z-index: -1;
   ${props => props.theme.media.md`
