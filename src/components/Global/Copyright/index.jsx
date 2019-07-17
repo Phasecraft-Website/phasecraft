@@ -13,6 +13,7 @@ const CopyrightContainer = styled.div`
   line-height: ${({ isNav }) => isNav ? '12px' : '14px'};
   text-transform: uppercase;
   letter-spacing: 0.3em;
+  pointer-events: all;
   ${props => props.theme.media.md`
     width: 200px;
     margin-bottom: ${props.isContact ? '32px' : '17px'};
