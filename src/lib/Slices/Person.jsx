@@ -180,8 +180,8 @@ const BioContainer = styled.div`
   padding: 40px 30px 95px 30px;
   color: #051736;
   font-size: 1.7rem;
-  line-height: 2.6rem;
-  font-family: 'Sul Sans, Regular';
+  line-height: 2.8rem;
+  font-family: 'Sul Sans, Light';
   opacity: ${({ active }) => active ? '1' : '0'};
   transition-delay: ${({ active }) => active ? '0.3s' : '0s'};
   transition-property: opacity;
