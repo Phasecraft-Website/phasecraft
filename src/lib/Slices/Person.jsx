@@ -115,7 +115,7 @@ const StyledName = styled.header`
         position: absolute;
         z-index: -1;
         width: 100%;
-        height: 1em;
+        height: 100%;
         left: -0.2em;
         bottom: 0;
         padding: 0.2em;
@@ -126,24 +126,26 @@ const StyledName = styled.header`
 `;
 
 const HoverEffect = styled.div`
-  &:hover {
-    ${Grayscale} {
-      filter: grayscale(1) hue-rotate(245deg);
-    }
-    ${StyledInfo} {
-      transform: scale(1) translate(-50%, -50%);
-      opacity: 1;
-      z-index: 1;
-    }
-    ${StyledPicture}::after {
-      opacity: 1;
-    }
-    h2 {
-      &::after {
-        background-color: #2FF2AF;
+  ${props => props.theme.media.md`
+    &:hover {
+      ${Grayscale} {
+        filter: grayscale(1) hue-rotate(245deg);
+      }
+      ${StyledInfo} {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 1;
+        z-index: 1;
+      }
+      ${StyledPicture}::after {
+        opacity: 1;
+      }
+      h2 {
+        &::after {
+          background-color: #2FF2AF;
+        }
       }
     }
-  }
+  `}
 `;
 
 const BasicInfo = styled.div`
