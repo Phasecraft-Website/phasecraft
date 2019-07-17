@@ -82,19 +82,6 @@ const StyledPicture = styled.figure`
       background: rgba(5, 23, 54, 0.3);
       transition: opacity 0.8s;
     }
-    &:hover {
-      ${Grayscale} {
-        filter: grayscale(1) hue-rotate(245deg);
-      }
-      ${StyledInfo} {
-        transform: scale(1) translate(-50%, -50%);
-        opacity: 1;
-        z-index: 1;
-      }
-      &::after {
-        opacity: 1;
-      }
-    }
   `};
 `;
 
@@ -134,10 +121,28 @@ const StyledName = styled.header`
         padding: 0.2em;
         transition: background-color 0.6s;
       };
-      &:hover::after {
+    `}
+  }
+`;
+
+const HoverEffect = styled.div`
+  &:hover {
+    ${Grayscale} {
+      filter: grayscale(1) hue-rotate(245deg);
+    }
+    ${StyledInfo} {
+      transform: scale(1) translate(-50%, -50%);
+      opacity: 1;
+      z-index: 1;
+    }
+    ${StyledPicture}::after {
+      opacity: 1;
+    }
+    h2 {
+      &::after {
         background-color: #2FF2AF;
       }
-    `}
+    }
   }
 `;
 
@@ -156,18 +161,13 @@ const BasicInfo = styled.div`
 const ExpandedInfo = styled.div`
   grid-area: 'info';
   grid-column-end: span ${({ active }) => active ? '2' : '0'};
-  // width: 100%; // ${({ active }) => active ? '100%' : '100%'};
   overflow: hidden;
   max-height: ${({ active }) => active ? '100%' : '0'};
-  // transform: scale(${({ active }) => active ? '1' : '0'});
-  // display: ${({ active }) => active ? 'block' : 'none'};
   position: relative;
   z-index: ${({ active }) => active ? '1' : '-1'};
   opacity: ${({ active }) => active ? '1' : '0'};
-  // height: 100%;
   background: rgba(255, 253, 252, 0.4);
   transition-duration: ${({ active }) => active ? '0.5s' : '0.7s'};
-  // height 
 `;
 
 const BioContainer = styled.div`
@@ -208,7 +208,6 @@ const CloseButton = styled.button`
 const ExpandedContact = styled.div`
   overflow: hidden;
   max-height: ${({ active }) => active ? '100%' : '0'};
-  // height: 200px;
   position: relative;
   z-index: ${({ active }) => active ? '1' : '-1'};
   opacity: ${({ active }) => active ? '1' : '0'};
@@ -289,21 +288,23 @@ function Person({ image, name, workFunction, bio, socialLinks, animate, qualific
     <StyledPerson className="grid-item" ref={el} active={active} {...props}>
       <GridContainer>
         <BasicInfo active={active}>
-          <StyledPicture active={active}>
-            <Grayscale>
-              {image}
-            </Grayscale>
-            <StyledInfo active={active} onClick={() => expand()}>
-              {isViewport(viewport, ['DEFAULT', 'MEDIUM']) 
-                ? (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.12451 0.768799V15.572" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
-                    <path d="M15.5261 8.17039H0.7229" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
-                  </svg>
-                ) : 'INFO'}
-            </StyledInfo>
-          </StyledPicture>
-          <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
+          <HoverEffect>
+            <StyledPicture active={active}>
+              <Grayscale>
+                {image}
+              </Grayscale>
+              <StyledInfo active={active} onClick={() => expand()}>
+                {isViewport(viewport, ['DEFAULT', 'MEDIUM']) 
+                  ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.12451 0.768799V15.572" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
+                      <path d="M15.5261 8.17039H0.7229" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
+                    </svg>
+                  ) : 'INFO'}
+              </StyledInfo>
+            </StyledPicture>
+            <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
+          </HoverEffect>
           <StyledFunction className="invert-color">{workFunction}</StyledFunction>
           <ExpandedContact active={active}>
             {qualification}
