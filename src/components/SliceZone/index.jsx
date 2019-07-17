@@ -24,11 +24,12 @@ const StyledContent = styled(Content)`
   `}
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-size: 36px;
   line-height: 45px;
   color: #051736;
   margin-top: 120px;
+  letter-spacing: normal;
   ${props => props.theme.media.md`
     margin-top: 175px;
   `}
