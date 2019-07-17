@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
+import { ScrollFade } from '../../hooks/useScrollFade';
 
 const StyledPerson = styled.article`
   grid-column-end: span ${({ active }) => active ? 2 : 1};
@@ -257,14 +258,16 @@ const SocialContainer = styled.div`
 
 function Person({ image, name, workFunction, bio, socialLinks, animate, qualification, contact, ...props }) {
   const [active, setActive] = useState(false);
+  const { dispatch } = React.useContext(ScrollFade);
   const el = useRef(null);
   const expand = () => {
     setActive(!active);
     animate();
+    setTimeout(() => {
+      dispatch({ type: 'update' });
+    }, 500)
   }
   const viewport = useViewport();
-  // There is no listener for checking an element's height, best to fire an event to reset the height when a person is expanded/collapsed
-  // Try using the useViewport as an example?
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
   const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
@@ -298,7 +301,7 @@ function Person({ image, name, workFunction, bio, socialLinks, animate, qualific
         </BasicInfo>
         <ExpandedInfo active={active}>
           <BioContainer active={active}>
-            <CloseButton type="button" id="clicky" onClick={() => setActive(false)}>
+            <CloseButton type="button" id="clicky" onClick={() => expand()}>
               <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
                 <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>

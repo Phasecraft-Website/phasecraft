@@ -10,6 +10,7 @@ import useViewport from 'hooks/useViewport';
 import Global from 'components/Global';
 import BackgroundTexture from 'components/BackgroundTexture';
 import SEO from '../SEO';
+import { ScrollFade } from '../../hooks/useScrollFade';
 
 const StyledLayout = styled.main`
   min-height: 110vh;
@@ -72,16 +73,17 @@ const FixedToggle = styled.div`
 function Layout({ isContact, isHome, children, ...props }) {
   const [navToggled, setNavToggled] = useState(false);
   const viewport = useViewport();
+  const { state } = React.useContext(ScrollFade);
 
   function handleNavToggle() {
     setNavToggled(prev => !prev);
   }
 
   let scrollHeight;
-  let windowHeight;
+  let docHeight;
   let clientHeight;
   let backgroundFader;
-  let scrollPoint;
+  let scrollFade;
   let fadeHeader;
 
   React.useEffect(() => {
@@ -91,26 +93,30 @@ function Layout({ isContact, isHome, children, ...props }) {
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    windowHeight = document.documentElement.offsetHeight;
+    docHeight = document.documentElement.offsetHeight;
     ({ clientHeight } = document.documentElement);
     backgroundFader = document.getElementById('background-fader');
     fadeHeader = document.getElementById('fade-header');
-    scrollPoint = scrollHeight - (clientHeight * 0.25);
+    scrollFade = scrollHeight - (clientHeight * 0.25);
   });
 
+  React.useEffect(() => {
+    ({ scrollFade } = state);
+  }, [state.scrollFade]);
+
   const handleScroll = () => {
-    const windowBottom = windowHeight + window.pageYOffset;
+    const windowBottom = docHeight + window.pageYOffset;
     const scrollIsBelowTop = window.pageYOffset >= 20;
-    const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - windowHeight - 10;
+    const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - docHeight - 10;
     if (scrollIsBelowTop && scrollIsAboveBottom) {
       fadeHeader.setAttribute('style', 'opacity: 1');
     } else if (!scrollIsBelowTop || (!scrollIsAboveBottom && !isContact)) {
       fadeHeader.removeAttribute('style');
     }
 
-    if ((windowBottom >= scrollPoint && isHome) || (windowBottom < scrollPoint && !isHome && !isContact)) {
+    if ((windowBottom >= scrollFade && isHome) || (windowBottom < scrollFade && !isHome && !isContact)) {
       backgroundFader.classList.remove('invert');
-    } else if ((windowBottom < scrollPoint && isHome) || (windowBottom >= scrollPoint && !isHome)) {
+    } else if ((windowBottom < scrollFade && isHome) || (windowBottom >= scrollFade && !isHome)) {
       backgroundFader.classList.add('invert');
     }
   }
