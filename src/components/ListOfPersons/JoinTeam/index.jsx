@@ -111,11 +111,11 @@ const Results = () => (
         JOIN OUR TEAM...
       </Title>
       <ResultsText className="invert-color">
-        Help us change shape the world’s future using quantum computing.
+        Help us change shape the world’s future using quantum computing. Send CVs and job enquiries to...
       </ResultsText>
-      <ResultsText className="invert-color">
+      {/* <ResultsText className="invert-color">
         Send CVs and job enquiries to...
-      </ResultsText>
+      </ResultsText> */}
       {/* <PhoneText className="invert-color">
         +44 (0)117 942 0101
       </PhoneText> */}
