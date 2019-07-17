@@ -115,7 +115,7 @@ const StyledName = styled.header`
         position: absolute;
         z-index: -1;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 3px);
         left: -0.2em;
         bottom: 0;
         padding: 0.2em;
@@ -140,6 +140,7 @@ const HoverEffect = styled.div`
         opacity: 1;
       }
       h2 {
+        z-index: 1;
         &::after {
           background-color: #2FF2AF;
         }
