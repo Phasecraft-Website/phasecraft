@@ -20,7 +20,7 @@ const AbsoluteBackground = styled.div`
   right: calc(-20% - 20px);
   bottom: 0;
   min-height: 200vh;
-  background: rgba(255, 253, 252, 0.4);
+  background: linear-gradient(to bottom, rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0));
   z-index: -1;
   ${props => props.theme.media.md`
     left: -35px;
