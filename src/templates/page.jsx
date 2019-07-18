@@ -5,6 +5,7 @@ import { Layout, SEO, SliceZone, Contact } from 'components';
 import { graphql } from 'gatsby';
 import Logo from '../components/Global/Logo';
 import Results from '../components/Home/Results';
+import { ScrollFadeProvider } from '../hooks/useScrollFade';
 
 const StyledOffCanvasContainer = styled.div`
   height: 100%;
@@ -16,7 +17,7 @@ function Page({ data: { prismicPage } }) {
   } = prismicPage;
   const isContact = page_title.text === 'Contact';
   return (
-    <>
+    <ScrollFadeProvider>
       <Layout isContact={isContact}>
         <SEO title={meta_title} desc={meta_description} images={meta_images} />
 
@@ -38,7 +39,7 @@ function Page({ data: { prismicPage } }) {
         {/* <Results /> */}
       </Layout>
       <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
-    </>
+    </ScrollFadeProvider>
   );
 }
 export default Page;
@@ -104,7 +105,14 @@ export const pageQuery = graphql`
                       }
                     }
                     workFunction: function
-                    information {
+                    qualification
+                    socialLinks: social_links {
+                      html
+                    }
+                    contact {
+                      html
+                    }
+                    bio {
                       html
                     }
                   }

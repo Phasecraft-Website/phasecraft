@@ -8,6 +8,7 @@ import relResolver from 'helpers/relResolver';
 const StyledNav = styled.nav`
   align-self: flex-end;
   margin-right: 15%;
+  pointer-events: all;
   ${props => props.theme.media.md`
     align-self: flex-start;
     margin-right: 0;

@@ -23,7 +23,7 @@ const TextContainer = styled.div`
     padding-left: 0;
     margin-right: 0;
     margin-left: 86px;
-    width: 45%;
+    width: 50%;
   `}
 `;
 
@@ -33,16 +33,15 @@ const AbstractText = styled.h2`
   margin-left: 3px;
   color: #051736;
   text-transform: uppercase;
-  ${props => props.theme.media.md`
-    margin-bottom: 1rem;
-  `}
+  margin-bottom: 5rem;
 `;
 
 const ResultsText = styled.p`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   font-size: 20px;
   line-height: 25px;
   color: #051736;
+  margin-top: 0;
   ${props => props.theme.media.md`
     font-size: 26px;
     line-height: 32px;
@@ -50,7 +49,7 @@ const ResultsText = styled.p`
 `;
 
 const PhoneText = styled.p`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   font-size: 26px;
   line-height: 32px;
   margin-bottom: 0;
@@ -84,7 +83,7 @@ const LogoContainer = styled.div`
 `;
 
 const EmailText = styled.a`
-  font-family: 'Sul Sans, Medium';
+  font-family: 'Sul Sans, Regular';
   font-size: 26px;
   line-height: 32px;
   color: #051736;
@@ -93,7 +92,7 @@ const EmailText = styled.a`
   cursor: pointer;
   position: relative;
   max-width: fit-content;
-  border-bottom: 2px solid #051736;
+  border-bottom: 2px solid #2FF2AF;
   &::after {
 		content: ' ';
 		position: absolute;
@@ -132,7 +131,7 @@ function Results() {
         {/* <PhoneText className="invert-color">
           +44 (0)117 942 0101
         </PhoneText> */}
-        <EmailText className="invert-link" href="mailto:info@phasecraft.io">
+        <EmailText className="invert-link invert-border" href="mailto:info@phasecraft.io">
           info@phasecraft.io
         </EmailText>
       </TextContainer>

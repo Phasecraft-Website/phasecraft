@@ -7,20 +7,29 @@ import styled from 'styled-components';
 const StyledContent = styled(Content)`
   font-family: 'Sul Sans, Regular';
   color: #051736;
+  margin-right: -10%;
+  p {
+    font-size: 1.9rem;
+    line-height: 2.1rem;
+    margin-top: 50px;
+  }
   ${props => props.theme.media.md`
     width: 70%;
+    margin-right: 0;
     p {
       font-size: 2rem;
-      line-height: 2.2rem;
+      line-height: 2.5rem;
       margin-top: 115px
     }
   `}
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-size: 36px;
   line-height: 45px;
   color: #051736;
+  margin-top: 120px;
+  letter-spacing: normal;
   ${props => props.theme.media.md`
     margin-top: 175px;
   `}

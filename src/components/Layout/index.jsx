@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Normalize, GlobalStyles } from 'lib';
@@ -10,6 +10,7 @@ import useViewport from 'hooks/useViewport';
 import Global from 'components/Global';
 import BackgroundTexture from 'components/BackgroundTexture';
 import SEO from '../SEO';
+import { ScrollFade } from '../../hooks/useScrollFade';
 
 const StyledLayout = styled.main`
   min-height: 110vh;
@@ -26,6 +27,7 @@ const StyledMain = styled.div`
     padding: 0 36px;
     font-size: 1.5rem;
     line-height: 4.0rem;
+    width: 85%;
   `}
 `;
 
@@ -34,6 +36,7 @@ const StyledNav = styled.div`
   right: 0;
   height: 100vh;
   z-index: 1;
+  pointer-events: none;
 `;
 
 const BackgroundFader = styled.div`
@@ -48,7 +51,7 @@ const BackgroundFader = styled.div`
   transition: background-color 3s;
   ${props => props.theme.media.md`
     grid-template-areas:
-    "main main main menu";
+    "main main main main menu";
     overflow: hidden;
     position: relative;
   `}
@@ -68,50 +71,58 @@ const FixedToggle = styled.div`
   right: 24px;
 `;
 
-function Layout({ isContact, isHome, children, ...props }) {
-  const [navToggled, setNavToggled] = useState(false);
-  const viewport = useViewport();
-
-  function handleNavToggle() {
-    setNavToggled(prev => !prev);
-  }
-
+const ScrollListener = ({ isHome, isContact }) => {
+  const { state } = useContext(ScrollFade);
   let scrollHeight;
-  let windowHeight;
+  let docHeight;
   let clientHeight;
   let backgroundFader;
-  let scrollPoint;
+  let scrollFade;
   let fadeHeader;
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    windowHeight = document.documentElement.offsetHeight;
+    docHeight = document.documentElement.offsetHeight;
     ({ clientHeight } = document.documentElement);
     backgroundFader = document.getElementById('background-fader');
     fadeHeader = document.getElementById('fade-header');
-    scrollPoint = scrollHeight - (clientHeight * 0.25);
+    scrollFade = scrollHeight - (clientHeight * 0.25);
   });
-
+  useEffect(() => {
+    if (state.scrollFade !== 0) {
+      ({ scrollFade } = state);
+    }
+  }, [state.scrollFade]);
   const handleScroll = () => {
-    const windowBottom = windowHeight + window.pageYOffset;
+    const windowBottom = docHeight + window.pageYOffset;
     const scrollIsBelowTop = window.pageYOffset >= 20;
-    const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - windowHeight - 10;
+    const scrollIsAboveBottom = window.pageYOffset <= scrollHeight - docHeight - 10;
     if (scrollIsBelowTop && scrollIsAboveBottom) {
       fadeHeader.setAttribute('style', 'opacity: 1');
     } else if (!scrollIsBelowTop || (!scrollIsAboveBottom && !isContact)) {
       fadeHeader.removeAttribute('style');
     }
 
-    if ((windowBottom >= scrollPoint && isHome) || (windowBottom < scrollPoint && !isHome && !isContact)) {
+    if ((windowBottom >= scrollFade && isHome) || (windowBottom < scrollFade && !isHome && !isContact)) {
       backgroundFader.classList.remove('invert');
-    } else if ((windowBottom < scrollPoint && isHome) || (windowBottom >= scrollPoint && !isHome)) {
+    } else if ((windowBottom < scrollFade && isHome) || (windowBottom >= scrollFade && !isHome)) {
       backgroundFader.classList.add('invert');
     }
+  }
+  return null;
+}
+
+function Layout({ isContact, isHome, children, ...props }) {
+  const [navToggled, setNavToggled] = useState(false);
+  const viewport = useViewport();
+
+  function handleNavToggle() {
+    setNavToggled(prev => !prev);
   }
   
   return (
@@ -120,6 +131,7 @@ function Layout({ isContact, isHome, children, ...props }) {
         <SEO />
         <Normalize />
         <GlobalStyles />
+        <ScrollListener isHome={isHome} isContact={isContact} />
         <NavigationContext.Provider value={navToggled}>
           <StyledLayout {...props}>
             <BackgroundFader id="background-fader" className={isHome || isContact ? 'invert' : ''}>
@@ -135,7 +147,7 @@ function Layout({ isContact, isHome, children, ...props }) {
                 ) : (
                   <FixedNav>
                     <Global.Navigation />
-                    <Global.Copyright isContact={isContact} />
+                    <Global.Copyright isHome={isHome} isContact={isContact} />
                   </FixedNav>
                 )}
               </StyledNav>

@@ -48,7 +48,7 @@ const BackgroundTexture = ({ isContact }) => {
     if (isViewport(viewport, ['DEFAULT', 'MEDIUM'])) {
       setWindowHeight(window.innerHeight);
       window.addEventListener('resize', () => {
-        if (windowHeight !== window.innerHeight) {
+        if (windowHeight < window.innerHeight) {
           setWindowHeight(window.innerHeight);
         }
       });

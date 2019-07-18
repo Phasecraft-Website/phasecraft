@@ -105,6 +105,10 @@ const GlobalStyles = createGlobalStyle`
       opacity: 1!important;
     }
 
+    .invert-border {
+      border-color: #e7e7e7!important;
+    }
+
     .invert-opacity-reverse {
       opacity: 0!important;
     }
