@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-// import { wrapGrid } from 'animate-css-grid';
 import { Content } from 'components'
 import { Person } from 'lib'
 import JoinTeam from './JoinTeam';
@@ -19,7 +18,7 @@ const StyledPersonList = styled.section`
 
   ${props => props.theme.media.md`
     grid-gap: 50px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(auto, 273px));
     padding-left: 0;
     padding-right: 0;
     margin-top: 70px;
