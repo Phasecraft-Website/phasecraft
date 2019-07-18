@@ -29,12 +29,11 @@ const StyledPersonList = styled.section`
 
 function ListOfPersons({ items }) {
   const grid = useRef();
-  let forceGridAnimation;
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('animate-css-grid')
         .then(({ wrapGrid }) => {
-          ({ forceGridAnimation } = wrapGrid(grid.current));
+          wrapGrid(grid.current);
         });
     }
   });
@@ -61,7 +60,6 @@ function ListOfPersons({ items }) {
             image={img}
             contact={contactContent}
             socialLinks={socialContent}
-            animate={() => forceGridAnimation()}
           />
         )
       })}

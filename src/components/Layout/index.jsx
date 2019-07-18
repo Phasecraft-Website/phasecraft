@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Normalize, GlobalStyles } from 'lib';
@@ -71,15 +71,8 @@ const FixedToggle = styled.div`
   right: 24px;
 `;
 
-function Layout({ isContact, isHome, children, ...props }) {
-  const [navToggled, setNavToggled] = useState(false);
-  const viewport = useViewport();
-  const { state } = React.useContext(ScrollFade);
-
-  function handleNavToggle() {
-    setNavToggled(prev => !prev);
-  }
-
+const ScrollListener = ({ isHome, isContact }) => {
+  const { state } = useContext(ScrollFade);
   let scrollHeight;
   let docHeight;
   let clientHeight;
@@ -87,7 +80,7 @@ function Layout({ isContact, isHome, children, ...props }) {
   let scrollFade;
   let fadeHeader;
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -100,13 +93,11 @@ function Layout({ isContact, isHome, children, ...props }) {
     fadeHeader = document.getElementById('fade-header');
     scrollFade = scrollHeight - (clientHeight * 0.25);
   });
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.scrollFade !== 0) {
       ({ scrollFade } = state);
     }
   }, [state.scrollFade]);
-
   const handleScroll = () => {
     const windowBottom = docHeight + window.pageYOffset;
     const scrollIsBelowTop = window.pageYOffset >= 20;
@@ -123,6 +114,16 @@ function Layout({ isContact, isHome, children, ...props }) {
       backgroundFader.classList.add('invert');
     }
   }
+  return null;
+}
+
+function Layout({ isContact, isHome, children, ...props }) {
+  const [navToggled, setNavToggled] = useState(false);
+  const viewport = useViewport();
+
+  function handleNavToggle() {
+    setNavToggled(prev => !prev);
+  }
   
   return (
     <ThemeProvider theme={theme}>
@@ -130,6 +131,7 @@ function Layout({ isContact, isHome, children, ...props }) {
         <SEO />
         <Normalize />
         <GlobalStyles />
+        <ScrollListener isHome={isHome} isContact={isContact} />
         <NavigationContext.Provider value={navToggled}>
           <StyledLayout {...props}>
             <BackgroundFader id="background-fader" className={isHome || isContact ? 'invert' : ''}>
