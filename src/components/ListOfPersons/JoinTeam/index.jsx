@@ -9,7 +9,7 @@ const ResultsContainer = styled.div`
   min-height: 80vh;
   margin-top: 50px;
   ${props => props.theme.media.md`
-    min-height: 100vh;
+    min-height: 70vh;
     margin-top: 0;
   `}
 `;
@@ -24,7 +24,7 @@ const AbsoluteBackground = styled.div`
   background: linear-gradient(to bottom, rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0));
   z-index: -1;
   ${props => props.theme.media.md`
-    min-height: 200vh;
+    min-height: 150vh;
     left: -35px;
     right: calc(-40% - 35px);
   `}
@@ -38,7 +38,7 @@ const TextContainer = styled.div`
   margin-right: -15px;
   padding-left: 40px;
   ${props => props.theme.media.md`
-    height: 100vh;
+    height: 70vh;
     padding-left: 0;
     margin-right: 0;
     margin-left: 86px;
