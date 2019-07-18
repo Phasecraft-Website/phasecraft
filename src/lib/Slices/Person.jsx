@@ -262,8 +262,8 @@ const SocialContainer = styled.div`
     margin-right: 8px;
   }
   a, a:visited {
-    font-size: 11px;
-    line-height: 12px;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.3em;
     color: inherit;
@@ -272,9 +272,6 @@ const SocialContainer = styled.div`
       font-size: 1rem;
       line-height: 1.2rem;
     `}
-  }
-  strong {
-    font-family: 'GT Pressura Mono Regular';
   }
 `;
 
@@ -317,7 +314,6 @@ function Person({ image, name, workFunction, bio, socialLinks, qualification, co
             {contact}
           </ExpandedContact>
           {isSocial && <SocialContainer active={active}>
-            <p><strong>Social</strong></p>
             {socialLinks}
           </SocialContainer>}
         </BasicInfo>
