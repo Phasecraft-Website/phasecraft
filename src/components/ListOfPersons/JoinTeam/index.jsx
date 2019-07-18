@@ -26,7 +26,7 @@ const AbsoluteBackground = styled.div`
   ${props => props.theme.media.md`
     min-height: 150vh;
     left: -35px;
-    right: calc(-40% - 35px);
+    right: calc(-50% - 35px);
   `}
 `;
 
