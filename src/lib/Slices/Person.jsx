@@ -282,7 +282,7 @@ function Person({ image, name, workFunction, bio, socialLinks, qualification, co
     setActive(!active);
     setTimeout(() => {
       dispatch({ type: 'update' });
-    }, 500)
+    }, 1000)
   }
   const viewport = useViewport();
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
