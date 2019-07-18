@@ -58,6 +58,7 @@ const StyledInfo = styled.button`
     font-family: GT Pressura Mono Regular;
     font-size: 1.7rem;
     line-height: 1.9rem;
+    letter-spacing: 0.2rem;
     cursor: pointer;
     color: #051736;
     opacity: 0;
@@ -131,21 +132,22 @@ const StyledName = styled.header`
 const HoverEffect = styled.div`
   ${props => props.theme.media.md`
     &:hover {
-      ${Grayscale} {
-        filter: grayscale(1) hue-rotate(245deg);
-      }
       ${StyledInfo} {
         transform: scale(1) translate(-50%, -50%);
-        opacity: 1;
+        opacity: ${({ active }) => active ? '0' : '1'};
+        cursor: ${({ active }) => active ? 'default' : 'pointer'};
+        pointer-events: ${({ active }) => active ? 'none' : 'all'};
         z-index: 1;
       }
       ${StyledPicture}::after {
-        opacity: 1;
+        opacity: ${({ active }) => active ? '0' : '1'};
       }
       h2 {
         z-index: 1;
+        cursor: ${({ active }) => active ? 'default' : 'pointer'};
+        pointer-events: ${({ active }) => active ? 'none' : 'all'};
         &::after {
-          background-color: #2FF2AF;
+          background-color: ${({ active }) => active ? 'transparent' : '#2FF2AF'};
         }
       }
     }
@@ -276,13 +278,11 @@ const SocialContainer = styled.div`
   }
 `;
 
-function Person({ image, name, workFunction, bio, socialLinks, animate, qualification, contact, ...props }) {
+function Person({ image, name, workFunction, bio, socialLinks, qualification, contact, ...props }) {
   const [active, setActive] = useState(false);
   const { dispatch } = React.useContext(ScrollFade);
-  const el = useRef(null);
   const expand = () => {
     setActive(!active);
-    animate();
     setTimeout(() => {
       dispatch({ type: 'update' });
     }, 500)
@@ -291,10 +291,10 @@ function Person({ image, name, workFunction, bio, socialLinks, animate, qualific
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
   const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
-    <StyledPerson className="grid-item" ref={el} active={active} {...props}>
+    <StyledPerson className={active ? 'active' : ''} active={active} {...props}>
       <GridContainer>
         <BasicInfo active={active}>
-          <HoverEffect>
+          <HoverEffect active={active}>
             <StyledPicture active={active}>
               <Grayscale>
                 {image}
