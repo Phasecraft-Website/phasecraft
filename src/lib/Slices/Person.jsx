@@ -92,9 +92,10 @@ const StyledFunction = styled.span`
   font-family: 'Sul Sans, Light';
   color: #051736;
   font-size: 1.7rem;
-  line-height: 2.8rem;
+  line-height: 1.9rem;
   ${props => props.theme.media.md`
     font-size: 1.7rem;
+    line-height: 2.8rem;
   `}
 `;
 
