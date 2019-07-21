@@ -24,9 +24,8 @@ const fontFamilies = [
 const typography = {
   h1: {
     font: 'Sul-Sans-Regular',
-    fontSize: '1.3rem',
-    // letterSpacing: '0.3em',
-    lineHeight: '1.5rem',
+    fontSize: '3.6rem',
+    lineHeight: '4.5rem',
     textTransform: 'uppercase',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -110,7 +109,6 @@ const typography = {
     textTransform: 'none',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    color: '#7F7F7F',
     lineHeight: 'normal',
   },
   secondaryBody: {

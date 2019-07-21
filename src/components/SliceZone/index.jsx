@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Content, ListOfPersons } from 'components';
 import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
+import ListOfPosts from '../ListOfPosts';
 
 const StyledContent = styled(Content)`
   font-family: 'Sul Sans, Regular';
@@ -40,6 +41,7 @@ export default class SliceZone extends Component {
     const { allSlices, children } = this.props;
     if (!allSlices) return null;
     const slice = allSlices.map((s, i) => {
+      // console.log(s.items[0][schema]);
       switch (s.slice_type) {
         case 'paragraph':
           return <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
@@ -53,11 +55,22 @@ export default class SliceZone extends Component {
               }))}
             />
           )
+        case 'list_of_posts':
+          return (
+            <ListOfPosts
+              key={s.id}
+              items={s.items.map(x => ({
+                id: x.news_post.document[0].id,
+                ...relResolver(x, 'news_post'),
+              }))}
+            />
+          )
         default:
           console.warn(`No support for slice type ${s.slice_type}`);
           return null;
       }
     });
+    console.log(children);
     return (
       <>
         <Title className="invert-color">

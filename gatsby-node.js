@@ -17,12 +17,26 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
+  const posts = await graphql(`
+    {
+      allPrismicNews {
+        edges {
+          node {
+            id
+            uid
+          }
+        }
+      }
+    }
+  `);
 
   // Templates
   const pageTemplate = path.resolve('src/templates/page.jsx');
+  const postTemplate = path.resolve('src/templates/page.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
+  const postsList = posts.data.allPrismicNews.edges;
 
   pagesList.forEach(edge => {
     createPage({
@@ -31,6 +45,16 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         uid: edge.node.uid,
       },
+    });
+  });
+
+  postsList.forEach(edge => {
+    createPage({
+      path: `/news/${edge.node.uid}`,
+      component: postTemplate,
+      context: {
+        uid: edge.node.uid,
+      }
     });
   });
 };

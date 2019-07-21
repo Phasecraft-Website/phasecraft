@@ -1,16 +1,50 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import useViewport from 'hooks/useViewport';
 import { isViewport } from 'helpers';
 import { ScrollFade } from '../../hooks/useScrollFade';
 
-const StyledPerson = styled.article`
+const basic = '0.3s';
+const basicDelayOpen = '0.5s';
+const basicDelayClose = '0s';
+const expandedOpen = '0.7s';
+const expandedClose = '0.5s';
+
+const revealAnim = keyframes`
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0%); opacity: 1; }
+`;
+
+const revealStyle = css`
+  animation: ${revealAnim} 0.6s ease-out;
+`;
+
+const hideAnim = keyframes`
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translateY(-100%); opacity: 0; }
+`;
+
+const hideStyle = css`
+  animation: ${hideAnim} 0.6s ease-out;
+`;
+
+const PersonContainer = styled.div`
+  overflow: hidden;
   grid-column-end: span ${({ active }) => active ? 2 : 1};
-  position: relative;
   ${props => props.theme.media.md`
     grid-column-end: span ${({ active }) => active ? 3 : 1};
   `}
+  .shrink {
+    ${hideStyle}
+  }
+`;
+
+const StyledPerson = styled.article`
+  transform-origin: top;
+  // transform: scaleY(0.3);
+  ${({ active }) => active ? revealStyle : 'animation: none;'}
+  position: relative;
 `;
 
 const GridContainer = styled.div`
@@ -160,8 +194,8 @@ const BasicInfo = styled.div`
   grid-column-end: span ${({ active }) => active ? '2' : '3'};
   padding: ${({ active }) => active ? '10px' : '0'};
   background-color: ${({ active }) => active ? 'rgba(255, 255, 255, 0.7);' : 'transparent'};
-  transition-duration: 0.3s;
-  transition-delay: ${({ active }) => active ? '0s' : '0.5s'};
+  transition-duration: ${basic};
+  transition-delay: ${({ active }) => active ? basicDelayClose : basicDelayOpen};
   ${props => props.theme.media.md`
     grid-column-end: span ${({ active }) => active ? '1' : '3'};
   `}
@@ -176,7 +210,7 @@ const ExpandedInfo = styled.div`
   z-index: ${({ active }) => active ? '1' : '-1'};
   opacity: ${({ active }) => active ? '1' : '0'};
   background: rgba(255, 253, 252, 0.4);
-  transition-duration: ${({ active }) => active ? '0.5s' : '0.7s'};
+  transition-duration: ${({ active }) => active ? expandedClose : expandedOpen};
 `;
 
 const BioContainer = styled.div`
@@ -276,62 +310,65 @@ const SocialContainer = styled.div`
   }
 `;
 
-function Person({ image, name, workFunction, bio, socialLinks, qualification, contact, ...props }) {
-  const [active, setActive] = useState(false);
+function Person({ image, name, workFunction, bio, socialLinks, qualification, contact, active, toggle, ...props }) {
+  const [hide, setHide] = useState(false);
   const { dispatch } = React.useContext(ScrollFade);
-  const expand = () => {
-    setActive(!active);
+  const close = () => {
+    setHide(true);
     setTimeout(() => {
       dispatch({ type: 'update' });
-    }, 1000)
+      toggle(true);
+    }, 600);
   }
   const viewport = useViewport();
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
   const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
-    <StyledPerson className={active ? 'active' : ''} active={active} {...props}>
-      <GridContainer>
-        <BasicInfo active={active}>
-          <HoverEffect active={active}>
-            <StyledPicture active={active}>
-              <Grayscale>
-                {image}
-              </Grayscale>
-              <StyledInfo active={active} onClick={() => expand()}>
-                {isViewport(viewport, ['DEFAULT', 'MEDIUM']) 
-                  ? (
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8.12451 0.768799V15.572" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
-                      <path d="M15.5261 8.17039H0.7229" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
-                    </svg>
-                  ) : 'INFO'}
-              </StyledInfo>
-            </StyledPicture>
-            <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
-          </HoverEffect>
-          <StyledFunction className="invert-color">{workFunction}</StyledFunction>
-          <ExpandedContact active={active}>
-            {qualification}
-            {contact}
-          </ExpandedContact>
-          {isSocial && <SocialContainer active={active}>
-            {socialLinks}
-          </SocialContainer>}
-        </BasicInfo>
-        <ExpandedInfo active={active}>
-          <BioContainer active={active}>
-            <CloseButton type="button" id="clicky" onClick={() => expand()}>
-              <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
-                <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
-              </svg>
-            </CloseButton>
-            {isBio ? bio : <p>More info coming soon...</p>}
-          </BioContainer>
-        </ExpandedInfo>
-      </GridContainer>
-      {/* <StyledInformation>{information}</StyledInformation> */}
-    </StyledPerson>
+    <PersonContainer active={active}>
+      <StyledPerson className={hide ? 'shrink' : ''} active={active} {...props}>
+        <GridContainer>
+          <BasicInfo active={active}>
+            <HoverEffect active={active}>
+              <StyledPicture active={active}>
+                <Grayscale>
+                  {image}
+                </Grayscale>
+                {!active && <StyledInfo active={active} onClick={() => toggle()}>
+                  {isViewport(viewport, ['DEFAULT', 'MEDIUM']) 
+                    ? (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.12451 0.768799V15.572" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
+                        <path d="M15.5261 8.17039H0.7229" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
+                      </svg>
+                    ) : 'INFO'}
+                </StyledInfo>}
+              </StyledPicture>
+              <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
+            </HoverEffect>
+            <StyledFunction className="invert-color">{workFunction}</StyledFunction>
+            <ExpandedContact active={active}>
+              {qualification}
+              {contact}
+            </ExpandedContact>
+            {isSocial && <SocialContainer active={active}>
+              {socialLinks}
+            </SocialContainer>}
+          </BasicInfo>
+          <ExpandedInfo active={active}>
+            <BioContainer active={active}>
+              <CloseButton type="button" id="clicky" onClick={() => close()}>
+                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
+                  <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
+                </svg>
+              </CloseButton>
+              {isBio ? bio : <p>More info coming soon...</p>}
+            </BioContainer>
+          </ExpandedInfo>
+        </GridContainer>
+        {/* <StyledInformation>{information}</StyledInformation> */}
+      </StyledPerson>
+    </PersonContainer>
   );
 }
 
@@ -340,6 +377,7 @@ export default Person;
 Person.defaultProps = {
   workFunction: null,
   qualification: null,
+  active: false,
 };
 
 Person.propTypes = {
@@ -350,5 +388,6 @@ Person.propTypes = {
   qualification: PropTypes.node,
   bio: PropTypes.node.isRequired,
   socialLinks: PropTypes.node.isRequired,
-  animate: PropTypes.func.isRequired,
+  active: PropTypes.bool,
+  toggle: PropTypes.func.isRequired,
 };

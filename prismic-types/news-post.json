@@ -1,0 +1,243 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID",
+        "placeholder": "uid for the url"
+      }
+    },
+    "published": {
+      "type": "Date",
+      "config": {
+        "label": "Published",
+        "placeholder": "dd.mm.yy"
+      }
+    },
+    "page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Title",
+        "placeholder" : "Page title"
+      }
+    },
+    "type": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Type",
+        "placeholder": "eg, Article, Opinion, Technical"
+      }
+    },
+    "related_articles": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link"
+            }
+          },
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Link text",
+              "placeholder": "Custom link text"
+            }
+          }
+        },
+        "label": "Further reading"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "paragraph": {
+            "type": "Slice",
+            "fieldset": "Paragraph",
+            "description": "A paragraph",
+            "icon": "format_align_justify",
+            "display": "list",
+            "non-repeat": {
+              "paragraph_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 272,
+                    "height": 272
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "x2",
+                      "width": 544,
+                      "height": 544
+                    },
+                    {
+                      "name": "x3",
+                      "width": 816,
+                      "height": 816
+                    }
+                  ],
+                  "label": "Image"
+                }
+              },
+              "image_info": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Image info",
+                  "placeholder": "Write something interesting about the above image"
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading2, heading3, heading4, heading5, strong, em, hyperlink, image, list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Content",
+                  "placeholder": "The paragraph itself"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "images": {
+            "type": "Slice",
+            "fieldset": "Images",
+            "description": "A pinterest-style image board",
+            "icon": "image",
+            "display": "grid",
+            "non-repeat": {},
+            "repeat": {
+              "board_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 307
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "x2",
+                      "width": 614,
+                      "height": null
+                    },
+                    {
+                      "name": "x3",
+                      "width": 951,
+                      "height": null
+                    }
+                  ],
+                  "label": "Image"
+                }
+              },
+              "alt_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Alt text"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "allowTargetBlank": true,
+                  "label": "Link",
+                  "placeholder": "Source link"
+                }
+              }
+            }
+          },
+          "video": {
+            "type": "Slice",
+            "fieldset": "Video",
+            "description": "A full width video",
+            "icon": "videocam",
+            "display": "list",
+            "non-repeat": {
+              "video": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Video",
+                  "placeholder": "Select a video file"
+                }
+              },
+              "poster": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [
+                    {
+                      "name": "large",
+                      "width": 1024,
+                      "height": null
+                    },
+                    {
+                      "name": "mobile",
+                      "width": 600,
+                      "height": null
+                    }
+                  ],
+                  "label": "Poster"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  },
+  "Meta": {
+    "meta_title": {
+      "type": "Text",
+      "config": {
+        "label": "Meta title",
+        "placeholder": "Title as it appears in SoMe sharing and Google"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta description",
+        "placeholder": "Description as it appears in SoMe sharing and Google (short and sweet, no longer than twice a tweet)"
+      }
+    },
+    "meta_images": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 1200,
+                "height": 630
+              },
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Meta images"
+      }
+    },
+    "show_in_sitemap": {
+      "type": "Select",
+      "config": {
+        "options": [
+          "true",
+          "false"
+        ],
+        "default_value": "true",
+        "label": "Show in sitemap",
+        "placeholder": "Choose one"
+      }
+    }
+  }
+}

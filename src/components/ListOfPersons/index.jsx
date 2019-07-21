@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import useViewport from 'hooks/useViewport';
+import { isViewport } from 'helpers';
 import { Content } from 'components'
 import { Person } from 'lib'
 import JoinTeam from './JoinTeam';
 
 const StyledPersonList = styled.section`
-  // padding: 0 1.6rem 3.8rem;
   position: relative;
   display: grid;
   grid-gap: 10px;
@@ -29,18 +30,31 @@ const StyledPersonList = styled.section`
 
 function ListOfPersons({ items }) {
   const grid = useRef();
+  const [people, setPeople] = useState(items);
+  const viewport = useViewport();
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('animate-css-grid')
         .then(({ wrapGrid }) => {
-          wrapGrid(grid.current);
+          // wrapGrid(grid.current, { duration: 600 });
         });
     }
   });
+
+  const toggle = (item, index) => {
+    const newList = [...items];
+    if (!item.remove) {
+      const insert = isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? Math.ceil((index+1)/2)*2 : Math.ceil((index+1)/3)*3;
+      newList.splice(insert, 0, item)
+    };
+    setPeople(newList);
+  }
+
   return (
     <>
     <StyledPersonList ref={grid}>
-      {items.map(({ id, bio, name, contact, image, workFunction, qualification, socialLinks }, index) => {
+      {people.map(({ id, bio, name, contact, image, workFunction, qualification, socialLinks, active }, index) => {
         const bioContent = <Content html={bio.html} />
         const nameContent = <Content html={name.html} />
         const contactContent = <Content html={contact.html} />
@@ -52,7 +66,6 @@ function ListOfPersons({ items }) {
         return (
           <Person
             key={id}
-            even={index % 2 === 0}
             name={nameContent}
             bio={bioContent}
             workFunction={workFunction}
@@ -60,6 +73,10 @@ function ListOfPersons({ items }) {
             image={img}
             contact={contactContent}
             socialLinks={socialContent}
+            active={active}
+            toggle={remove => toggle({
+              id, bio, name, contact, image, workFunction, qualification, socialLinks, remove, active: true,
+            }, index)}
           />
         )
       })}
