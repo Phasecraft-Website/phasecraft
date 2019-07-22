@@ -8,25 +8,25 @@ import { ScrollFade } from '../../hooks/useScrollFade';
 const basic = '0.3s';
 const basicDelayOpen = '0.5s';
 const basicDelayClose = '0s';
-const expandedOpen = '0.7s';
-const expandedClose = '0.5s';
+// const expandedOpen = '0.7s';
+// const expandedClose = '0.5s';
 
 const revealAnim = keyframes`
-  from { transform: translateY(-100%); opacity: 0; }
+  from { transform: translateY(100%); opacity: 0; }
   to { transform: translateY(0%); opacity: 1; }
 `;
 
 const revealStyle = css`
-  animation: ${revealAnim} 0.6s ease-out;
+  animation: ${revealAnim} 1s ease-in-out;
 `;
 
 const hideAnim = keyframes`
   from { transform: translateY(0%); opacity: 1; }
-  to { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(100%); opacity: 0; }
 `;
 
 const hideStyle = css`
-  animation: ${hideAnim} 0.6s ease-out;
+  animation: ${hideAnim} 1s ease-in-out;
 `;
 
 const PersonContainer = styled.div`
@@ -37,6 +37,7 @@ const PersonContainer = styled.div`
   `}
   .shrink {
     ${hideStyle}
+    animation-fill-mode: forwards;
   }
 `;
 
@@ -80,16 +81,16 @@ const StyledInfo = styled.button`
   ${props => props.theme.media.md`
     padding-top: 0;
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     top: 50%;
     right: 50%;
     bottom: 50%;
     left: 50%;
-    transform: scale(.9) translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     transform-origin: top left;
-    width: 30%;
-    height: 30%;
-    font-family: GT Pressura Mono Regular;
+    width: 40%;
+    height: 40%;
+    font-family: GT Pressura Mono Light;
     font-size: 1.7rem;
     line-height: 1.9rem;
     letter-spacing: 0.2rem;
@@ -125,10 +126,10 @@ const StyledPicture = styled.figure`
 const StyledFunction = styled.span`
   font-family: 'Sul Sans, Light';
   color: #051736;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   line-height: 1.9rem;
   ${props => props.theme.media.md`
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     line-height: 2.8rem;
   `}
 `;
@@ -168,7 +169,6 @@ const HoverEffect = styled.div`
   ${props => props.theme.media.md`
     &:hover {
       ${StyledInfo} {
-        transform: scale(1) translate(-50%, -50%);
         opacity: ${({ active }) => active ? '0' : '1'};
         cursor: ${({ active }) => active ? 'default' : 'pointer'};
         pointer-events: ${({ active }) => active ? 'none' : 'all'};
@@ -201,16 +201,45 @@ const BasicInfo = styled.div`
   `}
 `;
 
+const ExpandedInfoContainer = styled.div`
+    overflow: hidden;
+    grid-area: 'info';
+    grid-column-end: span ${({ active }) => active ? '2' : '0'};
+    .shrink-info {
+      ${exReverseStyle}
+      animation-fill-mode: forwards;
+    }
+`;
+
+const exAnim = keyframes`
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0%); opacity: 1; }
+`;
+
+const exStyle = css`
+  animation: ${exAnim} 1s ease-in-out 0.8s;
+`;
+
+const exReverseAnim = keyframes`
+  from { transform: translateX(0%); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+`;
+
+const exReverseStyle = css`
+  animation: ${exReverseAnim} 1s ease-in-out!important;
+`;
+
 const ExpandedInfo = styled.div`
-  grid-area: 'info';
-  grid-column-end: span ${({ active }) => active ? '2' : '0'};
   overflow: hidden;
   max-height: ${({ active }) => active ? '100%' : '0'};
   position: relative;
-  z-index: ${({ active }) => active ? '1' : '-1'};
-  opacity: ${({ active }) => active ? '1' : '0'};
   background: rgba(255, 253, 252, 0.4);
-  transition-duration: ${({ active }) => active ? expandedClose : expandedOpen};
+  height: 100%;
+  ${props => props.theme.media.md`
+    transform: translateX(-100%);
+    ${({ active }) => active ? exStyle : ''};
+    animation-fill-mode: forwards;
+  `}
 `;
 
 const BioContainer = styled.div`
@@ -257,8 +286,11 @@ const ExpandedContact = styled.div`
   transition-duration: ${({ active }) => active ? '0.5s' : '0.5s'};
   font-family: 'Sul Sans, Light';
   color: #051736;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   line-height: 2.8rem;
+  // padding-top: 5px;
+  // display: flex;
+  // justify-content: space-between;
   p {
     margin: 0;
   }
@@ -268,7 +300,7 @@ const ExpandedContact = styled.div`
   a {
     font-family: 'Sul Sans, Light';
     color: #051736;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     line-height: 2.8rem;
   }
 `;
@@ -318,7 +350,7 @@ function Person({ image, name, workFunction, bio, socialLinks, qualification, co
     setTimeout(() => {
       dispatch({ type: 'update' });
       toggle(true);
-    }, 600);
+    }, 1000);
   }
   const viewport = useViewport();
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
@@ -343,28 +375,32 @@ function Person({ image, name, workFunction, bio, socialLinks, qualification, co
                     ) : 'INFO'}
                 </StyledInfo>}
               </StyledPicture>
-              <StyledName onClick={() => expand()} className="invert-color">{name}</StyledName>
+              <StyledName onClick={() => toggle()} className="invert-color">{name}</StyledName>
             </HoverEffect>
             <StyledFunction className="invert-color">{workFunction}</StyledFunction>
             <ExpandedContact active={active}>
-              {qualification}
+              <p>
+                {qualification}
+              </p>
               {contact}
             </ExpandedContact>
             {isSocial && <SocialContainer active={active}>
               {socialLinks}
             </SocialContainer>}
           </BasicInfo>
-          <ExpandedInfo active={active}>
-            <BioContainer active={active}>
-              <CloseButton type="button" id="clicky" onClick={() => close()}>
-                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
-                  <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
-                </svg>
-              </CloseButton>
-              {isBio ? bio : <p>More info coming soon...</p>}
-            </BioContainer>
-          </ExpandedInfo>
+          <ExpandedInfoContainer active={active}>
+            <ExpandedInfo active={active} className={hide ? 'shrink-info' : ''}>
+              <BioContainer active={active}>
+                <CloseButton type="button" id="clicky" onClick={() => close()}>
+                  <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.06055" y="0.835297" width="30" height="1.5" transform="rotate(45 1.06055 0.835297)" fill="#051736"/>
+                    <rect y="22.0485" width="30" height="1.5" transform="rotate(-45 0 22.0485)" fill="#051736"/>
+                  </svg>
+                </CloseButton>
+                {isBio ? bio : <p>More info coming soon...</p>}
+              </BioContainer>
+            </ExpandedInfo>
+          </ExpandedInfoContainer>
         </GridContainer>
         {/* <StyledInformation>{information}</StyledInformation> */}
       </StyledPerson>

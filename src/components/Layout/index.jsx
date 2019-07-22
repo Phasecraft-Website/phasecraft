@@ -26,7 +26,6 @@ const StyledMain = styled.div`
   ${props => props.theme.media.md`
     padding: 0 36px;
     font-size: 1.5rem;
-    line-height: 4.0rem;
     width: 85%;
   `}
 `;

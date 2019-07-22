@@ -16,6 +16,7 @@ const StyledPersonList = styled.section`
   grid-template-columns: repeat(2, 1fr);
   margin-top: 70px;
   margin-right: -20%;
+  transition: 0.6s;
 
   ${props => props.theme.media.md`
     grid-gap: 50px;
@@ -45,7 +46,7 @@ function ListOfPersons({ items }) {
   const toggle = (item, index) => {
     const newList = [...items];
     if (!item.remove) {
-      const insert = isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? Math.ceil((index+1)/2)*2 : Math.ceil((index+1)/3)*3;
+      const insert = isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? Math.floor((index+1)/2)*2 : Math.floor((index)/3)*3;
       newList.splice(insert, 0, item)
     };
     setPeople(newList);
@@ -65,7 +66,7 @@ function ListOfPersons({ items }) {
           ) : null
         return (
           <Person
-            key={id}
+            key={`${id}-${active}`}
             name={nameContent}
             bio={bioContent}
             workFunction={workFunction}

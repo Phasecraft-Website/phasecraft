@@ -9,7 +9,7 @@ const ResultsContainer = styled.div`
   min-height: 80vh;
   margin-top: 50px;
   ${props => props.theme.media.md`
-    min-height: 70vh;
+    min-height: 60vh;
     margin-top: 0;
   `}
 `;
@@ -24,7 +24,7 @@ const AbsoluteBackground = styled.div`
   background: linear-gradient(to bottom, rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0.4), rgba(255, 253, 252, 0));
   z-index: -1;
   ${props => props.theme.media.md`
-    min-height: 150vh;
+    min-height: 140vh;
     left: -35px;
     right: calc(-50% - 35px);
   `}
@@ -34,14 +34,15 @@ const TextContainer = styled.div`
   height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   margin-right: -15px;
   padding-left: 40px;
   ${props => props.theme.media.md`
-    height: 70vh;
+    height: 60vh;
     padding-left: 0;
     margin-right: 0;
     margin-left: 86px;
+    width: 70%;
   `}
 `;
 
@@ -58,21 +59,17 @@ const AbstractText = styled.h2`
 `;
 
 const ResultsText = styled.p`
-  font-family: 'Sul Sans, Regular';
-  font-size: 20px;
-  line-height: 25px;
+  font-family: 'Sul Sans, Light';
+  font-size: 2rem;
+  line-height: 2.5rem;
   color: #051736;
   margin-top: 0;
-  ${props => props.theme.media.md`
-    font-size: 26px;
-    line-height: 32px;
-  `}
 `;
 
 const EmailText = styled.a`
   font-family: 'Sul Sans, Medium';
-  font-size: 22px;
-  line-height: 27px;
+  font-size: 2.2rem;
+  line-height: 2.7rem;
   color: #051736;
   margin: 0;
   margin-top: 10px;
@@ -99,7 +96,7 @@ const EmailText = styled.a`
   }
   ${props => props.theme.media.md`
     margin-top: 52px;
-    font-size: 26px;
+    font-size: 2.6rem;
     margin: 0;
   `}
 `;

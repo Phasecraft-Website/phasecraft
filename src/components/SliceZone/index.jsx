@@ -15,7 +15,7 @@ const StyledContent = styled(Content)`
     margin-top: 50px;
   }
   ${props => props.theme.media.md`
-    width: 70%;
+    width: 80%;
     margin-right: 0;
     p {
       font-size: 2rem;
