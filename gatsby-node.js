@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Templates
   const pageTemplate = path.resolve('src/templates/page.jsx');
-  const postTemplate = path.resolve('src/templates/page.jsx');
+  const postTemplate = path.resolve('src/pages/news.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
