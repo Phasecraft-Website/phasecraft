@@ -12,21 +12,21 @@ const basicDelayClose = '0s';
 // const expandedClose = '0.5s';
 
 const revealAnim = keyframes`
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0%); opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 `;
 
 const revealStyle = css`
-  animation: ${revealAnim} 1s ease-in-out;
+  animation: ${revealAnim} 0.7s ease-in-out;
 `;
 
 const hideAnim = keyframes`
-  from { transform: translateX(0%); opacity: 1; }
-  to { transform: translateX(-100%); opacity: 0; }
+  from { opacity: 1; }
+  to { opacity: 0; }
 `;
 
 const hideStyle = css`
-  animation: ${hideAnim} 1s ease-in-out;
+  animation: ${hideAnim} 0.7s ease-in-out;
 `;
 
 const PersonContainer = styled.div`
@@ -219,7 +219,7 @@ const exAnim = keyframes`
 `;
 
 const exStyle = css`
-  animation: ${exAnim} 1s ease-in-out 0.8s;
+  animation: ${exAnim} 0.7s ease-in-out 0.5s;
 `;
 
 const exReverseAnim = keyframes`
