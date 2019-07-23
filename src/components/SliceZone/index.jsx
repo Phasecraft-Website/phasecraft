@@ -41,7 +41,6 @@ export default class SliceZone extends Component {
     const { allSlices, children } = this.props;
     if (!allSlices) return null;
     const slice = allSlices.map((s, i) => {
-      // console.log(s.items[0][schema]);
       switch (s.slice_type) {
         case 'paragraph':
           return <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
@@ -70,7 +69,6 @@ export default class SliceZone extends Component {
           return null;
       }
     });
-    console.log(children);
     return (
       <>
         <Title className="invert-color">

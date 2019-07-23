@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 
 const StyledPost = styled.div`
   color: #051736;
@@ -54,7 +55,7 @@ const Published = styled.div`
   width: 150px;
 `;
 
-const PostItem = ({ type, published, title, preview }) => (
+const PostItem = ({ uid, type, published, title, preview }) => (
   <StyledPost>
     <span>
       <h2>{type}</h2>
@@ -62,7 +63,7 @@ const PostItem = ({ type, published, title, preview }) => (
         <h2>{published}</h2>
       </Published>
     </span>
-    <h1><a href="/news">{title}</a></h1>
+    <h1><Link to={`/news/${uid}`}>{title}</Link></h1>
     <p>
       {preview}
     </p>
@@ -81,4 +82,5 @@ PostItem.propTypes = {
   published: PropTypes.node.isRequired,
   title: PropTypes.node.isRequired,
   preview: PropTypes.string.isRequired,
+  uid: PropTypes.string.isRequired,
 }

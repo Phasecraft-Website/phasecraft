@@ -15,7 +15,6 @@ function News({ data: { prismicNews } }) {
   const {
     data: { page_title, body },
   } = prismicNews;
-  console.log(body);
   return (
     <ScrollFadeProvider>
       <Layout>
@@ -76,6 +75,7 @@ export const pageQuery = graphql`
                   }
                 }
                 id
+                uid
               }
               id
             }

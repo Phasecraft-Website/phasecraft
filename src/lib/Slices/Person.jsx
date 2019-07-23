@@ -12,8 +12,8 @@ const basicDelayClose = '0s';
 // const expandedClose = '0.5s';
 
 const revealAnim = keyframes`
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0%); opacity: 1; }
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0%); opacity: 1; }
 `;
 
 const revealStyle = css`
@@ -21,8 +21,8 @@ const revealStyle = css`
 `;
 
 const hideAnim = keyframes`
-  from { transform: translateY(0%); opacity: 1; }
-  to { transform: translateY(100%); opacity: 0; }
+  from { transform: translateX(0%); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
 `;
 
 const hideStyle = css`
@@ -198,6 +198,8 @@ const BasicInfo = styled.div`
   transition-delay: ${({ active }) => active ? basicDelayClose : basicDelayOpen};
   ${props => props.theme.media.md`
     grid-column-end: span ${({ active }) => active ? '1' : '3'};
+    display: flex;
+    flex-direction: column;
   `}
 `;
 
@@ -288,9 +290,10 @@ const ExpandedContact = styled.div`
   color: #051736;
   font-size: 1.6rem;
   line-height: 2.8rem;
-  // padding-top: 5px;
-  // display: flex;
-  // justify-content: space-between;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   p {
     margin: 0;
   }

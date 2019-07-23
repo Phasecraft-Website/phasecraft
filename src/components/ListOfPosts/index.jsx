@@ -22,7 +22,7 @@ const StyledPostList = styled.section`
 
 const ListOfPosts = ({ items }) => (
   <StyledPostList>
-    {items.map(({ id, title, type, published, body }) => {
+    {items.map(({ uid, id, title, type, published, body }) => {
       const previewText = body[0].primary.content.text;
       const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
       return (
@@ -32,10 +32,11 @@ const ListOfPosts = ({ items }) => (
           type={type.text}
           published={published}
           preview={preview}
+          uid={uid}
         />
       )
     })}
-    {items.map(({ id, title, type, published, body }) => {
+    {items.map(({ uid, id, title, type, published, body }) => {
       const previewText = body[0].primary.content.text;
       const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
       return (
@@ -45,10 +46,11 @@ const ListOfPosts = ({ items }) => (
           type={type.text}
           published={published}
           preview={preview}
+          uid={uid}
         />
       )
     })}
-    {items.map(({ id, title, type, published, body }) => {
+    {items.map(({ uid, id, title, type, published, body }) => {
       const previewText = body[0].primary.content.text;
       const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
       return (
@@ -58,6 +60,7 @@ const ListOfPosts = ({ items }) => (
           type={type.text}
           published={published}
           preview={preview}
+          uid={uid}
         />
       )
     })}
