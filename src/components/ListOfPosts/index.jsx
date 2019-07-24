@@ -25,6 +25,7 @@ const ListOfPosts = ({ items }) => (
     {items.map(({ uid, id, title, type, published, body }) => {
       const previewText = body[0].primary.content.text;
       const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
+      console.log({ uid });
       return (
         <PostItem
           key={id}

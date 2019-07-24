@@ -18,25 +18,24 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
   const posts = await graphql(`
-    {
-      allPrismicNews {
-        edges {
-          node {
-            id
-            uid
+      {
+        allPrismicNewsPost {
+          edges {
+            node {
+              uid
+            }
           }
         }
       }
-    }
   `);
 
   // Templates
   const pageTemplate = path.resolve('src/templates/page.jsx');
-  const postTemplate = path.resolve('src/pages/news.jsx');
+  const postTemplate = path.resolve('src/templates/NewsPost/index.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
-  const postsList = posts.data.allPrismicNews.edges;
+  const postsList = posts.data.allPrismicNewsPost.edges;
 
   pagesList.forEach(edge => {
     createPage({
@@ -49,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   postsList.forEach(edge => {
+    console.log({ edge });
     createPage({
       path: `/news/${edge.node.uid}`,
       component: postTemplate,

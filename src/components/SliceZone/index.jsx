@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 import { Content, ListOfPersons } from 'components';
 import relResolver from 'helpers/relResolver';
+import { gatsbyImgTransformer } from 'helpers/image';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
 
 const StyledContent = styled(Content)`
-  font-family: 'Sul Sans, Regular';
+  font-family: 'Sul Sans, Light';
   color: #051736;
   margin-right: -10%;
   p {
     font-size: 1.9rem;
-    line-height: 2.1rem;
+    line-height: 2.8rem;
     margin-top: 50px;
   }
   ${props => props.theme.media.md`
@@ -19,7 +21,7 @@ const StyledContent = styled(Content)`
     margin-right: 0;
     p {
       font-size: 2rem;
-      line-height: 2.5rem;
+      line-height: 2.9rem;
       margin-top: 115px
     }
   `}
@@ -43,7 +45,15 @@ export default class SliceZone extends Component {
     const slice = allSlices.map((s, i) => {
       switch (s.slice_type) {
         case 'paragraph':
-          return <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
+
+          console.log('*******Lol*******', gatsbyImgTransformer(s.primary.paragraph_image));
+          
+          return (
+            <>
+              {s.primary.paragraph_image && <Img fluid={gatsbyImgTransformer(s.primary.paragraph_image).main} />}
+              <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
+            </>
+          )
         case 'list_of_persons':
           return (
             <ListOfPersons
@@ -60,6 +70,7 @@ export default class SliceZone extends Component {
               key={s.id}
               items={s.items.map(x => ({
                 id: x.news_post.document[0].id,
+                uid: x.news_post.document[0].uid,
                 ...relResolver(x, 'news_post'),
               }))}
             />
@@ -71,9 +82,10 @@ export default class SliceZone extends Component {
     });
     return (
       <>
+        {children &&
         <Title className="invert-color">
           {children}
-        </Title>
+        </Title>}
         {slice}
       </>
     );
