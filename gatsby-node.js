@@ -48,7 +48,6 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   postsList.forEach(edge => {
-    console.log({ edge });
     createPage({
       path: `/news/${edge.node.uid}`,
       component: postTemplate,

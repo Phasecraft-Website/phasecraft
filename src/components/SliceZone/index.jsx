@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import { Content, ListOfPersons } from 'components';
-import relResolver from 'helpers/relResolver';
 import { gatsbyImgTransformer } from 'helpers/image';
+import { Content, ListOfPersons, ImageWrapper } from 'components';
+import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
 
@@ -45,12 +45,9 @@ export default class SliceZone extends Component {
     const slice = allSlices.map((s, i) => {
       switch (s.slice_type) {
         case 'paragraph':
-
-          console.log('*******Lol*******', gatsbyImgTransformer(s.primary.paragraph_image));
-          
           return (
             <>
-              {s.primary.paragraph_image && <Img fluid={gatsbyImgTransformer(s.primary.paragraph_image).main} />}
+              {s.primary.paragraph_image.url && <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />}
               <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
             </>
           )

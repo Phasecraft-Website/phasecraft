@@ -5,16 +5,18 @@ import { Link } from 'gatsby';
 
 const StyledPost = styled.div`
   color: #051736;
-  width: 60%;
+  width: 90%;
+  h1 {
     a {
-    color: currentColor;
-    width: 100%;
-    font: 'Sul Sans, Regular';
-    font-size: 3.6rem;
-    line-height: 4.5rem;
+      color: currentColor;
+      width: 100%;
+      font: 'Sul Sans, Regular';
+      font-size: 3.6rem;
+      line-height: 4.5rem;
+    }
   }
   span {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     font-family: 'Sul Sans, Light';
@@ -49,6 +51,19 @@ const StyledPost = styled.div`
       }
     }
   }
+
+  ${props => props.theme.media.md`
+    width: 60%;
+    span {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Sul Sans, Light';
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  `}
 `;
 
 const Published = styled.div`

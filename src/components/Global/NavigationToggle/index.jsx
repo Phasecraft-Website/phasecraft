@@ -13,6 +13,7 @@ const StyledNavToggle = styled.button`
   background: none;
   border: none;
   z-index: 100;
+  pointer-events: all;
 `
 const Svg = styled.svg`
   color: #323149;
