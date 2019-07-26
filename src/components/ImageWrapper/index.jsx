@@ -83,7 +83,7 @@ const ImageWrapper = ({ image, info: { text } }) => {
       <Plus />
       <Plus />
       <InfoTextBox>
-        <caption>{text}</caption>
+        <spa>{text}</spa>
         <ImageContainer>
           <Img fluid={gatsbyImage.main} />
         </ImageContainer>

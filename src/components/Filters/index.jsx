@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Dropdown = styled.div`
@@ -63,7 +63,7 @@ const Filters = () => {
       <StyledButton onClick={() => setActive(!active)}>
         <span>Filter by</span>
         <svg className={active ? 'rotate' : ''} width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7.74997 0.35968L7.74997 15" stroke="#051736" strokeWidth="1.5" stroke-Miterlimit="10"/>
+          <path d="M7.74997 0.35968L7.74997 15" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
           <path d="M15.1516 7.67982L0.348389 7.67982" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
         </svg>
       </StyledButton>
@@ -90,7 +90,3 @@ const Filters = () => {
 }
 
 export default Filters;
-
-Filters.propTypes = {
-  html: PropTypes.string.isRequired,
-};

@@ -36,7 +36,6 @@ function Page({ data: { prismicPage } }) {
             }
           </>
         }
-        {/* <Results /> */}
       </Layout>
       <StyledOffCanvasContainer key="offcanvas" id="___offcanvas" />
     </ScrollFadeProvider>

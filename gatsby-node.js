@@ -17,25 +17,25 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  const posts = await graphql(`
-      {
-        allPrismicNewsPost {
-          edges {
-            node {
-              uid
-            }
-          }
-        }
-      }
-  `);
+  // const posts = await graphql(`
+  //     {
+  //       allPrismicNewsPost {
+  //         edges {
+  //           node {
+  //             uid
+  //           }
+  //         }
+  //       }
+  //     }
+  // `);
 
   // Templates
   const pageTemplate = path.resolve('src/templates/page.jsx');
-  const postTemplate = path.resolve('src/templates/NewsPost/index.jsx');
+  // const postTemplate = path.resolve('src/templates/NewsPost/index.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
-  const postsList = posts.data.allPrismicNewsPost.edges;
+  // const postsList = posts.data.allPrismicNewsPost.edges;
 
   pagesList.forEach(edge => {
     createPage({
@@ -47,15 +47,15 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  postsList.forEach(edge => {
-    createPage({
-      path: `/news/${edge.node.uid}`,
-      component: postTemplate,
-      context: {
-        uid: edge.node.uid,
-      }
-    });
-  });
+  // postsList.forEach(edge => {
+  //   createPage({
+  //     path: `/news/${edge.node.uid}`,
+  //     component: postTemplate,
+  //     context: {
+  //       uid: edge.node.uid,
+  //     }
+  //   });
+  // });
 };
 
 /* Allow us to use something like: import { X } from 'directory' instead of '../../folder/directory' */
