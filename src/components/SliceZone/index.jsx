@@ -47,8 +47,8 @@ export default class SliceZone extends Component {
         case 'paragraph':
           return (
             <>
-              {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
-                <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />}
+              {/* {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
+                <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />} */}
               <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
             </>
           )
