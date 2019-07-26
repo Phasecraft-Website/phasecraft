@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
-import { gatsbyImgTransformer } from 'helpers/image';
-import { Content, ListOfPersons, ImageWrapper } from 'components';
+// import Img from 'gatsby-image';
+// import { gatsbyImgTransformer } from 'helpers/image';
+import { Content, ListOfPersons } from 'components';
 import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
@@ -46,11 +46,7 @@ export default class SliceZone extends Component {
       switch (s.slice_type) {
         case 'paragraph':
           return (
-            <>
-              {/* {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
-                <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />} */}
-              <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
-            </>
+            <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
           )
         case 'list_of_persons':
           return (
@@ -80,10 +76,11 @@ export default class SliceZone extends Component {
     });
     return (
       <>
-        {children &&
+        {/* {children && */}
         <Title className="invert-color">
           {children}
-        </Title>}
+        </Title>
+      {/* // } */}
         {slice}
       </>
     );
