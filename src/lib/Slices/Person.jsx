@@ -78,6 +78,7 @@ const StyledInfo = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   ${props => props.theme.media.md`
     padding-top: 0;
     display: block;
@@ -90,7 +91,7 @@ const StyledInfo = styled.button`
     transform-origin: top left;
     width: 40%;
     height: 40%;
-    font-family: GT Pressura Mono Light;
+    font-family: 'GT Pressura Mono Light';
     font-size: 1.7rem;
     line-height: 1.9rem;
     letter-spacing: 0.2rem;

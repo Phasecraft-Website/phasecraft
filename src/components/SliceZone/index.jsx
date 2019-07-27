@@ -20,8 +20,11 @@ const StyledContent = styled(Content)`
     p {
       font-size: 2rem;
       line-height: 2.9rem;
-      margin-top: 115px
+      margin-top: 115px;
     }
+  `}
+  ${props => props.theme.media.lg`
+    width: 919px;
   `}
 `;
 
