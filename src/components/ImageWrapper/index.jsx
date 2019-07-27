@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const InfoTextBox = styled.div`
+const InfoTextBox = styled.figure`
   background: rgba(255, 253, 252, 0.4);
   position: relative;
   padding: 10px;
@@ -39,7 +39,8 @@ const InfoTextBox = styled.div`
   justify-content: space-between;
   align-content: space-between;
   width: auto!important;
-  caption {
+  margin: 0;
+  figcaption {
     font-family: 'GT Pressura Mono Light';
     text-align: left;
     text-transform: uppercase;
@@ -49,7 +50,7 @@ const InfoTextBox = styled.div`
   ${props => props.theme.media.md`
     max-height: 420px;
     width: calc(100% - 20px)!important;
-    caption {
+    figcaption {
       width: 60%;
       margin-bottom: 40px;
     }
@@ -62,10 +63,6 @@ const ImageContainer = styled.div`
     align-self: flex-end;
   `}
 `;
-
-// const StyledSvg = styled.svg`
-//   position: absolute;
-// `;
 
 const Plus = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +80,7 @@ const ImageWrapper = ({ image, info: { text } }) => {
       <Plus />
       <Plus />
       <InfoTextBox>
-        <spa>{text}</spa>
+        <figcaption>{text}</figcaption>
         <ImageContainer>
           <Img fluid={gatsbyImage.main} />
         </ImageContainer>

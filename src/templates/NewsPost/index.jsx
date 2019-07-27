@@ -71,7 +71,23 @@ const FurtherReading = styled.div`
   a {
     font-family: 'Sul Sans, Regular';
     font-size: 2rem;
-    line-height: 2.5rem;
+    line-height: 3rem;
+    position: relative;
+    color: #051736;
+    &::after {
+      content: ' ';
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 1em;
+      left: -0.2em;
+      bottom: -0.1em;
+      padding: 0.2em;
+      transition: background-color 0.6s;
+    };
+    &:hover::after {
+      background-color: #2FF2AF;
+    }
   }
 `;
 
@@ -101,9 +117,9 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
             <SliceZone allSlices={body} />
             {related.length > 0 && 
               <FurtherReading>
-                <h2>FURTHER READING</h2>
+                <h2 className="invert-color">FURTHER READING</h2>
                 {related.map(({ link: { url, target }, text }) => (
-                  <p key={url}><a href={url} target={target}>{text}</a></p>
+                  <p key={url}><a className="invert-link" href={url} target={target}>{text}</a></p>
                 ))}
               </FurtherReading>
             }

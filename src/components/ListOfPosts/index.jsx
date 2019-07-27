@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import PostItem from './PostItem';
@@ -20,55 +20,62 @@ const StyledPostList = styled.section`
   `}
 `;
 
-const ListOfPosts = ({ items }) => (
-  <>
-    <Filters />
-    <StyledPostList>
-      {items.map(({ uid, id, title, type, published, body }) => {
-        const previewText = body[0].primary.content.text;
-        const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
-        return (
-          <PostItem
-            key={id}
-            title={title.text}
-            type={type.text}
-            published={published}
-            preview={preview}
-            uid={uid}
-          />
-        )
-      })}
-      {items.map(({ uid, id, title, type, published, body }) => {
-        const previewText = body[0].primary.content.text;
-        const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
-        return (
-          <PostItem
-            key={id}
-            title={title.text}
-            type={type.text}
-            published={published}
-            preview={preview}
-            uid={uid}
-          />
-        )
-      })}
-      {items.map(({ uid, id, title, type, published, body }) => {
-        const previewText = body[0].primary.content.text;
-        const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
-        return (
-          <PostItem
-            key={id}
-            title={title.text}
-            type={type.text}
-            published={published}
-            preview={preview}
-            uid={uid}
-          />
-        )
-      })}
-    </StyledPostList>
-  </>
-);
+const ListOfPosts = ({ items }) => {
+  const [filter, setFilter] = useState('All');
+  let posts = items;
+  if (filter !== 'All') {
+    posts = posts.filter(el => el.type.text === filter);
+  }
+  return (
+    <>
+      <Filters setFilter={setFilter} filter={filter} />
+      <StyledPostList>
+        {posts.map(({ uid, id, title, type, published, body }) => {
+          const previewText = body[0].primary.content.text;
+          const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
+          return (
+            <PostItem
+              key={id}
+              title={title.text}
+              type={type.text}
+              published={published}
+              preview={preview}
+              uid={uid}
+            />
+          )
+        })}
+        {posts.map(({ uid, id, title, type, published, body }) => {
+          const previewText = body[0].primary.content.text;
+          const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
+          return (
+            <PostItem
+              key={id}
+              title={title.text}
+              type={type.text}
+              published={published}
+              preview={preview}
+              uid={uid}
+            />
+          )
+        })}
+        {posts.map(({ uid, id, title, type, published, body }) => {
+          const previewText = body[0].primary.content.text;
+          const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
+          return (
+            <PostItem
+              key={id}
+              title={title.text}
+              type={type.text}
+              published={published}
+              preview={preview}
+              uid={uid}
+            />
+          )
+        })}
+      </StyledPostList>
+    </>
+  )
+};
 
 export default ListOfPosts
 

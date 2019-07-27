@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Dropdown = styled.div`
   margin-top: 50px;
   margin-right: -20%;
   overflow: hidden;
+  ${props => props.theme.media.md`
+    background: rgba(255, 255, 255, 0.6);
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+  `}
 `;
 
 const StyledButton = styled.div`
@@ -20,8 +26,15 @@ const StyledButton = styled.div`
   font-size: 1.3rem;
   line-height: 1.6rem;
   letter-spacing: 0.2rem;
+  ${props => props.theme.media.md`
+    width: auto;
+    background: none;
+  `}
   svg {
     transition: 0.7s;
+    ${props => props.theme.media.md`
+      display: none;
+    `}
   }
   .rotate {
     transform: rotate(135deg);
@@ -30,6 +43,9 @@ const StyledButton = styled.div`
 
 const ExpandedContainer = styled.div`
   overflow: hidden;
+  ${props => props.theme.media.md`
+    height: 100%;
+  `}
   .show {
     transform: translateY(0%);
     height: 100%;
@@ -37,27 +53,72 @@ const ExpandedContainer = styled.div`
   .hide {
     transform: translateY(-120%);
     height: 0;
+    ${props => props.theme.media.md`
+      height: 100%;
+      transform: translateY(0%);
+    `}
   }
 `;
 
 const ExpandedContent = styled.div`
   background: rgba(255, 255, 255, 0.6);
   transition: 0.7s;
+  ${props => props.theme.media.md`
+    background: none;
+  `}
   ul {
     margin: 0;
     list-style: none;
+    font-family: 'Sul Sans, Light';
+    ${props => props.theme.media.md`
+      display: flex;
+      padding: 0;
+    `}
+    .current {
+      font-family: 'Sul Sans, Regular';
+      ${props => props.theme.media.md`
+        background: rgba(228, 229, 227, 0.45);
+        padding-left: 30px;
+      `}
+      &:before {
+        opacity: 1!important;
+      }
+    }
   }
   li {
-    font-family: 'Sul Sans, Light';
     font-size: 1.7rem;
     line-height: 2.1rem;
+    letter-spacing: 0.2rem;
     padding: 10px 0;
-
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    ${props => props.theme.media.md`
+      padding: 10px 20px;
+      transition: 0.4s;
+    `}
+    &:before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 40%;
+      // bottom: 50%;
+      height: 5px;
+      width: 5px;
+      background-color: #2FF2AF;
+      opacity: 0;
+      border-radius: 50%;
+      transition: 0.4s;
+      ${props => props.theme.media.md`
+        left: 12px;
+      `}
+    }
   }
 `;
 
-const Filters = () => {
+const Filters = ({ filter, setFilter }) => {
   const [active, setActive] = useState(false);
+  const filters = ['All', 'Article', 'Opinion', 'Technical'];
   return (
     <Dropdown>
       <StyledButton onClick={() => setActive(!active)}>
@@ -70,18 +131,11 @@ const Filters = () => {
       <ExpandedContainer>
         <ExpandedContent className={active ? 'show' : 'hide'}>
           <ul>
-            <li>
-              All
-            </li>
-            <li>
-              Opinion
-            </li>
-            <li>
-              Article
-            </li>
-            <li>
-              Technical
-            </li>
+            {filters.map(el => (
+              <li className={filter === el ? 'current' : ''} onClick={() => setFilter(el)}>
+                {el}
+              </li>
+            ))}
           </ul>
         </ExpandedContent>
       </ExpandedContainer>
@@ -90,3 +144,8 @@ const Filters = () => {
 }
 
 export default Filters;
+
+Filters.propTypes = {
+  filter: PropTypes.string.isRequired,
+  setFilter: PropTypes.func.isRequired,
+}
