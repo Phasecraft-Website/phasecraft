@@ -7,6 +7,7 @@ const Dropdown = styled.div`
   margin-right: -20%;
   overflow: hidden;
   ${props => props.theme.media.md`
+    min-width: fit-content;
     background: rgba(255, 255, 255, 0.6);
     width: 60%;
     display: flex;
