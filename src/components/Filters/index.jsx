@@ -29,6 +29,8 @@ const StyledButton = styled.div`
   ${props => props.theme.media.md`
     width: auto;
     background: none;
+    font-family: 'GT Pressura Mono Regular';
+    letter-spacing: 0.3rem;
   `}
   svg {
     transition: 0.7s;
@@ -38,6 +40,17 @@ const StyledButton = styled.div`
   }
   .rotate {
     transform: rotate(135deg);
+  }
+  .md {
+    display: none;
+    ${props => props.theme.media.md`
+      display: block;
+    `}
+  }
+  .sm {
+    ${props => props.theme.media.md`
+      display: none;
+    `}
   }
 `;
 
@@ -70,13 +83,18 @@ const ExpandedContent = styled.div`
     margin: 0;
     list-style: none;
     font-family: 'Sul Sans, Light';
+    padding-inline-start: 30px;
     ${props => props.theme.media.md`
+      font-family: 'GT Pressura Mono Light';
+      text-transform: uppercase;
       display: flex;
       padding: 0;
     `}
     .current {
       font-family: 'Sul Sans, Regular';
       ${props => props.theme.media.md`
+      font-family: 'GT Pressura Mono Bold';
+      letter-spacing: 0.3rem;
         background: rgba(228, 229, 227, 0.45);
         padding-left: 30px;
       `}
@@ -96,11 +114,13 @@ const ExpandedContent = styled.div`
     ${props => props.theme.media.md`
       padding: 10px 20px;
       transition: 0.4s;
+      font-size: 1.2rem;
+      line-height: 1.3rem;
     `}
     &:before {
       content: "";
       position: absolute;
-      left: -10px;
+      left: -16px;
       top: 40%;
       // bottom: 50%;
       height: 5px;
@@ -122,7 +142,8 @@ const Filters = ({ filter, setFilter }) => {
   return (
     <Dropdown>
       <StyledButton onClick={() => setActive(!active)}>
-        <span>Filter by</span>
+        <span className="sm">Filter by</span>
+        <span className="md">SHOWING</span>
         <svg className={active ? 'rotate' : ''} width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.74997 0.35968L7.74997 15" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
           <path d="M15.1516 7.67982L0.348389 7.67982" stroke="#051736" strokeWidth="1.5" strokeMiterlimit="10"/>
