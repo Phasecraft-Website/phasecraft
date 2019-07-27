@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Layout, SEO, SliceZone, Contact } from 'components';
+import { Layout, SEO, SliceZone } from 'components';
 import { graphql } from 'gatsby';
 import Logo from '../components/Global/Logo';
 import Results from '../components/Home/Results';
