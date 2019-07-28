@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Content, ListOfPersons } from 'components';
+import { Content, ListOfPersons, ImageWrapper } from 'components';
 import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
@@ -47,16 +47,13 @@ export default class SliceZone extends Component {
       console.log(s);
       switch (s.slice_type) {
         case 'paragraph':
-          // return (
-          //   <div>
-          //     {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
-          //       <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />}
-          //     <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
-          //   </div>
-          // )
           return (
-            <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
-          )
+            <div>
+              {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
+                <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />}
+              <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
+            </div>
+          );
         case 'list_of_persons':
           return (
             <ListOfPersons
@@ -66,7 +63,7 @@ export default class SliceZone extends Component {
                 ...relResolver(x, 'person'),
               }))}
             />
-          )
+          );
         case 'list_of_posts':
           return (
             <ListOfPosts
@@ -77,7 +74,7 @@ export default class SliceZone extends Component {
                 ...relResolver(x, 'news_post'),
               }))}
             />
-          )
+          );
         default:
           console.warn(`No support for slice type ${s.slice_type}`);
           return null;

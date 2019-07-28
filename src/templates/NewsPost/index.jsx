@@ -11,7 +11,7 @@ const StyledOffCanvasContainer = styled.div`
 `;
 
 const NewsPost = ({ data: { prismicNewsPost: { data: {
-  title, type, published, body, related,
+  title, type, published, body, related, youtube,
 } } } }) => (
   <ScrollFadeProvider>
     <Layout>
@@ -24,6 +24,7 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
           published={published}
           body={body}
           related={related}
+          youtube={youtube}
         />
       }
     </Layout>
@@ -70,6 +71,22 @@ export const pageQuery = graphql`
         }
         type {
           text
+        }
+        youtube: youtube_link {
+          author_name
+          author_url
+          embed_url
+          height
+          html
+          provider_name
+          provider_url
+          thumbnail_height
+          thumbnail_url
+          thumbnail_width
+          title
+          type
+          width
+          version
         }
         body {
           ... on PrismicNewsPostBodyParagraph {

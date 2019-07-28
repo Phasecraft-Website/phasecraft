@@ -30,6 +30,12 @@
         "placeholder": "eg, Article, Opinion, Technical"
       }
     },
+    "youtube_link" : {
+      "type" : "Embed",
+      "config" : {
+        "label" : "YouTube link"
+      }
+    },
     "related_articles": {
       "type": "Group",
       "config": {

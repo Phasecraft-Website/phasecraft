@@ -54,35 +54,35 @@ function ListOfPersons({ items }) {
 
   return (
     <>
-    <StyledPersonList ref={grid}>
-      {people.map(({ id, bio, name, contact, image, workFunction, qualification, socialLinks, active }, index) => {
-        const bioContent = <Content html={bio.html} />
-        const nameContent = <Content html={name.html} />
-        const contactContent = <Content html={contact.html} />
-        const socialContent = <Content html={socialLinks.html} />
-        const img =
-          image.localFile !== null ? (
-            <Img fluid={{ ...image.localFile.childImageSharp.fluid, aspectRatio: 1 }} />
-          ) : null
-        return (
-          <Person
-            key={`${id}-${active}`}
-            name={nameContent}
-            bio={bioContent}
-            workFunction={workFunction}
-            qualification={qualification}
-            image={img}
-            contact={contactContent}
-            socialLinks={socialContent}
-            active={active}
-            toggle={remove => toggle({
-              id, bio, name, contact, image, workFunction, qualification, socialLinks, remove, active: true,
-            }, index)}
-          />
-        )
-      })}
-    </StyledPersonList>
-    <JoinTeam />
+      <StyledPersonList ref={grid}>
+        {people.map(({ id, bio, name, contact, image, workFunction, qualification, socialLinks, active }, index) => {
+          const bioContent = <Content html={bio.html} />
+          const nameContent = <Content html={name.html} />
+          const contactContent = <Content html={contact.html} />
+          const socialContent = <Content html={socialLinks.html} />
+          const img =
+            image.localFile !== null ? (
+              <Img fluid={{ ...image.localFile.childImageSharp.fluid, aspectRatio: 1 }} />
+            ) : null
+          return (
+            <Person
+              key={`${id}-${active}`}
+              name={nameContent}
+              bio={bioContent}
+              workFunction={workFunction}
+              qualification={qualification}
+              image={img}
+              contact={contactContent}
+              socialLinks={socialContent}
+              active={active}
+              toggle={remove => toggle({
+                id, bio, name, contact, image, workFunction, qualification, socialLinks, remove, active: true,
+              }, index)}
+            />
+          )
+        })}
+      </StyledPersonList>
+      <JoinTeam />
     </>
   )
 }
