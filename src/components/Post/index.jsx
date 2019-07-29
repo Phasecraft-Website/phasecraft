@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { SliceZone, Content } from 'components';
 import { Link } from 'gatsby';
 import Logo from '../Global/Logo';
-// import { Title } from '../Global/Typography';
 import Results from '../Home/Results';
 
 const PostContainer = styled.div`
@@ -18,6 +17,7 @@ const PostContainer = styled.div`
     justify-content: space-between;
     font-family: 'Sul Sans, Light';
     h2 {
+      font-family: 'GT Pressura Mono Light';
       font-size: 1.2rem;
     }
   }
@@ -50,12 +50,15 @@ const BackButton = styled(props => <Link {...props} />)`
   svg {
     margin-left: 8px;
   }
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const FurtherReading = styled.div`
   margin-top: 100px;
   h2 {
-    font-family: 'Sul Sans, Light';
+    font-family: 'GT Pressura Mono Light';
     margin-bottom: 35px;
     font-size: 1.2rem;
     line-height: 1.3rem;
@@ -64,11 +67,12 @@ const FurtherReading = styled.div`
     margin: 0!important;
   }
   a {
-    font-family: 'Sul Sans, Regular';
+    font-family: 'Sul Sans, Medium';
     font-size: 2rem;
     line-height: 3rem;
     position: relative;
     color: #051736;
+    text-transform: uppercase;
     &::after {
       content: ' ';
       position: absolute;

@@ -53,7 +53,7 @@ const StyledPost = styled.div`
   }
 
   ${props => props.theme.media.md`
-    width: 60%;
+    width: 70%;
     span {
       width: 50%;
       display: flex;
