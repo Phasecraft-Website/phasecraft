@@ -9,7 +9,7 @@ const Dropdown = styled.div`
   ${props => props.theme.media.md`
     min-width: fit-content;
     background: rgba(255, 255, 255, 0.6);
-    width: 60%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
   `}
@@ -87,6 +87,7 @@ const ExpandedContent = styled.div`
     padding-inline-start: 30px;
     ${props => props.theme.media.md`
       font-family: 'GT Pressura Mono Light';
+      letter-spacing: 0.3rem;
       text-transform: uppercase;
       display: flex;
       padding: 0;
@@ -94,10 +95,10 @@ const ExpandedContent = styled.div`
     .current {
       font-family: 'Sul Sans, Regular';
       ${props => props.theme.media.md`
-      font-family: 'GT Pressura Mono Bold';
-      letter-spacing: 0.3rem;
-        background: rgba(228, 229, 227, 0.45);
-        padding-left: 30px;
+        font-family: 'GT Pressura Mono Bold';
+        // background: rgba(228, 229, 227, 0.45);
+        background-color: #2FF2AF;
+        // padding-left: 30px;
       `}
       &:before {
         opacity: 1!important;
@@ -123,7 +124,6 @@ const ExpandedContent = styled.div`
       position: absolute;
       left: -16px;
       top: 40%;
-      // bottom: 50%;
       height: 5px;
       width: 5px;
       background-color: #2FF2AF;
@@ -131,7 +131,8 @@ const ExpandedContent = styled.div`
       border-radius: 50%;
       transition: 0.4s;
       ${props => props.theme.media.md`
-        left: 12px;
+        display: none;
+        // left: 12px;
       `}
     }
   }

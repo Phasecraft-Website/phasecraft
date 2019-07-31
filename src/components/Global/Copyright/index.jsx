@@ -112,6 +112,10 @@ const TitleText = styled.h1`
   `}
 `;
 
+const StyledImg = styled.img`
+  margin-bottom: 10px;
+`;
+
 const CopyrightComponent = ({ isContact, isHome, isNav, data: { copyright_information: { html } } }) => {
   const classes = [];
   let normal = false;
@@ -126,7 +130,7 @@ const CopyrightComponent = ({ isContact, isHome, isNav, data: { copyright_inform
   }
   return (
     <CopyrightContainer normal={normal} isContact={isContact} className={classes.join(' ')}>
-      {isNav && <img src={logoIcon} alt="Phasecraft" />}
+      {isNav && <StyledImg src={logoIcon} alt="Phasecraft" />}
       {isContact && <TitleText className="invert-opacity">Contact</TitleText>}
       <Content html={html} />
     </CopyrightContainer>
