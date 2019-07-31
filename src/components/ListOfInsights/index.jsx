@@ -47,7 +47,7 @@ const ListOfInsights = ({ items }) => {
             />
           )
         })}
-        {insights.map(({ uid, id, title, type, published, body }) => {
+        {/* {insights.map(({ uid, id, title, type, published, body }) => {
           const previewText = body[0].primary.content.text;
           const preview = previewText.length > 100 ? `${previewText.substr(0, 100)}...` : previewText;
           return (
@@ -74,7 +74,7 @@ const ListOfInsights = ({ items }) => {
               uid={uid}
             />
           )
-        })}
+        })} */}
       </StyledInsightList>
     </>
   )
