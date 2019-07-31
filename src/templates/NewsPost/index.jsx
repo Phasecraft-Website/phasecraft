@@ -11,7 +11,7 @@ const StyledOffCanvasContainer = styled.div`
 `;
 
 const NewsPost = ({ data: { prismicNewsPost: { data: {
-  title, type, published, body, related, youtube,
+  title, type, published, body, related,
 } } } }) => (
   <ScrollFadeProvider>
     <Layout>
@@ -24,7 +24,7 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
           published={published}
           body={body}
           related={related}
-          youtube={youtube}
+          // youtube={youtube}
         />
       }
     </Layout>
@@ -47,6 +47,7 @@ NewsPost.propTypes = {
         body: PropTypes.shape(),
         published: PropTypes.string,
         related: PropTypes.array,
+        youtube: PropTypes.shape(),
       }),
     }),
   }).isRequired
@@ -72,22 +73,6 @@ export const pageQuery = graphql`
         type {
           text
         }
-        youtube: youtube_link {
-          author_name
-          author_url
-          embed_url
-          height
-          html
-          provider_name
-          provider_url
-          thumbnail_height
-          thumbnail_url
-          thumbnail_width
-          title
-          type
-          width
-          version
-        }
         body {
           ... on PrismicNewsPostBodyParagraph {
             primary {
@@ -99,20 +84,6 @@ export const pageQuery = graphql`
                 dimensions {
                   width
                   height
-                }
-                x2 {
-                  url
-                  dimensions {
-                    width
-                    height
-                  }
-                }
-                x3 {
-                  url
-                  dimensions {
-                    width
-                    height
-                  }
                 }
               }
               image_info {
@@ -126,3 +97,18 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+// x2 {
+//   url
+//   dimensions {
+//     width
+//     height
+//   }
+// }
+// x3 {
+//   url
+//   dimensions {
+//     width
+//     height
+//   }
+// }
