@@ -28,14 +28,27 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
   `);
+  const insights = await graphql(`
+      {
+        allPrismicInsight {
+          edges {
+            node {
+              uid
+            }
+          }
+        }
+      }
+  `);
 
   // Templates
   const pageTemplate = path.resolve('src/templates/page.jsx');
   const postTemplate = path.resolve('src/templates/NewsPost/index.jsx');
+  const insightTemplate = path.resolve('src/templates/Insight/index.jsx');
 
   // Pages
   const pagesList = pages.data.allPrismicPage.edges;
   const postsList = posts.data.allPrismicNewsPost.edges;
+  const insightList = insights.data.allPrismicInsight.edges;
 
   pagesList.forEach(edge => {
     createPage({
@@ -51,6 +64,16 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/news/${edge.node.uid}`,
       component: postTemplate,
+      context: {
+        uid: edge.node.uid,
+      }
+    });
+  });
+
+  insightList.forEach(edge => {
+    createPage({
+      path: `/news/${edge.node.uid}`,
+      component: insightTemplate,
       context: {
         uid: edge.node.uid,
       }

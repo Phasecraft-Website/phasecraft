@@ -4,6 +4,7 @@ import { Content, ListOfPersons, ImageWrapper } from 'components';
 import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
+import ListOfInsights from '../ListOfInsights';
 
 const StyledContent = styled(Content)`
   font-family: 'Sul Sans, Light';
@@ -44,7 +45,6 @@ export default class SliceZone extends Component {
     const { allSlices, children } = this.props;
     if (!allSlices) return null;
     const slice = allSlices.map((s, i) => {
-      console.log(s);
       switch (s.slice_type) {
         case 'paragraph':
           return (
@@ -72,6 +72,17 @@ export default class SliceZone extends Component {
                 id: x.news_post.document[0].id,
                 uid: x.news_post.document[0].uid,
                 ...relResolver(x, 'news_post'),
+              }))}
+            />
+          );
+        case 'list_of_insights':
+          return (
+            <ListOfInsights
+              key={s.id}
+              items={s.items.map(x => ({
+                id: x.insight.document[0].id,
+                uid: x.insight.document[0].uid,
+                ...relResolver(x, 'insight'),
               }))}
             />
           );

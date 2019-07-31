@@ -82,6 +82,7 @@ const BackToTop = styled.button`
   border: none;
   opacity: 0;
   transition: opacity 0.5s;
+  outline: none;
   ${props => props.theme.media.md`
     display: none;
   `}

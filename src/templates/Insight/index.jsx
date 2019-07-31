@@ -10,7 +10,7 @@ const StyledOffCanvasContainer = styled.div`
   height: 100%;
 `;
 
-const NewsPost = ({ data: { prismicNewsPost: { data: {
+const Insight = ({ data: { prismicInsight: { data: {
   title, type, published, body, related,
 } } } }) => (
   <ScrollFadeProvider>
@@ -32,11 +32,11 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
   </ScrollFadeProvider>
 )
 
-export default NewsPost;
+export default Insight;
 
-NewsPost.propTypes = {
+Insight.propTypes = {
   data: PropTypes.shape({
-    prismicNewsPost: PropTypes.shape({
+    prismicInsight: PropTypes.shape({
       data: PropTypes.shape({
         title: PropTypes.shape({
           text: PropTypes.string,
@@ -54,8 +54,8 @@ NewsPost.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query NewsPage($uid: String!) {
-    prismicNewsPost(uid: { eq: $uid }) {
+  query InsightsPage($uid: String!) {
+    prismicInsight(uid: { eq: $uid }) {
       id
       uid
       data {
@@ -74,20 +74,10 @@ export const pageQuery = graphql`
           text
         }
         body {
-          ... on PrismicNewsPostBodyParagraph {
+          ... on PrismicInsightBodyParagraph {
             primary {
               content {
                 html
-              }
-              paragraph_image {
-                url
-                dimensions {
-                  width
-                  height
-                }
-              }
-              image_info {
-                text
               }
             }
             slice_type
