@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   insightList.forEach(edge => {
     createPage({
-      path: `/news/${edge.node.uid}`,
+      path: `/insight/${edge.node.uid}`,
       component: insightTemplate,
       context: {
         uid: edge.node.uid,

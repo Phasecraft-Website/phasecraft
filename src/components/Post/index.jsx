@@ -96,13 +96,13 @@ const Title = styled.h1`
   color: ${({ dark }) => dark ? `#E5E6E4` : `#051736`};
 `;
 
-const Post = ({ title, type, published, body, related, youtube }) => {
+const Post = ({ title, type, published, body, related, insight, youtube }) => {
   return (
     <>
       <PostContainer>
         <Logo dark />
-        <BackButton to="/news">
-          Back to News
+        <BackButton to={`/${insight ? 'insight' : 'news'}`}>
+          Back to {insight ? 'Insight' : 'News'}
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10.0135" cy="10.0609" r="9.60388" fill="#2FF2AF"/>
             <path d="M6.68319 9.59872L10.4195 5.86245C10.6748 5.60711 11.0888 5.60711 11.3441 5.86245C11.5995 6.11779 11.5995 6.53179 11.3441 6.78713L8.07021 10.0611L11.3441 13.335C11.5995 13.5903 11.5995 14.0043 11.3441 14.2597C11.0888 14.515 10.6748 14.515 10.4195 14.2597L6.68319 10.5234C6.42785 10.2681 6.42785 9.85406 6.68319 9.59872Z" fill="#051736"/>
@@ -134,6 +134,7 @@ export default Post;
 
 Post.defaultProps = {
   youtube: null,
+  insight: false
 }
 
 Post.propTypes = {
@@ -142,6 +143,7 @@ Post.propTypes = {
   body: PropTypes.shape().isRequired,
   published: PropTypes.string.isRequired,
   related: PropTypes.array.isRequired,
+  insight: PropTypes.bool,
   youtube: PropTypes.shape({
     html: PropTypes.string,
   }),

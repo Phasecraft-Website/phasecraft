@@ -24,6 +24,7 @@ const Insight = ({ data: { prismicInsight: { data: {
           published={published}
           body={body}
           related={related}
+          insight
           // youtube={youtube}
         />
       }
