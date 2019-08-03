@@ -7,6 +7,7 @@ import { gatsbyImgTransformer } from 'helpers/image';
 const Wrapper = styled.div`
   padding: 14px;
   margin-top: 30px;
+  margin-bottom: 52px;
   position: relative;
   width: calc(100% - 28px)!important;
   svg {

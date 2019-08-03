@@ -35,7 +35,6 @@ const PostContainer = styled.div`
     margin-right: 0;
     div {
       p {
-        margin-top: 52px;
         margin-right: 0;
       }
     }
