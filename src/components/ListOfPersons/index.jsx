@@ -46,8 +46,20 @@ function ListOfPersons({ items }) {
   const toggle = (item, index) => {
     const newList = [...items];
     if (!item.remove) {
-      const insert = isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? Math.floor((index+1)/2)*2 : Math.floor((index)/3)*3;
+      const isMobile = isViewport(viewport, ['DEFAULT', 'MEDIUM'])
+      const insert = isMobile ? Math.floor((index+1)/2)*2 : Math.floor((index)/3)*3;
       newList.splice(insert, 0, item)
+      setTimeout(() => {
+        const el = document.querySelector(`#${item.id}-active`);
+        const bodyRect = document.body.getBoundingClientRect();
+        const pos = el.getBoundingClientRect();
+        const offset = pos.top - bodyRect.top - (isMobile ? 100 : 200);
+        window.scroll({
+          top: offset, 
+          left: 0, 
+          behavior: 'smooth'
+        });
+      }, 1000);
     };
     setPeople(newList);
   }
@@ -67,6 +79,7 @@ function ListOfPersons({ items }) {
           return (
             <Person
               key={`${id}-${active}`}
+              id={id}
               name={nameContent}
               bio={bioContent}
               workFunction={workFunction}

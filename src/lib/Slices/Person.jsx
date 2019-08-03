@@ -346,7 +346,7 @@ const SocialContainer = styled.div`
   }
 `;
 
-function Person({ image, name, workFunction, bio, socialLinks, qualification, contact, active, toggle, ...props }) {
+function Person({ id, image, name, workFunction, bio, socialLinks, qualification, contact, active, toggle, ...props }) {
   const [hide, setHide] = useState(false);
   const { dispatch } = React.useContext(ScrollFade);
   const close = () => {
@@ -360,7 +360,7 @@ function Person({ image, name, workFunction, bio, socialLinks, qualification, co
   const isBio = bio.props.html && bio.props.html !== '<p></p>';
   const isSocial = socialLinks.props.html && socialLinks.props.html !== '<p></p>';
   return (
-    <PersonContainer active={active}>
+    <PersonContainer id={`${id}${active ? '-active' : ''}`} active={active}>
       <StyledPerson className={hide ? 'shrink' : ''} active={active} {...props}>
         <GridContainer>
           <BasicInfo active={active}>
