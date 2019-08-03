@@ -106,7 +106,7 @@ const InsightItem = ({ uid, type, published, title, preview }) => (
     <span>
       <h2>{type}</h2>
     </span>
-    <StyledLink to={`/news/${uid}`}>
+    <StyledLink to={`/insight/${uid}`}>
       <h1>{title}</h1>
       <p>
         {preview}

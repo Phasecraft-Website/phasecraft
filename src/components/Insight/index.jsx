@@ -102,7 +102,7 @@ const Post = ({ title, type, published, body, related, youtube }) => {
     <>
       <PostContainer>
         <Logo dark />
-        <BackButton to="/news">
+        <BackButton to="/insight">
           Back to Insight
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10.0135" cy="10.0609" r="9.60388" fill="#2FF2AF"/>
