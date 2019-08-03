@@ -58,8 +58,8 @@ const StyledPost = styled.div`
       width: 50%;
       display: flex;
       justify-content: space-between;
-      font-family: 'Sul Sans, Light';
       h2 {
+        font-family: 'GT Pressura Mono Light';
         font-size: 1.2rem;
       }
     }
