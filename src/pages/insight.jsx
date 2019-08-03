@@ -13,7 +13,7 @@ const StyledOffCanvasContainer = styled.div`
 
 function Insights({ data: { prismicInsights } }) {
   const {
-    data: { page_title, body },
+    data: { page_title, body, },
   } = prismicInsights;
   console.log({ body });
   return (
@@ -61,10 +61,23 @@ export const pageQuery = graphql`
               document {
                 data {
                   body {
-                    primary {
-                      content {
-                        text
+                    ... on PrismicInsightBodyVideo {
+                      id
+                      primary {
+                        video {
+                          url
+                          name
+                        }
                       }
+                      slice_type
+                    }
+                    ... on PrismicInsightBodyParagraph {
+                      primary {
+                        content {
+                          text
+                        }
+                      }
+                      slice_type
                     }
                   }
                   published(formatString: "DD.MM.YY")

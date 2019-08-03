@@ -26,6 +26,7 @@ const StyledInsightList = styled.section`
 const ListOfInsights = ({ items }) => {
   const [filter, setFilter] = useState('All');
   let insights = items;
+  console.log({ insights });
   if (filter !== 'All') {
     insights = insights.filter(el => el.type.text === filter);
   }
@@ -34,7 +35,13 @@ const ListOfInsights = ({ items }) => {
       <Filters setFilter={setFilter} filter={filter} />
       <StyledInsightList>
         {insights.map(({ uid, id, title, type, published, body }) => {
-          const previewText = body[0].primary.content.text;
+          let previewText = '';
+          for (let el of body) {
+            if (el.slice_type === 'paragraph') {
+              previewText = el.primary.content.text
+              break;
+            };
+          }
           const preview = previewText.length > 100 ? `${previewText.substr(0, 100)}...` : previewText;
           return (
             <InsightItem

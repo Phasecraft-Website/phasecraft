@@ -75,6 +75,16 @@ export const pageQuery = graphql`
           text
         }
         body {
+          ... on PrismicInsightBodyVideo {
+            id
+            primary {
+              video {
+                url
+                name
+              }
+            }
+            slice_type
+          }
           ... on PrismicInsightBodyParagraph {
             primary {
               content {

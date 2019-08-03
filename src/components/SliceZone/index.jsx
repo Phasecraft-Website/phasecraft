@@ -5,6 +5,7 @@ import relResolver from 'helpers/relResolver';
 import styled from 'styled-components';
 import ListOfPosts from '../ListOfPosts';
 import ListOfInsights from '../ListOfInsights';
+import VideoWrapper from '../VideoWrapper';
 
 const StyledContent = styled(Content)`
   font-family: 'Sul Sans, Light';
@@ -43,6 +44,7 @@ const Title = styled.h1`
 export default class SliceZone extends Component {
   render() {
     const { allSlices, children } = this.props;
+    console.log({ allSlices });
     if (!allSlices) return null;
     const slice = allSlices.map((s, i) => {
       switch (s.slice_type) {
@@ -85,6 +87,11 @@ export default class SliceZone extends Component {
                 ...relResolver(x, 'insight'),
               }))}
             />
+          );
+        case 'video':
+          console.log(s.primary.video.url);
+          return (
+            <VideoWrapper src={s.primary.video.url} />
           );
         default:
           console.warn(`No support for slice type ${s.slice_type}`);
