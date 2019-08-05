@@ -8,8 +8,6 @@ import { ScrollFade } from '../../hooks/useScrollFade';
 const basic = '0.3s';
 const basicDelayOpen = '0.5s';
 const basicDelayClose = '0s';
-// const expandedOpen = '0.7s';
-// const expandedClose = '0.5s';
 
 const revealAnim = keyframes`
   from { opacity: 0; }
@@ -43,7 +41,6 @@ const PersonContainer = styled.div`
 
 const StyledPerson = styled.article`
   transform-origin: top;
-  // transform: scaleY(0.3);
   ${({ active }) => active ? revealStyle : 'animation: none;'}
   position: relative;
 `;
@@ -109,19 +106,20 @@ const StyledPicture = styled.figure`
   position: relative;
   margin: 0;
   background-color: ${({ active }) => active ? 'rgba(238, 238, 238, 0.8)' : 'rgba(255, 255, 255, 0.3)'};
-  ${props => props.theme.media.md`
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      opacity: 0;
-      background: rgba(5, 23, 54, 0.3);
-      transition: opacity 0.8s;
-    }
-  `};
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    background: rgba(5, 23, 54, 0.3);
+    transition: opacity 0.8s;
+  }
+  .white-out &::after {
+    opacity: 1;
+  }
 `;
 
 const StyledFunction = styled.span`
@@ -421,6 +419,7 @@ Person.defaultProps = {
 };
 
 Person.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.node.isRequired,
   name: PropTypes.node.isRequired,
   workFunction: PropTypes.node,
