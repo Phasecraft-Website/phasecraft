@@ -20,7 +20,9 @@ const StyledPost = styled.div`
     display: flex;
     justify-content: space-between;
     font-family: 'Sul Sans, Light';
+    margin-bottom: 25px;
     h2 {
+      font-family: 'GT Pressura Mono Light';
       font-size: 1.2rem;
     }
   }
@@ -33,6 +35,9 @@ const StyledPost = styled.div`
     position: relative;
     max-width: fit-content;
     text-transform: none;
+    display: inline;
+    padding: 10px 0;
+    transition: background-color 0.6s;
     
     &::after {
       content: ' ';
@@ -56,12 +61,6 @@ const StyledPost = styled.div`
     width: 70%;
     span {
       width: 50%;
-      display: flex;
-      justify-content: space-between;
-      h2 {
-        font-family: 'GT Pressura Mono Light';
-        font-size: 1.2rem;
-      }
     }
   `}
 `;
@@ -90,9 +89,10 @@ const StyledLink = styled(props => <Link {...props} />)`
     }
     h1 {
       color: #051736;
-      &::after {
-        background-color: #2FF2AF;
-      }
+      background-color: #2FF2AF;
+      // &::after {
+      //   background-color: #2FF2AF;
+      // }
     }
   }
 `;
