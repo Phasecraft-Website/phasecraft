@@ -10,7 +10,6 @@ const StyledInsight = styled.div`
   padding: 25px;
   a {
     h1 {
-      margin-top: 50px;
       color: currentColor;
       width: 100%;
       font: 'Sul Sans, Regular';
@@ -23,6 +22,7 @@ const StyledInsight = styled.div`
       font-family: 'GT Pressura Mono Light';
       font-size: 1rem;
       line-height: 1.1rem;
+      margin-bottom: 5rem;
     }
   }
   p {
