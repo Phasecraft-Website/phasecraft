@@ -61,7 +61,7 @@ function ListOfPersons({ items }) {
         window.scroll({
           top: offset, 
           left: 0, 
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }, 1000);
       setPeople(newList);

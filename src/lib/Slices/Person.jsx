@@ -29,6 +29,7 @@ const hideStyle = css`
 
 const PersonContainer = styled.div`
   overflow: hidden;
+  transition: margin-bottom 1s;
   grid-column-end: span ${({ active }) => active ? 2 : 1};
   ${props => props.theme.media.md`
     grid-column-end: span ${({ active }) => active ? 3 : 1};
@@ -349,6 +350,9 @@ function Person({ id, image, name, workFunction, bio, socialLinks, qualification
   const { dispatch } = React.useContext(ScrollFade);
   const close = () => {
     setHide(true);
+    const el = document.querySelector(`#${id}${active ? '-active' : ''}`);
+    const elHeight = el.offsetHeight;
+    el.style.marginBottom = `-${elHeight}px`;
     setTimeout(() => {
       dispatch({ type: 'update' });
       toggle(true);
