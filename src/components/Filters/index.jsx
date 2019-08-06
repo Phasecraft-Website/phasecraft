@@ -99,6 +99,9 @@ const ExpandedContent = styled.div`
         // background: rgba(228, 229, 227, 0.45);
         background-color: #2FF2AF;
         // padding-left: 30px;
+        &:hover {
+          background: #2FF2AF;
+        }
       `}
       &:before {
         opacity: 1!important;
@@ -118,6 +121,9 @@ const ExpandedContent = styled.div`
       transition: 0.4s;
       font-size: 1.2rem;
       line-height: 1.3rem;
+      &:hover {
+        background: #fff;
+      }
     `}
     &:before {
       content: "";

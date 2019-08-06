@@ -35,23 +35,9 @@ const StyledInsight = styled.div`
     max-width: fit-content;
     text-transform: none;
     z-index: 1;
-    
-    &::after {
-      content: ' ';
-      position: absolute;
-      z-index: -1;
-      width: 100%;
-      height: calc(100% - 5px);
-      left: -0.2em;
-      bottom: 0;
-      padding: 0.2em;
-      transition: background-color 0.6s;
-    };
-    // &:hover {
-    //   &::after {
-    //     background-color: #2FF2AF;
-    //   }
-    // }
+    display: inline;
+    padding: 10px 0 5px 0;
+    transition: 0.6s;
   }
 
   ${props => props.theme.media.md`
@@ -94,9 +80,8 @@ const StyledLink = styled(props => <Link {...props} />)`
     }
     h1 {
       color: #051736;
-      &::after {
-        background-color: #2FF2AF;
-      }
+      background-color: #2FF2AF;
+      box-shadow: 5px 0 0 #2FF2AF, -5px 0 0 #2FF2AF;
     }
   }
 `;
