@@ -90,6 +90,16 @@ export const pageQuery = graphql`
               image_info {
                 text
               }
+              youtube_link{
+                html
+                height
+                width
+              }
+              video {
+                ... on PrismicInsightBodyParagraphPrimaryVideo {
+                  url
+                }
+              }
             }
             slice_type
           }

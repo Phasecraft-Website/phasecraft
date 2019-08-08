@@ -13,7 +13,7 @@ const StyledOffCanvasContainer = styled.div`
 
 function News({ data: { prismicNews } }) {
   const {
-    data: { page_title, body },
+    data: { page_title, body, meta_title, meta_description, meta_images },
   } = prismicNews;
   return (
     <ScrollFadeProvider>

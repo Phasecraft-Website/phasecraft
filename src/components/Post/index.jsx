@@ -114,7 +114,7 @@ const Post = ({ title, type, published, body, related, insight, youtube }) => {
           <h2>{published}</h2>
         </span>
         {/* {youtube && youtube.html && <Content ref={player} html={youtube.html} />} */}
-        <div id="player" />
+        {/* <div id="player" /> */}
         <SliceZone allSlices={body} />
         {related.length > 0 && related[0].link && 
           <FurtherReading>

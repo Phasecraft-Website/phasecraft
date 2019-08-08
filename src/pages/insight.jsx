@@ -60,16 +60,6 @@ export const pageQuery = graphql`
               document {
                 data {
                   body {
-                    ... on PrismicInsightBodyVideo {
-                      id
-                      primary {
-                        video {
-                          url
-                          name
-                        }
-                      }
-                      slice_type
-                    }
                     ... on PrismicInsightBodyParagraph {
                       primary {
                         content {

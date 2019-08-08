@@ -27,7 +27,6 @@ const StyledInsightList = styled.section`
 const ListOfInsights = ({ items }) => {
   const [filter, setFilter] = useState('All');
   let insights = items;
-  console.log({ insights });
   if (filter !== 'All') {
     insights = insights.filter(el => el.type.text === filter);
   }

@@ -41,10 +41,23 @@ const Title = styled.h1`
   `}
 `;
 
+const YouTubeContent = styled(Content)`
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 export default class SliceZone extends Component {
   render() {
     const { allSlices, children } = this.props;
-    console.log({ allSlices });
     if (!allSlices) return null;
     const slice = allSlices.map((s, i) => {
       switch (s.slice_type) {
@@ -53,7 +66,12 @@ export default class SliceZone extends Component {
             <div>
               {(s.primary.paragraph_image && s.primary.paragraph_image.url) &&
                 <ImageWrapper image={s.primary.paragraph_image} info={s.primary.image_info} />}
-              <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />
+              {(s.primary.youtube_link && s.primary.youtube_link.html) &&
+                <YouTubeContent html={s.primary.youtube_link.html} height={s.primary.youtube_link.height} />}
+              {(s.primary.video && s.primary.video.url) &&
+                <VideoWrapper src={s.primary.video.url} />}
+              {(s.primary.content && s.primary.content.html) &&
+              <StyledContent className="invert-color" key={s.id} html={s.primary.content.html} />}
             </div>
           );
         case 'list_of_persons':
@@ -89,7 +107,6 @@ export default class SliceZone extends Component {
             />
           );
         case 'video':
-          console.log(s.primary.video.url);
           return (
             <VideoWrapper src={s.primary.video.url} />
           );
