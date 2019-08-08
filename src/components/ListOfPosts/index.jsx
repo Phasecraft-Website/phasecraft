@@ -58,33 +58,6 @@ const ListOfPosts = ({ items }) => {
             />
           )
         })}
-        {posts.map(({ uid, id, title, type, published, body }) => {
-          // const previewText = body[0].primary.content.text;
-          // const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
-          let previewText = '';
-          let previewImage = null;
-          for (let el of body) {
-            if (previewText === '' && el.slice_type === 'paragraph') {
-              if (previewText === '') previewText = el.primary.content.text;
-              if (!previewImage && el.primary.paragraph_image && el.primary.paragraph_image.url) previewImage = gatsbyImgTransformer(el.primary.paragraph_image);
-            }
-            if (previewText !== '' && previewImage) {
-              break;
-            }
-          }
-          const preview = previewText.length > 300 ? `${previewText.substr(0, 300)}...` : previewText;
-          return (
-            <PostItem
-              key={id}
-              title={title.text}
-              type={type.text}
-              published={published}
-              preview={preview}
-              previewImage={previewImage}
-              uid={uid}
-            />
-          )
-        })}
       </StyledPostList>
     </>
   )
