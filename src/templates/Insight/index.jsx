@@ -75,21 +75,21 @@ export const pageQuery = graphql`
           text
         }
         body {
-          ... on PrismicInsightBodyVideo {
-            id
-            primary {
-              video {
-                url
-                name
-              }
-            }
-            slice_type
-          }
           ... on PrismicInsightBodyParagraph {
             primary {
               content {
                 html
               }
+            }
+            paragraph_image {
+              url
+              dimensions {
+                width
+                height
+              }
+            }
+            image_info {
+              text
             }
             slice_type
           }
@@ -112,4 +112,14 @@ export const pageQuery = graphql`
 //     width
 //     height
 //   }
+// }
+// ... on PrismicInsightBodyVideo {
+//   id
+//   primary {
+//     video {
+//       url
+//       name
+//     }
+//   }
+//   slice_type
 // }
