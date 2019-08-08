@@ -80,16 +80,16 @@ export const pageQuery = graphql`
               content {
                 html
               }
-            }
-            paragraph_image {
-              url
-              dimensions {
-                width
-                height
+              paragraph_image {
+                url
+                dimensions {
+                  width
+                  height
+                }
               }
-            }
-            image_info {
-              text
+              image_info {
+                text
+              }
             }
             slice_type
           }

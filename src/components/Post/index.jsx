@@ -117,7 +117,7 @@ const Post = ({ title, type, published, body, related, insight, youtube }) => {
         {/* {youtube && youtube.html && <Content ref={player} html={youtube.html} />} */}
         <div id="player" />
         <SliceZone allSlices={body} />
-        {related.length > 0 && 
+        {related.length > 0 && related[0].link && 
           <FurtherReading>
             <h2 className="invert-color">FURTHER READING</h2>
             {related.map(({ link: { url, target }, text }) => (
