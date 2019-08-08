@@ -64,7 +64,15 @@ export const pageQuery = graphql`
                       content {
                         text
                       }
+                      paragraph_image {
+                        url
+                        dimensions {
+                          width
+                          height
+                        }
+                      }
                     }
+                    slice_type
                   }
                   published(formatString: "DD.MM.YY")
                   title {

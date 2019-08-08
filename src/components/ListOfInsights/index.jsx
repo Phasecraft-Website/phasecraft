@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { gatsbyImgTransformer } from 'helpers/image';
 import InsightItem from './InsightItem';
 import Filters from '../Filters';
 
@@ -36,11 +37,15 @@ const ListOfInsights = ({ items }) => {
       <StyledInsightList>
         {insights.map(({ uid, id, title, type, published, body }) => {
           let previewText = '';
+          let previewImage = null;
           for (let el of body) {
-            if (el.slice_type === 'paragraph') {
-              previewText = el.primary.content.text
+            if (previewText === '' && el.slice_type === 'paragraph') {
+              if (previewText === '') previewText = el.primary.content.text;
+              if (!previewImage && el.primary.paragraph_image && el.primary.paragraph_image.url) previewImage = gatsbyImgTransformer(el.primary.paragraph_image);
+            }
+            if (previewText !== '' && previewImage) {
               break;
-            };
+            }
           }
           const preview = previewText.length > 100 ? `${previewText.substr(0, 100)}...` : previewText;
           return (
@@ -51,6 +56,7 @@ const ListOfInsights = ({ items }) => {
               published={published}
               preview={preview}
               uid={uid}
+              previewImage={previewImage}
             />
           )
         })}

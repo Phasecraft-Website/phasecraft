@@ -97,7 +97,6 @@ const Title = styled.h1`
 `;
 
 const Post = ({ title, type, published, body, related, insight, youtube }) => {
-  console.log({ body });
   return (
     <>
       <PostContainer>

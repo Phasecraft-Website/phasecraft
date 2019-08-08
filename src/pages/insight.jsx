@@ -15,7 +15,6 @@ function Insights({ data: { prismicInsights } }) {
   const {
     data: { page_title, body, },
   } = prismicInsights;
-  console.log({ body });
   return (
     <ScrollFadeProvider>
       <Layout>
@@ -75,6 +74,13 @@ export const pageQuery = graphql`
                       primary {
                         content {
                           text
+                        }
+                        paragraph_image {
+                          url
+                          dimensions {
+                            width
+                            height
+                          }
                         }
                       }
                       slice_type
