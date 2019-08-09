@@ -16,6 +16,22 @@ const ImageContainer = styled.div`
   transition: 1s;
   max-height: 115%;
   overflow: hidden;
+  display: none;
+  ${props => props.theme.media.md`
+    display: block;
+  `}
+`;
+
+const Pulse = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 `;
 
 const PostContainer = styled(props => <Link {...props} />)`
@@ -87,18 +103,6 @@ const StyledPost = styled.div`
 
 const Published = styled.div`
   width: 150px;
-`;
-
-const Pulse = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
 `;
 
 const StyledLink = styled.div`
