@@ -39,6 +39,8 @@ const StyledInsight = styled.div`
     z-index: 1;
     display: inline;
     padding: 10px 0 5px 0;
+    --box-shadow-color: transparent;
+    box-shadow: 5px 0 0 var(--box-shadow-color), -5px 0 0 var(--box-shadow-color);
     transition: 0.6s;
   }
 
@@ -94,16 +96,18 @@ const StyledLink = styled(props => <Link {...props} />)`
   height: calc(100% - 65px);
   z-index: 2;
   &:hover {
-    ${ImageContainer} {
-      opacity: 1;
-    }
+    ${props => props.theme.media.md`
+      ${ImageContainer} {
+        opacity: 1;
+      }
+    `}
     svg {
       animation: ${Pulse} 1.5s linear infinite;
     }
     h1 {
       color: #051736;
       background-color: #2FF2AF;
-      box-shadow: 5px 0 0 #2FF2AF, -5px 0 0 #2FF2AF;
+      --box-shadow-color: #2FF2AF;
     }
   }
 `;
