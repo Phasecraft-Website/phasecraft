@@ -25,6 +25,8 @@ const SEO = ({ title, desc, pathname, author, images }) => {
     default_meta_image,
     default_meta_description,
     meta_title_prefix,
+    analytics,
+    gtm,
   } = data;
 
   const metaImages = [];
@@ -39,6 +41,16 @@ const SEO = ({ title, desc, pathname, author, images }) => {
     author: author || default_author,
   };
 
+  const analyticsScript = `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${analytics}');`;
+  const gtmScript = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+ 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+ })(window,document,'script','dataLayer','${gtm}');`;
+
   // const seo = {
   //   title: 'PhaseCraft',
   //   description: 'USING DISRUPTIVE THEORY TO UNLOCK THE POWER OF QUANTUM COMPUTING',
@@ -49,6 +61,11 @@ const SEO = ({ title, desc, pathname, author, images }) => {
 
   return (
     <>
+    {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109095071-1" type="text/javascript" />
+    <script type="text/javascript">{analytics}</script>
+    <script type="text/javascript">{gtm}</script>
+    <noscript>{`<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS27637"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscript> */}
       <Helmet
         title={seo.title}
         html={{ lang: siteLanguage }}
@@ -61,6 +78,25 @@ const SEO = ({ title, desc, pathname, author, images }) => {
             name: 'image',
             content: seo.image,
           },
+        ]}
+        script={[
+          {
+            src: `https://www.googletagmanager.com/gtag/js?id=${analytics}`,
+            type: 'text/javascript',
+          },
+          {
+            innerHTML: analyticsScript,
+            type: 'text/javascript',
+          },
+          {
+            innerHTML: gtmScript,
+            type: 'text/javascript',
+          },
+        ]}
+        noscript={[
+          {
+            innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtm}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+          }
         ]}
       />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
@@ -111,6 +147,8 @@ const query = graphql`
       lang
       last_publication_date(formatString: "YYYY-MM-DD")
       data {
+        analytics: google_analytics_id
+        gtm: google_tag_manager_id
         menu_toggle_variation
         default_meta_title
         default_meta_description
