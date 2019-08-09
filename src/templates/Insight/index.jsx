@@ -20,7 +20,7 @@ const Insight = ({ data: { prismicInsight: { data: {
       {(title && title.text) &&
         <Post
           title={title.text}
-          type={type.text}
+          type={type}
           published={published}
           body={body}
           related={related}
@@ -71,9 +71,7 @@ export const pageQuery = graphql`
         title {
           text
         }
-        type {
-          text
-        }
+        type
         body {
           ... on PrismicInsightBodyParagraph {
             primary {

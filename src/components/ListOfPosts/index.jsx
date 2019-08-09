@@ -50,7 +50,7 @@ const ListOfPosts = ({ items }) => {
             <PostItem
               key={id}
               title={title.text}
-              type={type.text}
+              type={type}
               published={published}
               preview={preview}
               previewImage={previewImage}

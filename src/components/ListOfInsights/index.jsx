@@ -51,7 +51,7 @@ const ListOfInsights = ({ items }) => {
             <InsightItem
               key={id}
               title={title.text}
-              type={type.text}
+              type={type}
               published={published}
               preview={preview}
               uid={uid}
@@ -59,34 +59,6 @@ const ListOfInsights = ({ items }) => {
             />
           )
         })}
-        {/* {insights.map(({ uid, id, title, type, published, body }) => {
-          const previewText = body[0].primary.content.text;
-          const preview = previewText.length > 100 ? `${previewText.substr(0, 100)}...` : previewText;
-          return (
-            <InsightItem
-              key={id}
-              title={title.text}
-              type={type.text}
-              published={published}
-              preview={preview}
-              uid={uid}
-            />
-          )
-        })}
-        {insights.map(({ uid, id, title, type, published, body }) => {
-          const previewText = body[0].primary.content.text;
-          const preview = previewText.length > 100 ? `${previewText.substr(0, 100)}...` : previewText;
-          return (
-            <InsightItem
-              key={id}
-              title={title.text}
-              type={type.text}
-              published={published}
-              preview={preview}
-              uid={uid}
-            />
-          )
-        })} */}
       </StyledInsightList>
     </>
   )
