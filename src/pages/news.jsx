@@ -78,9 +78,7 @@ export const pageQuery = graphql`
                   title {
                     text
                   }
-                  type {
-                    text
-                  }
+                  type
                 }
                 id
                 uid

@@ -47,6 +47,11 @@ const BackButton = styled(props => <Link {...props} />)`
   align-items: center;
   max-width: fit-content;
   font-family: 'Sul Sans, Light';
+  color: #051736!important;
+  &:visited,
+  &:visited:visited {
+    color: #051736!important;
+  }
   svg {
     margin-left: 8px;
   }
