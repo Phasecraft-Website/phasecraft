@@ -10,7 +10,7 @@ const StyledOffCanvasContainer = styled.div`
   height: 100%;
 `;
 
-const NewsPost = ({ data: { prismicNewsPost: { data: {
+const Insight = ({ data: { prismicInsight: { data: {
   title, type, published, body, related,
 } } } }) => (
   <ScrollFadeProvider>
@@ -24,6 +24,7 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
           published={published}
           body={body}
           related={related}
+          insight
           // youtube={youtube}
         />
       }
@@ -32,11 +33,11 @@ const NewsPost = ({ data: { prismicNewsPost: { data: {
   </ScrollFadeProvider>
 )
 
-export default NewsPost;
+export default Insight;
 
-NewsPost.propTypes = {
+Insight.propTypes = {
   data: PropTypes.shape({
-    prismicNewsPost: PropTypes.shape({
+    prismicInsight: PropTypes.shape({
       data: PropTypes.shape({
         title: PropTypes.shape({
           text: PropTypes.string,
@@ -54,8 +55,8 @@ NewsPost.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query NewsPage($uid: String!) {
-    prismicNewsPost(uid: { eq: $uid }) {
+  query InsightsPage($uid: String!) {
+    prismicInsight(uid: { eq: $uid }) {
       id
       uid
       data {
@@ -74,7 +75,7 @@ export const pageQuery = graphql`
           text
         }
         body {
-          ... on PrismicNewsPostBodyParagraph {
+          ... on PrismicInsightBodyParagraph {
             primary {
               content {
                 html
@@ -89,13 +90,13 @@ export const pageQuery = graphql`
               image_info {
                 text
               }
-              youtube_link {
+              youtube_link{
                 html
                 height
                 width
               }
               video {
-                ... on PrismicNewsPostBodyParagraphPrimaryVideo {
+                ... on PrismicInsightBodyParagraphPrimaryVideo {
                   url
                 }
               }
@@ -121,4 +122,14 @@ export const pageQuery = graphql`
 //     width
 //     height
 //   }
+// }
+// ... on PrismicInsightBodyVideo {
+//   id
+//   primary {
+//     video {
+//       url
+//       name
+//     }
+//   }
+//   slice_type
 // }

@@ -99,7 +99,7 @@
                 "type": "Link",
                 "config": {
                   "label": "Video",
-                  "placeholder": "Add an optional uploaded a video"
+                  "placeholder": "Add an optional uploaded video"
                 }
               },
               "content": {

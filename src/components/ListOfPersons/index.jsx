@@ -32,6 +32,7 @@ const StyledPersonList = styled.section`
 function ListOfPersons({ items }) {
   const grid = useRef();
   const [people, setPeople] = useState(items);
+  const [prePoint, setPrePoint] = useState(null);
   const viewport = useViewport();
 
   useEffect(() => {
@@ -45,11 +46,40 @@ function ListOfPersons({ items }) {
 
   const toggle = (item, index) => {
     const newList = [...items];
+    const whitey = document.querySelector(`#${item.id}`);
     if (!item.remove) {
-      const insert = isViewport(viewport, ['DEFAULT', 'MEDIUM']) ? Math.floor((index+1)/2)*2 : Math.floor((index)/3)*3;
-      newList.splice(insert, 0, item)
-    };
-    setPeople(newList);
+      const isMobile = isViewport(viewport, ['DEFAULT', 'MEDIUM'])
+      const insert = isMobile ? Math.floor((index)/2)*2 : Math.floor((index)/3)*3;
+      newList.splice(insert, 0, item);
+      setPrePoint(window.scrollY);
+      whitey.classList.add('white-out');
+      setTimeout(() => {
+        const el = document.querySelector(`#${item.id}-active`);
+        const bodyRect = document.body.getBoundingClientRect();
+        const pos = el.getBoundingClientRect();
+        const offset = pos.top - bodyRect.top - (isMobile ? 100 : 200);
+        window.scroll({
+          top: offset, 
+          left: 0, 
+          behavior: 'smooth',
+        });
+      }, 1000);
+      setPeople(newList);
+    } else if (prePoint !== null) {
+      whitey.classList.remove('white-out');
+      setPeople(newList);
+      setTimeout(() => {
+        window.scroll({
+          top: prePoint, 
+          left: 0, 
+          behavior: 'smooth'
+        });
+        setPrePoint(null);
+      }, 100);
+    } else {
+      whitey.classList.remove('white-out');
+      setPeople(newList);
+    }
   }
 
   return (
@@ -67,6 +97,7 @@ function ListOfPersons({ items }) {
           return (
             <Person
               key={`${id}-${active}`}
+              id={id}
               name={nameContent}
               bio={bioContent}
               workFunction={workFunction}

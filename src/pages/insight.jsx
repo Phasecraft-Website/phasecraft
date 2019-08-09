@@ -11,10 +11,10 @@ const StyledOffCanvasContainer = styled.div`
   height: 100%;
 `
 
-function News({ data: { prismicNews } }) {
+function Insights({ data: { prismicInsights } }) {
   const {
-    data: { page_title, body, meta_title, meta_description, meta_images },
-  } = prismicNews;
+    data: { page_title, body, },
+  } = prismicInsights;
   return (
     <ScrollFadeProvider>
       <Layout>
@@ -34,11 +34,11 @@ function News({ data: { prismicNews } }) {
     </ScrollFadeProvider>
   );
 }
-export default News;
+export default Insights;
 
-News.defaultProps = {}
+Insights.defaultProps = {}
 
-News.propTypes = {
+Insights.propTypes = {
   data: PropTypes.shape({
     prismicNews: PropTypes.shape({
       data: PropTypes.object.isRequired,
@@ -48,7 +48,7 @@ News.propTypes = {
 
 export const pageQuery = graphql`
   {
-    prismicNews {
+    prismicInsights {
       data {
         page_title {
           text
@@ -56,23 +56,25 @@ export const pageQuery = graphql`
         body {
           slice_type
           items {
-            news_post {
+            insight {
               document {
                 data {
                   body {
-                    primary {
-                      content {
-                        text
-                      }
-                      paragraph_image {
-                        url
-                        dimensions {
-                          width
-                          height
+                    ... on PrismicInsightBodyParagraph {
+                      primary {
+                        content {
+                          text
+                        }
+                        paragraph_image {
+                          url
+                          dimensions {
+                            width
+                            height
+                          }
                         }
                       }
+                      slice_type
                     }
-                    slice_type
                   }
                   published(formatString: "DD.MM.YY")
                   title {
