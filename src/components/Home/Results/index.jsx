@@ -3,7 +3,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const ResultsContainer = styled.div`
+const ResultsContainer = styled.footer`
   position: relative;
   min-height: 100vh;
   margin-top: 50px;
@@ -93,6 +93,7 @@ const EmailText = styled.a`
   position: relative;
   max-width: fit-content;
   border-bottom: 2px solid #2FF2AF;
+  transition: 0.6s;
   &::after {
 		content: ' ';
 		position: absolute;
@@ -108,7 +109,7 @@ const EmailText = styled.a`
     background-color: #2FF2AF;
   }
   &:hover {
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid transparent!important;
   }
   ${props => props.theme.media.md`
     margin-top: 52px;
