@@ -16,6 +16,22 @@ const ImageContainer = styled.div`
   transition: 1s;
   max-height: 115%;
   overflow: hidden;
+  display: none;
+  ${props => props.theme.media.md`
+    display: block;
+  `}
+`;
+
+const Pulse = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 `;
 
 const PostContainer = styled(props => <Link {...props} />)`
@@ -33,7 +49,7 @@ const PostContainer = styled(props => <Link {...props} />)`
     h1 {
       color: #051736;
       background-color: #2FF2AF;
-      box-shadow: 5px 0 0 #2FF2AF, -5px 0 0 #2FF2AF;
+      --box-shadow-color: #2FF2AF;
     }
   }
 `;
@@ -73,6 +89,8 @@ const StyledPost = styled.div`
     display: inline;
     padding: 10px 0 5px 0;
     transition: 0.6s;
+    --box-shadow-color: transparent;
+    box-shadow: 5px 0 0 var(--box-shadow-color), -5px 0 0 var(--box-shadow-color);
   }
 
   ${props => props.theme.media.md`
@@ -85,18 +103,6 @@ const StyledPost = styled.div`
 
 const Published = styled.div`
   width: 150px;
-`;
-
-const Pulse = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
 `;
 
 const StyledLink = styled.div`
