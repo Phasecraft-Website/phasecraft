@@ -55,7 +55,7 @@ const ListOfPosts = ({ items }) => {
     }, 800);
   }
 
-  let posts = items.concat(items).concat(items).concat(items).concat(items).concat(items).concat(items).concat(items);
+  let posts = items;
   if (filter !== 'All') {
     posts = posts.filter(el => el.type.text === filter);
   }
