@@ -59,7 +59,7 @@ const ListOfInsights = ({ items }) => {
       dispatch({ type: 'update' });
     }, 800);
   }
-  let insights = items;
+  let insights = items.concat(items).concat(items).concat(items).concat(items).concat(items).concat(items).concat(items);
   if (filter !== 'All') {
     insights = insights.filter(el => el.type.text === filter);
   }

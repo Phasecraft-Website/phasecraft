@@ -71,6 +71,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscrip
         html={{ lang: siteLanguage }}
         meta={[
           {
+            name: 'title',
+            content: seo.title,
+          },
+          {
             name: 'description',
             content: seo.description,
           },
@@ -78,6 +82,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscrip
             name: 'image',
             content: seo.image,
           },
+          {
+            property: 'og:title',
+            content: seo.title,
+          },
+          {
+            property: 'og:site_name',
+            content: meta_title_prefix,
+          },
+          {
+            property: 'og:description',
+            content: seo.description,
+          },
+          {
+            property: 'og:image',
+            content: seo.image,
+          },
+          {
+            name: 'twitter:card',
+            content: 'summary_large_image'
+          }
         ]}
         script={[
           {
