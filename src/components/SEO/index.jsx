@@ -71,11 +71,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscrip
         html={{ lang: siteLanguage }}
         meta={[
           {
-            name: 'description',
+            name: 'og:title',
+            content: seo.title
+          },
+          {
+            name: 'og:description',
             content: seo.description,
           },
           {
-            name: 'image',
+            name: 'og:image',
             content: seo.image,
           },
         ]}
