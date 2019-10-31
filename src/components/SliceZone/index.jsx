@@ -16,6 +16,40 @@ const StyledContent = styled(Content)`
     line-height: 2.8rem;
     margin-top: 50px;
   }
+  li {
+    font-size: 1.9rem;
+    line-height: 2.8rem;
+  }
+  a {
+    font-size: 1.9rem;
+    line-height: 2.8rem;
+    color: #051736;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    &:after {
+      transition: 0.6s;
+      background: #2FF2AF;
+      height: 2.4rem;
+      position: absolute;
+      width: calc(100% + 8px);
+      left: -4px;
+      right: -4px;
+      // bottom: 10px;
+      content: "";
+      z-index: -1;
+      opacity: 0;
+    }
+  
+    &:hover {
+      color: #051736!important;
+      border-bottom: none;
+  
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
   ${props => props.theme.media.md`
     width: 80%;
     margin-right: 0;
@@ -23,6 +57,14 @@ const StyledContent = styled(Content)`
       font-size: 2rem;
       line-height: 2.9rem;
       margin-top: 115px;
+    }
+    li {
+      font-size: 2rem;
+      line-height: 2.9rem;
+    }
+    a {
+      font-size: 2rem;
+      line-height: 2.9rem;
     }
   `}
   ${props => props.theme.media.lg`
