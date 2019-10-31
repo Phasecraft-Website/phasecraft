@@ -57,7 +57,7 @@ const ListOfPosts = ({ items }) => {
 
   let posts = items;
   if (filter !== 'All') {
-    posts = posts.filter(el => el.type.text === filter);
+    posts = posts.filter(el => el.type === filter);
   }
   const postsToDisplay = posts.slice(0, showAmount);
   return (
