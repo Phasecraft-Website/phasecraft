@@ -61,7 +61,7 @@ const ListOfInsights = ({ items }) => {
   }
   let insights = items;
   if (filter !== 'All') {
-    insights = insights.filter(el => el.type.text === filter);
+    insights = insights.filter(el => el.type === filter);
   }
   const insightsToDisplay = insights.slice(0, showAmount);
   return (
