@@ -35,7 +35,7 @@ const SEO = ({ title, desc, pathname, author, images }) => {
   const seo = {
     title: `${title || default_meta_title}`,
     description: desc || default_meta_description,
-    image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
+    image: `${metaImages[0] ? metaImages[0].image.url : default_meta_image.url}`,
     url: `${url}${pathname || ''}`,
     author: author || default_author,
   };
