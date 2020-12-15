@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Layout } from 'components';
+import { Layout, SEO } from 'components';
 import { graphql} from 'gatsby';
 import Post from 'components/Post';
 import { ScrollFadeProvider } from '../../hooks/useScrollFade';
@@ -11,11 +11,11 @@ const StyledOffCanvasContainer = styled.div`
 `;
 
 const NewsPost = ({ data: { prismicNewsPost: { data: {
-  title, type, published, body, related,
+  title, type, published, body, related, meta_title, meta_description, meta_images
 } } } }) => (
   <ScrollFadeProvider>
     <Layout>
-      {/* <SEO title={meta_title} desc={meta_description} images={meta_images} /> */}
+      <SEO title={meta_title} desc={meta_description} images={meta_images} />
 
       {(title && title.text) &&
         <Post
@@ -59,6 +59,17 @@ export const pageQuery = graphql`
       id
       uid
       data {
+        meta_title
+        meta_description
+        meta_images {
+          image {
+            url
+            dimensions {
+              width
+              height
+            }
+          }
+        }
         related: related_articles {
           link {
             url

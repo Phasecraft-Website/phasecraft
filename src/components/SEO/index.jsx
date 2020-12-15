@@ -24,7 +24,6 @@ const SEO = ({ title, desc, pathname, author, images }) => {
     default_meta_title,
     default_meta_image,
     default_meta_description,
-    meta_title_prefix,
     analytics,
     gtm,
   } = data;
@@ -34,7 +33,7 @@ const SEO = ({ title, desc, pathname, author, images }) => {
   if (images !== null) metaImages.push(...images);
 
   const seo = {
-    title: `${meta_title_prefix} ${title || default_meta_title}`,
+    title: `${title || default_meta_title}`,
     description: desc || default_meta_description,
     image: `${metaImages[0] ? metaImages[0].url : default_meta_image.url}`,
     url: `${url}${pathname || ''}`,
@@ -85,10 +84,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscrip
           {
             property: 'og:title',
             content: seo.title,
-          },
-          {
-            property: 'og:site_name',
-            content: meta_title_prefix,
           },
           {
             property: 'og:description',
@@ -176,7 +171,6 @@ const query = graphql`
         menu_toggle_variation
         default_meta_title
         default_meta_description
-        meta_title_prefix
         default_meta_image {
           url
         }

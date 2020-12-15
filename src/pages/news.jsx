@@ -13,12 +13,12 @@ const StyledOffCanvasContainer = styled.div`
 
 function News({ data: { prismicNews } }) {
   const {
-    data: { page_title, body, meta_title, meta_description, meta_images },
+    data: { page_title, body, meta_title },
   } = prismicNews;
   return (
     <ScrollFadeProvider>
       <Layout>
-        {/* <SEO title={meta_title} desc={meta_description} images={meta_images} /> */}
+        <SEO title={meta_title} />
 
         {page_title && page_title.text &&
           <>
@@ -50,6 +50,7 @@ export const pageQuery = graphql`
   {
     prismicNews {
       data {
+        meta_title
         page_title {
           text
         }
