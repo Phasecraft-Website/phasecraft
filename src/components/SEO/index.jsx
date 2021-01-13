@@ -131,13 +131,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`}</noscrip
         url={seo.url}
         locale={ogLanguage}
         name={facebook}
-      />
+      /> */}
       <Twitter
         title={seo.title}
         image={seo.image}
         desc={seo.description}
         username={twitter}
-      /> */}
+      />
     </>
   );
 };
